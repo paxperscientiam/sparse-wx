@@ -1,0 +1,11 @@
+**/.git/**
+**/apps-script-oauth2/**
+!apps-script-oauth2/src/**
+
+**/node_modules/**
+**/node_modules/ajv/**
+!node_modules/traverse/index.js
+
+Code/Vendor/**
+Code/Clojure/**
+Code/_Old/**

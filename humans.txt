@@ -1,0 +1,13 @@
+
+
+
+Weather icons by Ashely Jager
+
+
+
+/* Helpful sites and services */
+https://blog.metservice.com/BeaufortWindScale
+https://www.weather.gov/mfl/beaufort
+https://www.oreilly.com
+https://www.usps.com
+https://www.weather.gov

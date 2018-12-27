@@ -1,0 +1,17 @@
+{
+    "scripts": {
+        "lint": "tslint ./Code/**/*.ts -e ./Code/_Old/**/*",
+        "push": "if git bump && clasp push; then terminal-notifier -title wxbuild -message success; else terminal-notifier -title wxbuild -message fail; fi"
+    },
+    "dependencies": {
+        "domurl": "^2.1.9",
+        "jsonld": "^1.2.1",
+        "traverse": "^0.6.6",
+        "urljs": "https://github.com/ericf/urljs",
+        "weather-underground-icons": "https://github.com/manifestinteractive/weather-underground-icons#74b423e"
+    },
+    "devDependencies": {
+        "fuse-box": "^3.6.0",
+        "tslint-config-standard": "^8.0.1"
+    }
+}
