@@ -20,7 +20,7 @@
     "gmail": {
         "name": "SparseWx",
         "useLocaleFromApp": true,
-        "logoUrl": "https://raw.githubusercontent.com/paxperscientiam/gmail-weather/2018-12-19/Img/Logo.png",
+        "logoUrl": "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/asset-img-logo.png/Img/Logo.png",
         "authorizationCheckFunction": "",
         "contextualTriggers": [{
             "unconditional": {

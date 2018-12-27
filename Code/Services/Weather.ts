@@ -117,7 +117,7 @@ function WeatherIconService(WxCondition, isDaytime) {
 //
 
 function checkWeatherServiceStatus() {
-    const url = (new nwsUrlService()).URL_BASE
+    const url = (new NWSUrlService()).URL_BASE
     const dictionary = new Dictionary()
     const params = dictionary.HTTP.WX_SERVICE.PARAMS
     const result = (new JsonResponseHandler(url, {}, params, "weatherServiceStatus"))
@@ -125,7 +125,7 @@ function checkWeatherServiceStatus() {
 }
 
 function getWeatherMeta() {
-    const url = new nwsUrlService()
+    const url = new NWSUrlService()
     const dictionary = new Dictionary()
     const params = dictionary.HTTP.WX_SERVICE.PARAMS
 
