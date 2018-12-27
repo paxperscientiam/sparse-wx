@@ -8,7 +8,7 @@ function WeatherWidget(period = 0) {
     const UI_ICONS = ICONS.UI
     const WX_ICONS = ICONS.WX
 
-    const PROPS = dictionary.props
+    const PROPS = dictionary.PROPS
     const STATE = PROPS.STATE
 
     const lat = Number(userProperties.getProperty(PROPS.USER.LAT)).toFixed(4)

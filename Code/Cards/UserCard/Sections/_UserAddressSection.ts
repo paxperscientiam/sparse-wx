@@ -1,9 +1,9 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function UserAddressSection() {
-    const upk = (new Dictionary()).props // userPropKeys
+    const UPK = (new Dictionary()).PROPS // userPropKeys
 
-    let address = userProperties.getProperty(upk.USER_ADDRESS)
-    let userName = userProperties.getProperty(upk.USER_NAME)
+    let address = userProperties.getProperty(UPK.USER_ADDRESS)
+    let userName = userProperties.getProperty(UPK.USER_NAME)
 
     if (!isSet(address)) {
         address = "Not yet set."

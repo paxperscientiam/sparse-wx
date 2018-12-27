@@ -1,7 +1,7 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function submitNameCallback(e) {
     const dictionary = new Dictionary()
-    const upk = dictionary.props
+    const upk = dictionary.PROPS
     const name = e.formInput.user_name_key
 
     if (validateUserName(name) && name.length > 0) {
@@ -26,7 +26,7 @@ function submitNameCallback(e) {
 
 function submitAddressCallback(e) {
     const dictionary = new Dictionary()
-    const upk = dictionary.props
+    const upk = dictionary.PROPS
     const BRAND = dictionary.BRAND
     const address = e.formInput.user_address_key
 

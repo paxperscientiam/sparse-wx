@@ -1,6 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function UserSection() {
-    const upk = (new Dictionary()).props
+    const UPK = (new Dictionary()).PROPS
 
     const submitNameAction =  CardService.newAction()
         .setFunctionName("submitNameCallback")
@@ -11,7 +11,7 @@ function UserSection() {
     return CardService.newCardSection()
         .addWidget(CardService.newTextInput()
                    .setFieldName("user_name_key")
-                   .setTitle("Your name")
+                   .setTitle("Your name (optional)")
                    .setHint("How should SparseWx address you? (25 character max)"))
         .addWidget(CardService
                    .newTextButton()
@@ -19,7 +19,7 @@ function UserSection() {
                    .setOnClickAction(submitNameAction))
         .addWidget(CardService.newTextInput()
                    .setFieldName("user_address_key")
-                   .setTitle("Your address")
+                   .setTitle("Your address (required)")
                    .setHint("city, state or ZIP code"))
         .addWidget(CardService
                    .newTextButton()

@@ -2,13 +2,13 @@
 
 
 // function getWeatherSection(dictionary) {
-//     //  const upk = dictionary.props
+//     //  const upk = dictionary.PROPS
 //     return getWeatherSectionFallbackSection()
 // }
 
 function getWeatherSection() {
     const dictionary = new Dictionary()
-    const UPK = dictionary.props
+    const UPK = dictionary.PROPS
     const UI = dictionary.UI
 
     let header = userProperties.getProperty(UPK.USER.ADDRESS)
@@ -21,15 +21,18 @@ function getWeatherSection() {
 
     const strUpdateDate = userProperties.getProperty(UPK.WX.WX_UPDATE_TIME)
 
+    if (isNull(strUpdateDate)) {
+        sectionHeader = UI.PLACEHOLDER_TEXT.CARD_SECTION_HEADER
+    }
+
     const dateUpdateDate = new Date(strUpdateDate)
 
     if (isNaN(dateUpdateDate)) {
         sectionHeader = UI.PLACEHOLDER_TEXT.CARD_SECTION_HEADER
     } else if (dateUpdateDate instanceof Date) {
         sectionHeader = formatDateService(dateUpdateDate)
+        sectionHeader = `Last updated: ${sectionHeader}`
     }
-
-    sectionHeader = `Last updated: ${sectionHeader}`
 
     const wxSection = CardService.newCardSection()
         .setHeader(sectionHeader)

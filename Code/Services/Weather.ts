@@ -2,7 +2,11 @@
 
 function weatherPrimeService(coordinates: string) {
     const dictionary = new Dictionary()
-    const UPK = dictionary.props
+    const UPK = dictionary.PROPS
+
+    if (coordinates === undefined) {
+        coordinates = userProperties.getProperty(UPK.USER.COORDINATE)
+    }
 
     const nwsUrlService = new NWSUrlService()
 
@@ -18,16 +22,16 @@ function weatherPrimeService(coordinates: string) {
 function weatherServicePrimeTest() {
     const dictionary = new Dictionary()
     const ICONS = dictionary.ICONS
-    const props = dictionary.props
+    const PROPS = dictionary.PROPS
 
-    weatherServicePrime(userProperties.getProperty(props.USER.COORDINATE))
+    weatherServicePrime(userProperties.getProperty(PROPS.USER.COORDINATE))
 }
 
 function WeatherService(coord, period) {
     const dictionary = new Dictionary()
     const nwsUrlService = new NWSUrlService()
     //
-    const UPK = dictionary.props
+    const UPK = dictionary.PROPS
     const WX = UPK.WX
 
     const url = nwsUrlService.metaData(coord)
@@ -46,10 +50,10 @@ function WeatherService(coord, period) {
     wx = (new JsonResponseHandler(wxUrl, {}, params, "wx")).data
 
     Logger.log(`wx server response: ${wx}`)
-    // const wx = JSON.parse(props.getProperty("WX"))
+    // const wx = JSON.parse(PROPS.getProperty("WX"))
 
     // if (Object.keys(wx).length === 0 ) {
-    //     props.setProperty("WX", JSON.stringify(wx))
+    //     PROPS.setProperty("WX", JSON.stringify(wx))
     // }
 
     this.temp = wx.properties.periods[period].temperature
@@ -77,39 +81,39 @@ function weatherSearch(mode, segment) {
 }
 
 function WeatherIconService(WxCondition, isDaytime) {
-    const time = isDaytime ? "DAY" : "NIGHT"
+    const TIME = isDaytime ? "DAY" : "NIGHT"
     const ICONS = (new DictionaryIcons()).WX
 
     if (/^part.*sunny/i.test(WxCondition)) {
-        return ICONS.PARTLYSUNNY[time]
+        return ICONS.PARTLYSUNNY[TIME]
     } else if (/^sunny/i.test(WxCondition) ) {
-        return ICONS.SUNNY[time]
+        return ICONS.SUNNY[TIME]
     } else if (/^part.*cloudy/i.test(WxCondition)) {
-        return ICONS.PARTLYCLOUDY[time]
+        return ICONS.PARTLYCLOUDY[TIME]
     } else if (/^cloudy/i.test(WxCondition) ) {
-        return ICONS.CLOUDY[time]
+        return ICONS.CLOUDY[TIME]
     } else if (/^(light|heavy) rain|rain/i.test(WxCondition) ) {
-        return ICONS.RAINY[time]
+        return ICONS.RAINY[TIME]
     } else if (/flurries/i.test(WxCondition) ) {
-        return ICONS.FLURRIES[time]
+        return ICONS.FLURRIES[TIME]
     } else if (/fog/i.test(WxCondition) ) {
-        return ICONS.FOG[time]
+        return ICONS.FOG[TIME]
     } else if (/haze/i.test(WxCondition) ) {
-        return ICONS.HAZY[time]
+        return ICONS.HAZY[TIME]
     } else if (/chance.*rain/i.test(WxCondition) ) {
-        return ICONS.CHANCERAIN[time]
+        return ICONS.CHANCERAIN[TIME]
     } else if (/chance.*sleet/i.test(WxCondition) ) {
         return ICONS.CHANCESLEET
     } else if (/chance.*snow/i.test(WxCondition) ) {
-        return ICONS.CHANCESNOW[time]
+        return ICONS.CHANCESNOW[TIME]
     } else if (/chance.*storm/i.test(WxCondition) ) {
-        return ICONS.CHANCETSTORMS[time]
+        return ICONS.CHANCETSTORMS[TIME]
     } else if (/mostly sunny/i.test(WxCondition) ) {
-        return ICONS.MOSTLYCLOUDY[time]
+        return ICONS.MOSTLYCLOUDY[TIME]
     } else if (/mostly cloudy/i.test(WxCondition) ) {
-        return ICONS.MOSTLYCLOUDY[time]
+        return ICONS.MOSTLYCLOUDY[TIME]
     } else if (/clear/i.test(WxCondition) ) {
-        return ICONS.CLEAR[time]
+        return ICONS.CLEAR[TIME]
     } else {
         return ICONS.UNKNOWN
     }
@@ -141,7 +145,7 @@ function getWeatherMeta() {
 // function getAlertsByArea() {
 //     // 'area' is two letter state code, capital letters
 //     const dictionary = new Dictionary()
-//     const UPK = dictionary.props
+//     const UPK = dictionary.PROPS
 //     Logger.log(
 
 // }

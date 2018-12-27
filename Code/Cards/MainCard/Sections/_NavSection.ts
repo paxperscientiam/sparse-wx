@@ -2,7 +2,7 @@
 
 function getNavSection() {
     const dictionary = new Dictionary()
-    const UPK = dictionary.props
+    const UPK = dictionary.PROPS
     const UI = dictionary.UI
 
     const goToUserCardAction = CardService.newAction()

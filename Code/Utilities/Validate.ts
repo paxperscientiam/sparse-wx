@@ -16,7 +16,7 @@ function validateMailingAddress(address: string) {
         return false
     }
     const dictionary = new Dictionary()
-    const upk = dictionary.props
+    const upk = dictionary.PROPS
     const GeoInterface = dictionary.INTERFACE.GoogleGeoCodeInterface
 
     const response = Maps.newGeocoder()
@@ -28,22 +28,6 @@ function validateMailingAddress(address: string) {
 
     const result = response.results[0]
     const polity = result.address_components
-    polity.forEach((pol) => {
-        if (pol.types.indexOf(GeoInterface.CITY) > -1) {
-            userProperties.setProperty(upk.USER.CITY, pol.short_name)
-        }
-
-        if (pol.types.indexOf(GeoInterface.STATE) > -1) {
-            userProperties.setProperty(upk.USER.STATE, pol.short_name)
-        }
-        if (pol.types.indexOf(GeoInterface.COUNTY) > -1) {
-            userProperties.setProperty(upk.USER.COUNTY, pol.short_name)
-        }
-        if (pol.types.indexOf(GeoInterface.COUNTRY) > -1) {
-            userProperties.setProperty(upk.USER.COUNTRY, pol.long_name)
-        }
-
-    })
 
     const polities = dictionary.APPROVED_POLITIES
 
@@ -61,9 +45,10 @@ function validateMailingAddress(address: string) {
         return [false, "UNSUPPORTED_REGION"]
     }
 
+    // stores approved data
+    processGeocoderResultsService(polity, result.geometry)
     userProperties.setProperty(upk.USER.ADDRESS, result.formatted_address)
-    userProperties.setProperty(upk.USER.LAT, result.geometry.location.lat)
-    userProperties.setProperty(upk.USER.LON, result.geometry.location.lng)
+
     //
     return [true]
 }

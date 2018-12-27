@@ -1,7 +1,7 @@
 //     Copyright (C) 2018 Christopher David Ramos
 // function setScriptProperties() {
 //     const dictionary = new Dictionary()
-//     const PROPS = dictionary.props
+//     const PROPS = dictionary.PROPS
 //     const _API = PROPS.API
 
 //     const API = {

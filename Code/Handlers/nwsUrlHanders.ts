@@ -27,8 +27,8 @@ function NWSUrlService() {
 //
 function _nwsUrlHandlerTest_metaUrlFromCoord() {
     const coordinates = "44.4759,-73.2121"
-    a = new NWSUrlService(); Logger.log(a)
-    b = a.metaUrlFromCoord; Logger.log(b)
+    a = new NWSUrlService()
+    b = a.meta
     c = b(coordinates); Logger.log(c)
     return c
 }
@@ -36,7 +36,7 @@ function _nwsUrlHandlerTest_metaUrlFromCoord() {
 function _nwsUrlHandlerTest__forecastUrlFromCoord() {
     const coordinates = "44.4759,-73.2121"
     a = new NWSUrlService()
-    b = a.metaUrlFromCoord
+    b = a.meta
     metaUrl = b(coordinates)
 
     forecastUrl = a._forecastUrlFromCoord(metaUrl); Logger.log(forecastUrl)

@@ -11,6 +11,9 @@ function Dictionary() {
             COUNTRY: "country",
             COUNTY: "administrative_area_level_2",
             STATE: "administrative_area_level_1",
+
+            ZIP     : "postal_code",
+            ZIP_CODE: "postal_code",
         },
         NationalWeatherServiceInterface: {
             // NWS values
@@ -61,24 +64,30 @@ function Dictionary() {
         },
     })
 
-    this.props = new Enumeration({
+    this.PROPS = new Enumeration({
         STATE: {
             LOCATION_SERVICE:  "STATE_LOCATION_SERVICE",
             MINT         : "STATE_MINT",
+            WX_DATA      : "WX_DATA", // primed or not?
             WX_SERVICE   : "STATE_WX_SERVICE",
         },
         USER: {
             ADDRESS   : "USER_ADDRESS",
             CITY      : "USER_CITY",
-            COORDINATE: "USER_COORDINATE",
-            COUNTRY   : "USER_COUNTRY",
-            COUNTY    : "USER_COUNTY",
+
+            COO         : "USER_COORDINATE",
+            COORDINATE  : "USER_COORDINATE",
+            COORDINATES : "USER_COORDINATE",
             LAT       : "USER_LAT",
             LON       : "USER_LON",
+
+            COUNTRY   : "USER_COUNTRY",
+            COUNTY    : "USER_COUNTY",
             NAME      : "USER_NAME",
             REGION    : "USER_REGION",
             STATE     : "USER_REGION",
             TZ        : "USER_TZ",
+            ZIP       : "USER_ZIP_CODE",
             ZIP_CODE  : "USER_ZIP_CODE",
         },
         WX: {

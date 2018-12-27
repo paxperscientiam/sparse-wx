@@ -2,16 +2,22 @@
 
 function MainCard(dictionary) {
     const ICONS = dictionary.ICONS
-    const props = dictionary.props
+    const PROPS = dictionary.PROPS
 
-    if (userProperties.getProperty(props.STATE.WX_SERVICE) !== "OK") {
+    if (isSet(userProperties.getProperty(PROPS.USER.ADDRESS))) {
+        userProperties.setProperty(PROPS.STATE.MINT, "USED")
+    } else {
+        userProperties.setProperty(PROPS.STATE.MINT, "MINT")
+    }
+
+    if (userProperties.getProperty(PROPS.STATE.WX_SERVICE) !== "OK") {
         return getWeatherServiceFallbackCard()
     }
 
-    if (userProperties.getProperty(props.STATE.MINT) === "USED") {
-        const thing = getCoordinatesFromAddressService(userProperties.getProperty(props.USER.ADDRESS))
-        weatherPrimeService(thing.coo)
-    }
+//     if (userProperties.getProperty(PROPS.STATE.MINT) === "USED") {
+//         const thing = getCoordinatesFromAddressService(userProperties.getProperty(PROPS.USER.ADDRESS))
+//         weatherPrimeService(thing.coo)
+//     }
 
     const card = CardService.newCardBuilder()
         .setName("mainCard")
@@ -30,7 +36,7 @@ function MainCard(dictionary) {
 //     const location = (new LocationService())
 //     const icons = (new DictionaryIcons()).ui
 //     const dictionary = (new Dictionary())
-//     const props = dictionary.props
+//     const props = dictionary.PROPS
 //     const status = dictionary.status
 //     const _wx = dictionary.wx
 
@@ -84,7 +90,7 @@ function MainCard(dictionary) {
 // }
 
 function getMainCardTitle(dictionary): string {
-    const upk = dictionary.props
+    const upk = dictionary.PROPS
     const date = new DateArray()
 
     const userName = userProperties.getProperty(upk.USER.NAME)

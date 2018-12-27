@@ -5,47 +5,6 @@ function checkLocationServiceStatus() {
     return result.status
 }
 
-function LocationService() {
-    constructor() {
-        const UPK = (new Dictionary()).props
-        Logger.log("Creating new LocationService instance ... ")
-        const address = userProperties.getProperty(UPK.USER.ADDRESS)
-
-        if (!isString(address)) {
-            Logger.log("ERR (LocationService): user needs to set address first")
-            this.status = "ERR"
-            return this
-        }
-    }
-
-    init() {
-        try {
-            this.coordData = getCoordinatesFromAddressService(address)
-            Logger.log("Coordinate data: " + this.coordData)
-            this.lat = this.coordData.lat
-            this.lon = this.coordData.lon
-            this.coo = this.coordData.coo
-
-            userProperties.setProperty(upk.USER.LAT, this.lat)
-            userProperties.setProperty(upk.USER.LON, this.lon)
-            userProperties.setProperty(upk.USER.COORDINATE, this.coo)
-            this.status = "OK"
-            Logger.log("OK (LocationService)")
-        } catch (e) {
-            Logger.log("getCoordinatesFromAddressService error")
-            Logger.log(`ERR: address value is ${address}`)
-            this.status = "ERR"
-        }
-    }
-}
-
-function MapReverseCoordinates(lat, lon) {
-    const response = Maps.newGeocoder().reverseGeocode(lat, lon)
-    //
-    const result = response.results[0]
-    return result
-}
-
 function getCoordinatesFromAddressService(address: string) {
     const response = Maps.newGeocoder().geocode(address)
         .results
@@ -57,4 +16,35 @@ function getCoordinatesFromAddressService(address: string) {
     result.coo = result.lat + "," + result.lon
 
     return result
+}
+
+function processGeocoderResultsService(polity, geometry) {
+    const dictionary = new Dictionary()
+    const upk = dictionary.PROPS
+    const GeoInterface = dictionary.INTERFACE.GoogleGeoCodeInterface
+
+    const lon = geometry.location.lon.toFixed(4)
+    const lat = geometry.location.lat.toFixed(4)
+    const coordinate = lat + "," + lon
+
+    polity.forEach((pol) => {
+        if (pol.types.indexOf(GeoInterface.CITY) > -1) {
+            userProperties.setProperty(upk.USER.CITY, pol.short_name)
+        }
+        if (pol.types.indexOf(GeoInterface.STATE) > -1) {
+            userProperties.setProperty(upk.USER.STATE, pol.short_name)
+        }
+        if (pol.types.indexOf(GeoInterface.COUNTY) > -1) {
+            userProperties.setProperty(upk.USER.COUNTY, pol.short_name)
+        }
+        if (pol.types.indexOf(GeoInterface.COUNTRY) > -1) {
+            userProperties.setProperty(upk.USER.COUNTRY, pol.long_name)
+        }
+        if (pol.types.indexOf(GeoInterface.ZIP_CODE) > -1) {
+            userProperties.setProperty(upk.USER.ZIP_CODE, pol.long_name)
+        }
+    })
+    userProperties.setProperty(upk.USER.LAT, lat)
+    userProperties.setProperty(upk.USER.LON, lon)
+    userProperties.setProperty(upk.USER.COORDINATE, coordinate)
 }
