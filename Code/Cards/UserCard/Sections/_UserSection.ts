@@ -8,6 +8,12 @@ function UserSection() {
     const submitAddressAction = CardService.newAction()
         .setFunctionName("submitAddressCallback")
 
+    const submitAddressSuggestionsAction = CardService.newAction()
+        .setFunctionName("getAddressSuggestionsCallback")
+    //         .setParameters({
+    //             numSuggestions: 5,
+    //         })
+
     return CardService.newCardSection()
         .addWidget(CardService.newTextInput()
                    .setFieldName("user_name_key")
@@ -20,7 +26,8 @@ function UserSection() {
         .addWidget(CardService.newTextInput()
                    .setFieldName("user_address_key")
                    .setTitle("Your address (required)")
-                   .setHint("city, state or ZIP code"))
+                   .setHint("city, state or ZIP code")
+                   .setSuggestionsAction(submitAddressSuggestionsAction))
         .addWidget(CardService
                    .newTextButton()
                    .setText('<font color="#ea9999">SUBMIT</font>')

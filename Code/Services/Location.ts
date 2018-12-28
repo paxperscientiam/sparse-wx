@@ -23,7 +23,7 @@ function processGeocoderResultsService(polity, geometry) {
     const upk = dictionary.PROPS
     const GeoInterface = dictionary.INTERFACE.GoogleGeoCodeInterface
 
-    const lon = geometry.location.lon.toFixed(4)
+    const lon = geometry.location.lng.toFixed(4)
     const lat = geometry.location.lat.toFixed(4)
     const coordinate = lat + "," + lon
 

@@ -17,21 +17,15 @@ function getWeatherSection() {
         header = UI.PLACEHOLDER_TEXT.CARD_SECTION_HEADER
     }
 
-    let sectionHeader
+    let sectionHeader = "Last updated: "
 
     const strUpdateDate = userProperties.getProperty(UPK.WX.WX_UPDATE_TIME)
-
-    if (isNull(strUpdateDate)) {
-        sectionHeader = UI.PLACEHOLDER_TEXT.CARD_SECTION_HEADER
-    }
-
     const dateUpdateDate = new Date(strUpdateDate)
 
-    if (isNaN(dateUpdateDate)) {
-        sectionHeader = UI.PLACEHOLDER_TEXT.CARD_SECTION_HEADER
+    if (isNull(strUpdateDate) || isNaN(dateUpdateDate)) {
+        sectionHeader += "unknown"
     } else if (dateUpdateDate instanceof Date) {
-        sectionHeader = formatDateService(dateUpdateDate)
-        sectionHeader = `Last updated: ${sectionHeader}`
+        sectionHeader += formatDateService(dateUpdateDate)
     }
 
     const wxSection = CardService.newCardSection()

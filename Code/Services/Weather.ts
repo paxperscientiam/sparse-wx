@@ -34,19 +34,17 @@ function WeatherService(coord, period) {
     const UPK = dictionary.PROPS
     const WX = UPK.WX
 
-    const url = nwsUrlService.metaData(coord)
+    const urlForMeta = nwsUrlService.meta(coord)
 
     //    curl https://api.weather.gov/stations/KBTV/observations/current
 
-    //const params = getUserObjectProperty(WX.WX_API_PARAMS)
     const params = dictionary.HTTP.WX_SERVICE.PARAMS
 
-    wxMetaRaw = (new JsonResponseHandler(urlForMeta, {}, params, "wxMetaRaw")).data
-
-    wxRaw = (new JsonResponseHandler(url, {}, params, "wxRaw")).data
+    wxRaw = (new JsonResponseHandler(urlForMeta, {}, params, "wxRaw")).data
     wxUrl = wxRaw.properties.forecast
     Logger.log(`Forecast url: ${wxUrl}`)
 
+    // FIX21313
     wx = (new JsonResponseHandler(wxUrl, {}, params, "wx")).data
 
     Logger.log(`wx server response: ${wx}`)

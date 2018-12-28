@@ -16,11 +16,11 @@ function validateMailingAddress(address: string) {
         return false
     }
     const dictionary = new Dictionary()
-    const upk = dictionary.PROPS
+    const UPK = dictionary.PROPS
     const GeoInterface = dictionary.INTERFACE.GoogleGeoCodeInterface
 
     const response = Maps.newGeocoder()
-    //        .setRegion("us")
+        .setRegion("us")
         .geocode(address)
     if (response.status === "ZERO_RESULTS") {
         return [false, "ZERO_RESULTS"]
@@ -29,25 +29,34 @@ function validateMailingAddress(address: string) {
     const result = response.results[0]
     const polity = result.address_components
 
-    const polities = dictionary.APPROVED_POLITIES
+    const arrApprovedPolities = dictionary.APPROVED_POLITIES
 
-    const leaves = traverse(polities).reduce((acc, pol) => {
+    const leaves = traverse(arrApprovedPolities).reduce((acc, pol) => {
         if (pol !== undefined) {
             acc.push(pol)
         }
         return acc
     }, [])
 
-    const polity = userProperties.getProperty(upk.USER.COUNTRY)
-    const isApprovedPolity = leaves.indexOf(polity) > -1
-    Logger.log(`The polity ${polity} is approved: ${isApprovedPolity}`)
+    polity.forEach((pol) => {
+        if (pol.types.indexOf(GeoInterface.COUNTRY) > -1) {
+            userProperties.setProperty(UPK.USER.COUNTRY, pol.long_name)
+        }
+    })
+
+    const strPolity = userProperties.getProperty(UPK.USER.COUNTRY)
+    const isApprovedPolity = leaves.indexOf(strPolity) > -1
+
     if (!isApprovedPolity) {
+        userProperties.deleteProperty(UPK.USER.COUNTRY)
         return [false, "UNSUPPORTED_REGION"]
     }
 
+    Logger.log(`The polity ${strPolity} is approved: ${isApprovedPolity}`)
+
     // stores approved data
     processGeocoderResultsService(polity, result.geometry)
-    userProperties.setProperty(upk.USER.ADDRESS, result.formatted_address)
+    userProperties.setProperty(UPK.USER.ADDRESS, result.formatted_address)
 
     //
     return [true]

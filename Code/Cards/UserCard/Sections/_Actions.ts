@@ -95,3 +95,12 @@ function refreshHomeCardCallback() {
         .setStateChanged(false)
         .build()
 }
+
+function getAddressSuggestionsCallback() {
+    // will use recent entries
+    return CardService.newSuggestionsResponseBuilder()
+        .setSuggestions(CardService.newSuggestions()
+                        .addSuggestion("First suggestion")
+                        .addSuggestion("Second suggestion"))
+        .build()
+}

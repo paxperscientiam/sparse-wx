@@ -14,10 +14,10 @@ function MainCard(dictionary) {
         return getWeatherServiceFallbackCard()
     }
 
-//     if (userProperties.getProperty(PROPS.STATE.MINT) === "USED") {
-//         const thing = getCoordinatesFromAddressService(userProperties.getProperty(PROPS.USER.ADDRESS))
-//         weatherPrimeService(thing.coo)
-//     }
+    //     if (userProperties.getProperty(PROPS.STATE.MINT) === "USED") {
+    //         const thing = getCoordinatesFromAddressService(userProperties.getProperty(PROPS.USER.ADDRESS))
+    //         weatherPrimeService(thing.coo)
+    //     }
 
     const card = CardService.newCardBuilder()
         .setName("mainCard")
@@ -27,6 +27,7 @@ function MainCard(dictionary) {
                    .setImageUrl(ICONS.UI.IMG_LOGO))
         .addSection(getWeatherSection(dictionary))
         .addSection(getNavSection())
+        .addSection(getDisclaimerSection())
 
     return card
 }

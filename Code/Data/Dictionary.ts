@@ -14,6 +14,9 @@ function Dictionary() {
 
             ZIP     : "postal_code",
             ZIP_CODE: "postal_code",
+
+            LAT     :  "lat",
+            LON     :  "lng",
         },
         NationalWeatherServiceInterface: {
             // NWS values
