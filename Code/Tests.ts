@@ -24,7 +24,7 @@ function clearConfig() {
 }
 
 function dumpScriptConfig() {
-    eLogger.log("Dump of Script Properties ...")
+    Logger.log("Dump of Script Properties ...")
     Logger.log((PropertiesService.getScriptProperties()).getProperties())
 }
 
@@ -36,33 +36,6 @@ function dumpUserConfig() {
 function dumpConfig() {
     dumpScriptConfig()
     dumpUserConfig()
-}
-
-// function LocationServiceTest() {
-
-// }
-
-function storeObjectInPropertyServiceThingTest() {
-
-    const obj = {
-        alpha: "a",
-        beta: "g",
-        derp: {
-            sex: 55,
-            yay: 4,
-        },
-    }
-    setScriptObjectProperty("obj", obj)
-}
-
-function retrieveObjectInPropertyServiceThingTest() {
-    const R = getScriptObjectProperty("obj")
-    Logger.log(R)
-    Logger.log(R.alpha)
-    Logger.log(R.beta)
-    Logger.log(R.derp)
-    Logger.log(R.derp.sex)
-    Logger.log(R.derp.yay)
 }
 
 function enumerationInterfaceTest() {

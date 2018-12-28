@@ -30,7 +30,7 @@ dig +short TXT 73.52.93.172.geo.lua.powerdns.org
 fallback weather data
 
 implement https://developers.google.com/gmail/add-ons/how-tos/non-google-services#using_an_oauth_service
-
+allow user to specify location and then use that instead of looking it up
 
 auto include publication date in footer
 
@@ -56,7 +56,7 @@ let user put in their own timezone
 add option to offset timezone and option to use 24h versus amPM
 
 If user chooses location outside of America notify that currently not ready to help them
-
+Do not refresh for bad addressess
 
 How do I show CURRENT temperature
 Use the weather service META endpoint as starting point
