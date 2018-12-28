@@ -92,6 +92,12 @@ function Dictionary() {
             TZ        : "USER_TZ",
             ZIP       : "USER_ZIP_CODE",
             ZIP_CODE  : "USER_ZIP_CODE",
+
+            SUGGESTED_ADDRESS_ONE: "USER_ADDRESS",
+            SUGGESTED_ADDRESS_TWO: "SUGGESTED_ADDRESS_TWO",
+
+            SUGGESTED_ADDRESS_THREE: "SUGGESTED_ADDRESS_THREE",
+
         },
         WX: {
             WX_API: "WX_API", // object

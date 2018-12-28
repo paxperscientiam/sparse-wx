@@ -34,7 +34,6 @@ function submitAddressCallback(e) {
     // if valid, retrieve address from storage
     if (isValid[0]) {
         // successful validation means that lon,lat, and address properties defined
-
         return CardService.newActionResponseBuilder()
             .setNavigation(CardService
                            .newNavigation()
@@ -97,10 +96,25 @@ function refreshHomeCardCallback() {
 }
 
 function getAddressSuggestionsCallback() {
+    Logger.log("Address suggestions callback ... called")
     // will use recent entries
+    const PROPS = (new Dictionary()).PROPS
+
+    const suggestions = CardService.newSuggestions()
+
+    const arrSuggestionsTemp = [
+        userProperties.getProperty(PROPS.USER.SUGGESTED_ADDRESS_ONE),
+        userProperties.getProperty(PROPS.USER.SUGGESTED_ADDRESS_TWO),
+        userProperties.getProperty(PROPS.USER.SUGGESTED_ADDRESS_THREE),
+    ]
+
+    arrSuggestionsTemp.forEach((element) => {
+        if (isSet(element)) {
+            suggestions.addSuggestion(element)
+        }
+    })
+
     return CardService.newSuggestionsResponseBuilder()
-        .setSuggestions(CardService.newSuggestions()
-                        .addSuggestion("First suggestion")
-                        .addSuggestion("Second suggestion"))
+        .setSuggestions(suggestions)
         .build()
 }
