@@ -33,6 +33,9 @@ function submitAddressCallback(e) {
     const isValid = validateMailingAddress(address)
     // if valid, retrieve address from storage
     if (isValid[0]) {
+
+        const userCache = CacheService.getUserCache()
+        userCache.removeAll(["wxRaw", "wx"])
         // successful validation means that lon,lat, and address properties defined
         return CardService.newActionResponseBuilder()
             .setNavigation(CardService

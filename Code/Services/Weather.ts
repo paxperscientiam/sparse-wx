@@ -122,7 +122,7 @@ function checkWeatherServiceStatus() {
     const url = (new NWSUrlService()).URL_BASE
     const dictionary = new Dictionary()
     const params = dictionary.HTTP.WX_SERVICE.PARAMS
-    const result = (new JsonResponseHandler(url, {}, params, "weatherServiceStatus"))
+    const result = (new JsonResponseHandler(url, {}, params))
     return result.data.status
 }
 
