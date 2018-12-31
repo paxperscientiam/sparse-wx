@@ -6,7 +6,7 @@ function UserCard(dictionary) {
         .setName("userCard")
         .setHeader(CardService
                    .newCardHeader()
-                   .setTitle("user settings")
+                   .setTitle("User Settings")
                    .setSubtitle(UI.PLACEHOLDER_TEXT.CARD_SUBTITLE))
         .addSection(UserSection())
         .addSection(getDisclaimerSection())

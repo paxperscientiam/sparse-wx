@@ -105,6 +105,12 @@ function Dictionary() {
             WX_API_PARAMS: "WX_API_PARAMS", // object
             WX_UPDATE_TIME: "WX_UPDATE_TIME",
         },
+
+        CACHE: {
+            WX: {
+                RAW: "CACHE_WX_RAW",
+            },
+        },
     })
 
     this.STATE = new Enumeration({
