@@ -58,6 +58,7 @@ function validateMailingAddress(address: string) {
     processGeocoderResultsService(polity, result.geometry)
 
     const lastAddressResult = userProperties.getProperty(UPK.USER.ADDRESS)
+    const lastAddressResult2 = userProperties.getProperty(UPK.USER.SUGGESTED_ADDRESS_TWO)
 
     if (isSet(lastAddressResult)) {
         userProperties.setProperty(UPK.USER.SUGGESTED_ADDRESS_TWO, lastAddressResult)

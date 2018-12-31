@@ -1,6 +1,6 @@
 **/.git/**
 **/apps-script-oauth2/**
-!apps-script-oauth2/src/**
+Code/Handlers/Auth.ts
 
 **/node_modules/**
 **/node_modules/ajv/**
