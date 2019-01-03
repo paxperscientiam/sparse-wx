@@ -59,6 +59,25 @@ class Rectangle {
     }
 }
 
+function getWeatherDataTest() {
+    const coord = "44.4759,-73.2121"
+    const dictionary = new Dictionary()
+    const nwsUrlService = new NWSUrlService()
+    //
+    const UPK = dictionary.PROPS
+    const WX = UPK.WX
+
+    const urlForMeta = nwsUrlService.meta(coord)
+
+    //    curl https://api.weather.gov/stations/KBTV/observations/current
+
+    const params = dictionary.HTTP.WX_SERVICE.PARAMS
+
+    wxRaw = (new JsonResponseHandler(urlForMeta, {}, params, "wxRaw")).data
+
+    Logger.log(wxRaw.properties.timeZone)
+}
+
 function emptyTestTest() {
     //
 }

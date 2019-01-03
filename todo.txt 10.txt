@@ -8,10 +8,10 @@ heavy and light precipation and distinguish between prediction and current event
 
 
 
+improve storage mechanisms
 
 
-
-
+test different zip codes
 need to test for data presence
 
 
@@ -45,7 +45,7 @@ need sensible default values
 
 consider an advanced mode
 need uri handling
-
+dont try to update user values if input is blank
 
 
 address could be link to maps
@@ -55,7 +55,7 @@ do i need caching at all?
 let user put in their own timezone
 add option to offset timezone and option to use 24h versus amPM
 
-
+If user chooses location outside of America notify that currently not ready to help them
 
 
 How do I show CURRENT temperature
@@ -76,10 +76,6 @@ make icons larger
 make sure wx results are being saved temporarily
 Althought sparsewx will not allow you to set wrong address what if it has already been set?
 I need to get region bias to work
-
+indicate if wx data is stale
 Store wx data with implicit refereces thats created here FIX21313
 
-Could I color code days?
-
-UserInfoSection should still display address even when there is no username set
-Should allow for unsetting username

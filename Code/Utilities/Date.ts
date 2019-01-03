@@ -80,3 +80,8 @@ function convertFarenheit(temperature) {
 function doSomething() {
     Logger.log("I was called!")
 }
+
+
+function diffDate(newDate, oldDate) {
+    // expects date objects
+}

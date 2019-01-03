@@ -64,8 +64,11 @@ function WeatherService(coord, period) {
     //
 
     this.updateTime = wx.properties.updateTime
+    this.timeZone = wxRaw.properties.timeZone
 
     userProperties.setProperty(WX.WX_UPDATE_TIME, this.updateTime)
+    userProperties.setProperty(WX.TZ, this.timeZone)
+
 }
 
 function weatherSearch(mode, segment) {
@@ -138,6 +141,43 @@ function getWeatherMeta() {
     const radarStationId = result.properties.radarStation
     Logger.log(radarStationId)
 
+}
+
+function getForecastStalenessService() {
+    const PROPS = (new Dictionary()).PROPS
+    const lastUpdateTime = userProperties.getProperty(PROPS.WX.WX_UPDATE_TIME)
+    let diff
+
+    if (isSet(lastUpdateTime)) {
+        diff = Date.now() - (new Date(lastUpdateTime)).getTime()
+        diff = timeConversion(diff)
+        return [true, diff]
+    }
+
+    return [false, "ERR"]
+}
+
+function getAlertsByStateService() {
+    const dictionary = new Dictionary()
+    const PROPS = dictionary.PROPS
+    const params = dictionary.HTTP.WX_SERVICE.PARAMS
+    const userstate = userProperties.getProperty(PROPS.USER.STATE)
+
+    const url = `https://api.weather.gov/alerts/active/count`
+
+    let response
+    let count
+
+    if (isSet(userstate)) {
+        response = (new JsonResponseHandler(url, {}, params)).data
+        count = (response.areas[userstate])
+        if (isSet(count)) {
+            count = count.toFixed(0)
+            return [true, count]
+        }
+        return [false, "0 alerts"]
+    }
+    return [false, "ERR"]
 }
 
 // function getAlertsByArea() {

@@ -8,6 +8,8 @@ function WeatherWidget(period = 0) {
     const UI_ICONS = ICONS.UI
     const WX_ICONS = ICONS.WX
 
+    const UI_WIDGET = dictionary.UI.WIDGETS.WEATHER_TODAY
+
     const PROPS = dictionary.PROPS
     const STATE = PROPS.STATE
 
@@ -35,8 +37,6 @@ function WeatherWidget(period = 0) {
     if (isUndefined(windDirection)) {
         windDirection = Weather.windDirection
     }
-    Logger.log("WX object ..")
-    Logger.log(Weather)
 
     const windPhrase = WindSpeedHandler(Weather.windSpeed)
     const windMessage = `${windPhrase} to the ${windDirection}`
@@ -46,7 +46,7 @@ function WeatherWidget(period = 0) {
 
     return CardService.newKeyValue()
         .setIconUrl(icon)
-        .setContent(doGet("Templates/weatherToday", {message, windMessage, name}))
+        .setContent(doGet("Templates/weatherToday", {message, windMessage, name, UI_WIDGET}))
         .setMultiline(true)
 
     //   } catch (e) {

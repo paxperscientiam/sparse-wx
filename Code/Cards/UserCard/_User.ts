@@ -9,6 +9,7 @@ function UserCard(dictionary) {
                    .setTitle("User Settings")
                    .setSubtitle(UI.PLACEHOLDER_TEXT.CARD_SUBTITLE))
         .addSection(UserSection())
+        .addSection(UserInfoSection())
         .addSection(getDisclaimerSection())
     // seems unnecessary
     //        .addSection(UserReturnHomeSection())

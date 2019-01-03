@@ -91,10 +91,10 @@ function MainCard(dictionary) {
 // }
 
 function getMainCardTitle(dictionary): string {
-    const upk = dictionary.PROPS
+    const UPK = dictionary.PROPS
     const date = new DateArray()
 
-    const userName = userProperties.getProperty(upk.USER.NAME)
+    const userName = userProperties.getProperty(UPK.USER.NAME)
 
     let greeting
     if (isSet(userName)) {

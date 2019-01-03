@@ -11,21 +11,38 @@ function getWeatherSection() {
     const UPK = dictionary.PROPS
     const UI = dictionary.UI
 
-    let header = userProperties.getProperty(UPK.USER.ADDRESS)
+    const objForecastStaleness = getForecastStalenessService()
+
+    let header = userProperties.getProperty(UPK.USER.CITY) + ", "
+        + userProperties.getProperty(UPK.USER.STATE)
+
+    const objgetAlertsByStateService = getAlertsByStateService()
 
     if (!isSet(header)) {
         header = UI.PLACEHOLDER_TEXT.CARD_SECTION_HEADER
     }
 
+    if (isSet(header)) {
+        if (objgetAlertsByStateService[0]) {
+            header += ` (⚠ ${objgetAlertsByStateService[1]} state alerts)`
+        }
+    }
+
     let sectionHeader = "Last updated: "
 
     const strUpdateDate = userProperties.getProperty(UPK.WX.WX_UPDATE_TIME)
+    Logger.log("TZ IS " +  userProperties.getProperty(UPK.WX.TZ))
+
     const dateUpdateDate = new Date(strUpdateDate)
 
     if (isNull(strUpdateDate) || isNaN(dateUpdateDate)) {
         sectionHeader += "unknown"
     } else if (dateUpdateDate instanceof Date) {
         sectionHeader += formatDateService(dateUpdateDate)
+        if (objForecastStaleness[0]) {
+            //            sectionHeader += " (" + objForecastStaleness[1] + ")"
+            sectionHeader = `Last updated ${objForecastStaleness[1]} ago`
+        }
     }
 
     const wxSection = CardService.newCardSection()

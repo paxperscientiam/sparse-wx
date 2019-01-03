@@ -22,6 +22,12 @@ function NWSUrlService() {
         url = url.replace(/@xy/i, gridpoints)
         return url
     }
+
+    this.zoneAlerts = (zoneid) => {
+        // note that zone is county id which comes from meta.properties.county
+        // eg https://api.weather.gov/alerts/active/zone/VTC007
+        return `${this.URL_BASE}${this.API.ALERTS.ACTIVE}/zone/${zoneid}`
+    }
 }
 //
 //

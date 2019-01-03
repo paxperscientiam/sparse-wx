@@ -104,6 +104,9 @@ function Dictionary() {
             WX_API_ENDPOINT: "WX_API_ENDPOINT", // string
             WX_API_PARAMS: "WX_API_PARAMS", // object
             WX_UPDATE_TIME: "WX_UPDATE_TIME",
+
+            WX_TZ: "WX_TZ",
+            WX_TIMEZONE: "WX_TZ",
         },
 
         CACHE: {
@@ -175,6 +178,12 @@ function Dictionary() {
     this.UI.PLACEHOLDER_TEXT = {
         CARD_SECTION_HEADER: " ",
         CARD_SUBTITLE: " ",
+    }
+
+    this.UI.WIDGETS = {
+        WEATHER_TODAY: {
+            COLOR_ONE: "#4a707a",
+        },
     }
 
     //     this.ipAddressProviders = {

@@ -76,10 +76,8 @@ make icons larger
 make sure wx results are being saved temporarily
 Althought sparsewx will not allow you to set wrong address what if it has already been set?
 I need to get region bias to work
-
+indicate if wx data is stale
 Store wx data with implicit refereces thats created here FIX21313
 
 Could I color code days?
-
-UserInfoSection should still display address even when there is no username set
-Should allow for unsetting username
+dont display full address on Main page
