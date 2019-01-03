@@ -89,6 +89,7 @@ function Dictionary() {
             NAME      : "USER_NAME",
             REGION    : "USER_REGION",
             STATE     : "USER_REGION",
+            STATE_LONG: "USER_REGION_LONG",
             TZ        : "USER_TZ",
             ZIP       : "USER_ZIP_CODE",
             ZIP_CODE  : "USER_ZIP_CODE",

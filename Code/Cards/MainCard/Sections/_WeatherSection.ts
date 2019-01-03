@@ -13,8 +13,12 @@ function getWeatherSection() {
 
     const objForecastStaleness = getForecastStalenessService()
 
-    let header = userProperties.getProperty(UPK.USER.CITY) + ", "
-        + userProperties.getProperty(UPK.USER.STATE)
+    const locality = userProperties.getProperty(UPK.USER.CITY)
+
+    let header = userProperties.getProperty(UPK.USER.STATE_LONG)
+    if (isSet(locality)) {
+        header = locality + ", " + header
+    }
 
     const objgetAlertsByStateService = getAlertsByStateService()
 

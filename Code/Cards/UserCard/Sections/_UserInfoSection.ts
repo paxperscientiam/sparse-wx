@@ -5,7 +5,7 @@ function UserInfoSection() {
     const useraddress = userProperties.getProperty(UPK.USER.ADDRESS)
 
     let textContent = " "
-    if (isSet(username) && isSet(useraddress)) {
+    if (isSet(useraddress)) {
         textContent = doGet("Templates/userInfo", {username, useraddress })
     }
     return CardService.newCardSection()

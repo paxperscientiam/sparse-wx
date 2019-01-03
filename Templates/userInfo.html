@@ -1,1 +1,3 @@
-Hello <?= data.username ?>, you are currently getting forecasts near <?= data.useraddress ?>
+Hello<? if (data.username !== undefined) { ?><b> <?= data.username ?>,</b>
+<? } ?>
+<p>You are currently getting forecasts near <?= data.useraddress ?>.</p>

@@ -27,12 +27,23 @@ function processGeocoderResultsService(polity, geometry) {
     const lat = geometry.location.lat.toFixed(4)
     const coordinate = lat + "," + lon
 
+    const localeKeys = [upk.USER.CITY,
+                        upk.USER.STATE,
+                        upk.USER.STATE_LONG,
+                        upk.USER.COUNTY,
+                        upk.USER.COUNTRY,
+                        upk.USER.ZIP_CODE]
+    localeKeys.forEach((key) => {
+        userProperties.deleteProperty(key)
+    })
+
     polity.forEach((pol) => {
         if (pol.types.indexOf(GeoInterface.CITY) > -1) {
             userProperties.setProperty(upk.USER.CITY, pol.short_name)
         }
         if (pol.types.indexOf(GeoInterface.STATE) > -1) {
             userProperties.setProperty(upk.USER.STATE, pol.short_name)
+            userProperties.setProperty(upk.USER.STATE_LONG, pol.long_name)
         }
         if (pol.types.indexOf(GeoInterface.COUNTY) > -1) {
             userProperties.setProperty(upk.USER.COUNTY, pol.short_name)
