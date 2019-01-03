@@ -13,9 +13,6 @@ function getNavSection() {
 
     let settingsTextButton = "SETTINGS"
 
-    //   if (args.mode === "fallback") {
-    //         settingsTextButton = "SET ADDRESS"
-    //     }
     const STATE_MINT = userProperties.getProperty(UPK.STATE.MINT)
 
     if (STATE_MINT === "MINT") {
@@ -25,13 +22,13 @@ function getNavSection() {
     const buttonSet = CardService.newButtonSet()
         .addButton(CardService
                    .newTextButton()
-                   .setText(`<font color="#ea9999">${settingsTextButton}</font>`)
+                   .setText(`<font color="#ea9999">[ ${settingsTextButton} ]</font>`)
                    .setOnClickAction(goToUserCardAction))
 
     if (STATE_MINT !== "MINT") {
         buttonSet.addButton(CardService
                             .newTextButton()
-                            .setText('<font color="#ea9999">REFRESH</font>')
+                            .setText('<font color="#ea9999">[ REFRESH ]</font>')
                             .setOnClickAction(refreshMainCardAction))
     }
 

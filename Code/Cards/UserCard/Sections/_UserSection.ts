@@ -21,7 +21,7 @@ function UserSection() {
                    .setHint("How should SparseWx address you? (25 character max)"))
         .addWidget(CardService
                    .newTextButton()
-                   .setText('<font color="#ea9999">Set username</font>')
+                   .setText('<font color="#ea9999">[ Set username ]</font>')
                    .setOnClickAction(submitNameAction))
         .addWidget(CardService.newTextInput()
                    .setFieldName("user_address_key")
@@ -30,7 +30,7 @@ function UserSection() {
                    .setSuggestionsAction(submitAddressSuggestionsAction))
         .addWidget(CardService
                    .newTextButton()
-                   .setText('<font color="#ea9999">Set location</font>')
+                   .setText('<font color="#ea9999">[ Set location ]</font>')
                    .setOnClickAction(submitAddressAction))
         .setCollapsible(false)
 }
