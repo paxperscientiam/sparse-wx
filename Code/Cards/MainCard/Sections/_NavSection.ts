@@ -11,12 +11,16 @@ function getNavSection() {
     const refreshMainCardAction = CardService.newAction()
         .setFunctionName("refreshHomeCardCallback")
 
-    const settingsTextButton = "SETTINGS"
+    let settingsTextButton = "SETTINGS"
 
     //   if (args.mode === "fallback") {
     //         settingsTextButton = "SET ADDRESS"
     //     }
     const STATE_MINT = userProperties.getProperty(UPK.STATE.MINT)
+
+    if (STATE_MINT === "MINT") {
+        settingsTextButton = "SET ADDRESS"
+    }
 
     const buttonSet = CardService.newButtonSet()
         .addButton(CardService
