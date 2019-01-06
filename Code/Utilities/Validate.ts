@@ -5,10 +5,11 @@ function validateUserName(input: string) {
     // https://stackoverflow.com/a/2385967
     // tslint:disable-next-line:max-line-length
     const isLatin = /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,25}$/.test(input)
-    if (isLatin || isCJK) {
-        return true
-    }
-    return false
+    //  if (isLatin || isCJK) {
+    //         return true
+    //     }
+    //     return false
+    return isLatin
 }
 
 function validateZIP(input: string) {
