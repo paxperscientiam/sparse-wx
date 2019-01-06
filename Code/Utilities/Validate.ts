@@ -1,8 +1,14 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function validateUserName(input: string) {
+    let isCJK = /[\u4e00-\u9fa5 -]/.test(input)
+    isCJK = true
     // https://stackoverflow.com/a/2385967
     // tslint:disable-next-line:max-line-length
-    return /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,25}$/.test(input)
+    const isLatin = /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,25}$/.test(input)
+    if (isLatin || isCJK) {
+        return true
+    }
+    return false
 }
 
 function validateZIP(input: string) {
