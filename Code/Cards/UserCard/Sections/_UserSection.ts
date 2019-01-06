@@ -1,6 +1,7 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function UserSection() {
-    const UPK = (new Dictionary()).PROPS
+    const dictionary = new Dictionary()
+    const UPK = dictionary.PROPS
 
     const submitNameAction =  CardService.newAction()
         .setFunctionName("submitNameCallback")
@@ -13,6 +14,7 @@ function UserSection() {
     //         .setParameters({
     //             numSuggestions: 5,
     //         })
+    const COLORS = dictionary.UI.PALETTE
 
     return CardService.newCardSection()
         .addWidget(CardService.newTextInput()
@@ -21,7 +23,7 @@ function UserSection() {
                    .setHint("How should SparseWx address you? (25 character max)"))
         .addWidget(CardService
                    .newTextButton()
-                   .setText('<font color="#ea9999">[ Set username ]</font>')
+                   .setText(`<font color="${COLORS.ORANGE}">[ Set username ]</font>`)
                    .setOnClickAction(submitNameAction))
         .addWidget(CardService.newTextInput()
                    .setFieldName("user_address_key")
@@ -30,7 +32,7 @@ function UserSection() {
                    .setSuggestionsAction(submitAddressSuggestionsAction))
         .addWidget(CardService
                    .newTextButton()
-                   .setText('<font color="#ea9999">[ Set location ]</font>')
+                   .setText(`<font color="${COLORS.ORANGE}">[ Set location ]</font>`)
                    .setOnClickAction(submitAddressAction))
         .setCollapsible(false)
 }

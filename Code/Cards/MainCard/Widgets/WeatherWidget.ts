@@ -5,6 +5,8 @@ function WeatherWidget(period = 0) {
     const dictionary = new Dictionary()
     const ICONS = dictionary.ICONS
 
+    const COLORS = dictionary.UI.PALETTE
+
     const UI_ICONS = ICONS.UI
     const WX_ICONS = ICONS.WX
 
@@ -46,7 +48,7 @@ function WeatherWidget(period = 0) {
 
     return CardService.newKeyValue()
         .setIconUrl(icon)
-        .setContent(doGet("Templates/weatherToday", {message, windMessage, name, UI_WIDGET}))
+        .setContent(doGet("Templates/weatherToday", {message, windMessage, name, UI_WIDGET, COLORS }))
         .setMultiline(true)
 
     //   } catch (e) {

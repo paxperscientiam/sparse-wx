@@ -5,6 +5,8 @@ function getNavSection() {
     const UPK = dictionary.PROPS
     const UI = dictionary.UI
 
+    const COLORS = UI.PALETTE
+
     const goToUserCardAction = CardService.newAction()
         .setFunctionName("goToUserCardCallback")
 
@@ -22,13 +24,13 @@ function getNavSection() {
     const buttonSet = CardService.newButtonSet()
         .addButton(CardService
                    .newTextButton()
-                   .setText(`<font color="#ea9999">[ ${settingsTextButton} ]</font>`)
+                   .setText(`<font color="${COLORS.ORANGE}">[ ${settingsTextButton} ]</font>`)
                    .setOnClickAction(goToUserCardAction))
 
     if (STATE_MINT !== "MINT") {
         buttonSet.addButton(CardService
                             .newTextButton()
-                            .setText('<font color="#ea9999">[ REFRESH ]</font>')
+                            .setText(`<font color="${COLORS.ORANGE}">[ REFRESH ]</font>`)
                             .setOnClickAction(refreshMainCardAction))
     }
 

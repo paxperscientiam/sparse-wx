@@ -181,6 +181,33 @@ function Dictionary() {
         CARD_SUBTITLE: " ",
     }
 
+    // https://clrs.cc/
+    this.UI.PALETTE = {
+        AQUA  : "#7FDBFF",
+        BLUE  : "#0074D9",
+        NAVY  : "#001f3f",
+        TEAL  : "#39CCCC",
+
+        GREEN : "#2ECC40",
+        LIME  : "#01FF70",
+        OLIVE : "#3D9970",
+        YELLOW: "#FFDC00",
+
+        FUCHSIA: "#F012BE",
+        MAROON: "#85144b",
+        ORANGE: "#FF851B",
+        RED   : "#FF4136",
+
+        BLACK : "#111111",
+        GRAY  : "#AAAAAA",
+        PURPLE: "#B10DC9",
+        SILVER: "#DDDDDD",
+
+        WHITE : "#FFFFFF",
+    }
+
+    this.UI.COLORS = this.UI.PALETTE
+
     this.UI.WIDGETS = {
         WEATHER_TODAY: {
             COLOR_ONE: "#4a707a",

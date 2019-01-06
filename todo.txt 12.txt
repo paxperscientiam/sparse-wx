@@ -71,8 +71,8 @@ Things like widgets cards etc should stand on their own
 for things be sure to use injection
 Employ interface at WeatherWidget function
 I think usercard should allow submit but only have a single button for processing. Hm
-
-
+MINT state should not give a last update time of 1969
+make icons larger
 make sure wx results are being saved temporarily
 Althought sparsewx will not allow you to set wrong address what if it has already been set?
 I need to get region bias to work
@@ -83,5 +83,3 @@ Could I color code days?
 
 UserInfoSection should still display address even when there is no username set
 Should allow for unsetting username
-When state is input for location the location is not properly reset
-Allow for longer suggestions list
