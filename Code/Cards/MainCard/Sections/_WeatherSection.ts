@@ -1,6 +1,5 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
-
 // function getWeatherSection(dictionary) {
 //     //  const upk = dictionary.PROPS
 //     return getWeatherSectionFallbackSection()
@@ -10,6 +9,11 @@ function getWeatherSection() {
     const dictionary = new Dictionary()
     const UPK = dictionary.PROPS
     const UI = dictionary.UI
+    const COLORS = UI.PALETTE
+
+    const alertUrl = dictionary.INTERFACE.NationalWeatherServiceInterface.URL.STATE_ALERTS
+
+    const userstate = userProperties.getProperty(UPK.USER.STATE)
 
     const objForecastStaleness = getForecastStalenessService()
 
@@ -28,7 +32,7 @@ function getWeatherSection() {
 
     if (isSet(header)) {
         if (objgetAlertsByStateService[0]) {
-            header += ` (⚠ ${objgetAlertsByStateService[1]} state alerts)`
+            header += ` (⚠ ${objgetAlertsByStateService[1]} state <a href="${alertUrl}${userstate}.php?x=1" target="_blank">alerts</a>)`
         }
     }
 

@@ -37,6 +37,9 @@ function Dictionary() {
                 },
                 _: "https://api.weather.gov/",
             },
+            URL: {
+                STATE_ALERTS: "https://alerts.weather.gov/cap/",
+            },
         },
     })
 
