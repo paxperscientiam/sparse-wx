@@ -25,16 +25,14 @@ function UserSection() {
                    .setHint("City, state or ZIP code")
                    .setSuggestionsAction(submitAddressSuggestionsAction))
 
-        .addWidget(CardService
-                   .newSelectionInput()
+        .addWidget(CardService.newSelectionInput()
                    .setType(CardService.SelectionInputType.DROPDOWN)
-                   .setTitle("Temperature Scale")
                    .setFieldName("temperature_unit_list")
+                   .setTitle("Temperature Scale")
                    .addItem("Fahrenheit", "dropdown_item_f", isCurrentTempUnitF)
                    .addItem("Celsius", "dropdown_item_c", !isCurrentTempUnitF))
 
-        .addWidget(CardService
-                   .newTextButton()
+        .addWidget(CardService.newTextButton()
                    .setText(`<font color="${COLORS.ORANGE}">[ Submit ]</font>`)
                    .setOnClickAction(processUserFormAction))
         .setCollapsible(false)
