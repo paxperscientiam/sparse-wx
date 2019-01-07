@@ -67,18 +67,7 @@ function submitAddressCallback(e) {
     }
 }
 
-function submitTemperatureUnitAction() {
-    return CardService.newSelectionInput()
-        .setType(CardService.SelectionInputType.DROPDOWN)
-        .setTitle("List")
-        .setFieldName("list")
-        .addItem("F", "dropdown_item_f", 0)
-        .addItem("C", "dropdown_item_c", 1)
-        .setOnChangeAction(CardService.newAction()
-                           .setFunctionName("submitTemperatureUnitHandler"))
-}
-
-function submitTemperatureUnitHandler(e) {
+function submitTemperatureUnitCallback(e) {
     Logger.log(e)
     Logger.log(e.data)
 }

@@ -11,9 +11,10 @@ function UserSection() {
 
     const submitAddressSuggestionsAction = CardService.newAction()
         .setFunctionName("getAddressSuggestionsCallback")
-    //         .setParameters({
-    //             numSuggestions: 5,
-    //         })
+
+    const submitTemperatureUnitAction = CardService.newAction()
+        .setFunctionName("submitTemperatureUnitCallback")
+
     const COLORS = dictionary.UI.PALETTE
 
     return CardService.newCardSection()
@@ -21,19 +22,30 @@ function UserSection() {
                    .setFieldName("user_name_key")
                    .setTitle("Your Name (optional)")
                    .setHint("How should SparseWx address you? (25 character max)"))
+
         .addWidget(CardService
                    .newTextButton()
                    .setText(`<font color="${COLORS.ORANGE}">[ Set username ]</font>`)
                    .setOnClickAction(submitNameAction))
+
         .addWidget(CardService.newTextInput()
                    .setFieldName("user_address_key")
                    .setTitle("Forecast Location")
                    .setHint("City, state or ZIP code")
                    .setSuggestionsAction(submitAddressSuggestionsAction))
+
         .addWidget(CardService
                    .newTextButton()
                    .setText(`<font color="${COLORS.ORANGE}">[ Set location ]</font>`)
                    .setOnClickAction(submitAddressAction))
-        .addWidget(submitTemperatureUnitAction())
+
+        .addWidget(CardService
+                   .newSelectionInput()
+                   .setType(CardService.SelectionInputType.DROPDOWN)
+                   .setTitle("List")
+                   .setFieldName("list")
+                   .addItem("F", "dropdown_item_f", 0)
+                   .addItem("C", "dropdown_item_c", 1)
+                   .setOnChangeAction(submitTemperatureUnitAction))
         .setCollapsible(false)
 }
