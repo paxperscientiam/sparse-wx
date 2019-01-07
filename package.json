@@ -1,7 +1,7 @@
 {
     "scripts": {
         "lint": "tslint ./Code/**/*.ts -e ./Code/_Old/**/*",
-        "push": "if git bump && clasp push; then terminal-notifier -title wxbuild -message success; else terminal-notifier -title wxbuild -message fail; fi"
+        "push": "if git bump && clasp push --force; then terminal-notifier -title wxbuild -message success; else terminal-notifier -title wxbuild -message fail; fi"
     },
     "dependencies": {
         "domurl": "^2.1.9",
