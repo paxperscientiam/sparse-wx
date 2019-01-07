@@ -111,8 +111,8 @@ function Dictionary() {
             WX_API_PARAMS: "WX_API_PARAMS", // object
             WX_UPDATE_TIME: "WX_UPDATE_TIME",
 
-            WX_TZ: "WX_TZ",
             WX_TIMEZONE: "WX_TZ",
+            WX_TZ: "WX_TZ",
         },
 
         CACHE: {

@@ -73,14 +73,13 @@ function convertCelsius(temperature) {
     return (temperature * (9 / 5) + 32).toFixed(0)
 }
 
-function convertFarenheit(temperature) {
+function convertFahrenheit(temperature) {
     return ((temperature - 32) * 5 / 9).toFixed(0)
 }
 
 function doSomething() {
     Logger.log("I was called!")
 }
-
 
 function diffDate(newDate, oldDate) {
     // expects date objects

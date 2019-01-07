@@ -30,9 +30,15 @@ function WeatherWidget(period = 0) {
     Logger.log("coords for WeatherService function: " + coord)
     const Weather = new WeatherService(coord, period)
 
+    let temperature = Weather.temp
+    let temperatureUnit = Weather.unit
 
+    if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_c") {
+        temperature = convertFahrenheit(temperature)
+        temperatureUnit = "C"
+    }
 
-    const message  = `${Weather.temp}°${Weather.unit}, ${Weather.condition}`
+    const message  = `${temperature}°${temperatureUnit}, ${Weather.condition}`
     Logger.log(`wx message: ${message}`)
 
     const ws2ws = dictionary.CARDINAL_DIRECTIONS

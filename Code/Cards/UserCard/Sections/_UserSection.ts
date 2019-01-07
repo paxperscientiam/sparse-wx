@@ -3,6 +3,8 @@ function UserSection() {
     const dictionary = new Dictionary()
     const UPK = dictionary.PROPS
 
+    const isCurrentTempUnitF = userProperties.getProperty(UPK.USER.TEMP_UNIT) === "dropdown_item_f"
+
     const submitNameAction =  CardService.newAction()
         .setFunctionName("submitNameCallback")
 
@@ -43,9 +45,9 @@ function UserSection() {
                    .newSelectionInput()
                    .setType(CardService.SelectionInputType.DROPDOWN)
                    .setTitle("List")
-                   .setFieldName("list")
-                   .addItem("F", "dropdown_item_f", 0)
-                   .addItem("C", "dropdown_item_c", 1)
+                   .setFieldName("temperature_unit_list")
+                   .addItem("Fahrenheit", "dropdown_item_f", isCurrentTempUnitF)
+                   .addItem("Celsius", "dropdown_item_c", !isCurrentTempUnitF)
                    .setOnChangeAction(submitTemperatureUnitAction))
         .setCollapsible(false)
 }

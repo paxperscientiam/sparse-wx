@@ -68,8 +68,19 @@ function submitAddressCallback(e) {
 }
 
 function submitTemperatureUnitCallback(e) {
-    Logger.log(e)
-    Logger.log(e.data)
+    const dictionary = new Dictionary()
+    const UPK = dictionary.PROPS
+
+    const chosenTempUnit = e.formInputs.temperature_unit_list[0]
+
+    userProperties.setProperty(UPK.USER.TEMP_UNIT, chosenTempUnit)
+
+    return CardService.newActionResponseBuilder()
+        .setNotification(CardService.newNotification()
+                         .setType(CardService.NotificationType.INFO)
+                         .setText("Set temperature unit"))
+        .setStateChanged(true)
+        .build()
 }
 
 function goToUserCardCallback() {
