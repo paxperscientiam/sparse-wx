@@ -34,5 +34,6 @@ function UserSection() {
                    .newTextButton()
                    .setText(`<font color="${COLORS.ORANGE}">[ Set location ]</font>`)
                    .setOnClickAction(submitAddressAction))
+        .addWidget(submitTemperatureUnitAction())
         .setCollapsible(false)
 }

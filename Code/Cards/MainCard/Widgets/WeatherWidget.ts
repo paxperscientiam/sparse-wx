@@ -30,6 +30,8 @@ function WeatherWidget(period = 0) {
     Logger.log("coords for WeatherService function: " + coord)
     const Weather = new WeatherService(coord, period)
 
+
+
     const message  = `${Weather.temp}°${Weather.unit}, ${Weather.condition}`
     Logger.log(`wx message: ${message}`)
 

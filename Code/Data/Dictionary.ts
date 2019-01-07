@@ -97,6 +97,8 @@ function Dictionary() {
             ZIP       : "USER_ZIP_CODE",
             ZIP_CODE  : "USER_ZIP_CODE",
 
+            TEMP_UNIT : "USER_TEMP_UNIT",
+
             SUGGESTED_ADDRESS_ONE: "USER_ADDRESS",
             SUGGESTED_ADDRESS_TWO: "SUGGESTED_ADDRESS_TWO",
 
