@@ -9,7 +9,8 @@ function getWeatherServiceFallbackCard() {
                    .setSubtitle("National Weather Service API is down."))
         .addSection(CardService.newCardSection()
                     .addWidget(CardService.newTextParagraph()
-                               .setText(`Sorry about the inconvenience. If you have any questions or believe you've encountered a bug, don't hesitate to contact me at <b>${BRAND.EMAILS.BUGS[0]}</b>.`)))
+                               .setText(`Sorry about the inconvenience. If you have any questions or believe you've encountered a bug, don't hesitate to contact me at <b>${BRAND.EMAILS.BUGS[0]}</b>.`))
+                    .addWidget(ResetWidget()))
 }
 
 //
