@@ -35,7 +35,7 @@ function Dictionary() {
                 POINTS: {
                     _: "points",
                 },
-                _: "https://api.weather.gov/",
+                _: "https://api.weather.gov/xxx",
             },
             URL: {
                 STATE_ALERTS: "https://alerts.weather.gov/cap/",
@@ -129,7 +129,7 @@ function Dictionary() {
         {
             AUTHOR: "Christopher David Ramos",
             EMAILS: {
-                BUGS: ["chrisdavidramos+products+sparsewx@gmail.com", "'SparseWx' <chrisdavidramos+products+sparsewx@gmail.com>"],
+                BUGS: ["sparsewx@paxperscientiam.com", "'SparseWx' <sparsewx@paxperscientiam.com>"],
             },
             NAME: "SparseWx",
             URLS: {

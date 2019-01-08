@@ -1,7 +1,17 @@
 {
+    "homepage": "https://github.com/paxperscientiam/sparse-wx",
+    "bugs": {
+        "url": "https://github.com/paxperscientiam/sparse-wx/issues",
+        "email": "sparsewx@paxperscientiam.com"
+    },
+    "author": {
+        "name": "Christopher David Ramos",
+        "email": "chrisdavidramos@gmail.com",
+        "url": "https://www.paxperscientiam.com"
+    },
     "scripts": {
         "lint": "tslint ./Code/**/*.ts -e ./Code/_Old/**/*",
-        "push": "if git bump && clasp push --force; then terminal-notifier -title wxbuild -message success; else terminal-notifier -title wxbuild -message fail; fi"
+        "push": "if git bump && clasp push ; then terminal-notifier -title wxbuild -message success; else terminal-notifier -title wxbuild -message fail; fi"
     },
     "dependencies": {
         "domurl": "^2.1.9",
