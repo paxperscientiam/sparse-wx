@@ -3,13 +3,13 @@ function ResetWidget() {
     const UPK = dictionary.PROPS
     const UI = dictionary.UI
 
-    const COLORS = UI.PALETTE
+    const COLORS = UI.COLORS.SCHEME
 
     const resetAddonAction = CardService.newAction()
         .setFunctionName("resetAddonCallback")
 
     return CardService.newTextButton()
-        .setText(`<font color="${COLORS.RED}">[ Reset SparseWx ]</font>`)
+        .setText(`<font color="${COLORS.SECONDARY}">[ Reset SparseWx ]</font>`)
         .setOnClickAction(resetAddonAction)
 }
 

@@ -35,7 +35,7 @@ function Dictionary() {
                 POINTS: {
                     _: "points",
                 },
-                _: "https://api.weather.gov/xxx",
+                _: "https://api.weather.gov/",
             },
             URL: {
                 STATE_ALERTS: "https://alerts.weather.gov/cap/",
@@ -212,6 +212,12 @@ function Dictionary() {
     }
 
     this.UI.COLORS = this.UI.PALETTE
+
+    this.UI.COLORS.SCHEME = {
+        PRIMARY    : this.UI.PALETTE.NAVY,
+        SECONDARY  : this.UI.PALETTE.RED,
+        TERTIARY   : this.UI.PALETTE.SILVER,
+    }
 
     this.UI.WIDGETS = {
         WEATHER_TODAY: {
