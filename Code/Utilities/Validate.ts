@@ -4,7 +4,7 @@ function validateUserName(input: string) {
     isCJK = true
     // https://stackoverflow.com/a/2385967
     // tslint:disable-next-line:max-line-length
-    const isLatin = /^[0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,25}$/.test(input)
+    const isLatin = /^[0-9a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s,\.'\?\\!-]{2,25}$/iu.test(input)
     //  if (isLatin || isCJK) {
     //         return true
     //     }
