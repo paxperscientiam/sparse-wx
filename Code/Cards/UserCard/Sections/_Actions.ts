@@ -72,7 +72,7 @@ function processUserPreferencesFormCallback(e) {
         return CardService.newActionResponseBuilder()
             .setNotification(CardService.newNotification()
                              .setType(CardService.NotificationType.ERROR)
-                             .setText(event))
+                             .setText(event.message))
             .setStateChanged(false)
             .build()
     }
@@ -83,7 +83,7 @@ function processUserPreferencesFormCallback(e) {
         return CardService.newActionResponseBuilder()
             .setNotification(CardService.newNotification()
                              .setType(CardService.NotificationType.ERROR)
-                             .setText(event))
+                             .setText(event.message))
             .setStateChanged(false)
             .build()
     }
@@ -94,11 +94,11 @@ function processUserPreferencesFormCallback(e) {
         return CardService.newActionResponseBuilder()
             .setNotification(CardService.newNotification()
                              .setType(CardService.NotificationType.ERROR)
-                             .setText(event))
+                             .setText(event.message))
             .setStateChanged(false)
             .build()
     }
-
+    Logger.log("ALMOST BABY")
     return CardService.newActionResponseBuilder()
         .setNavigation(CardService
                        .newNavigation()

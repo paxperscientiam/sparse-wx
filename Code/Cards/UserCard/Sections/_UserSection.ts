@@ -3,7 +3,7 @@ function UserSection() {
     const dictionary = new Dictionary()
     const UPK = dictionary.PROPS
 
-    const isCurrentTempUnitF = userProperties.getProperty(UPK.USER.TEMP_UNIT) === "dropdown_item_f"
+    const isCurrentTempUnitC = userProperties.getProperty(UPK.USER.TEMP_UNIT) === "dropdown_item_c"
 
     const submitAddressSuggestionsAction = CardService.newAction()
         .setFunctionName("getAddressSuggestionsCallback")
@@ -11,7 +11,7 @@ function UserSection() {
     const processUserFormAction =  CardService.newAction()
         .setFunctionName("processUserPreferencesFormCallback")
 
-    const COLORS = dictionary.UI.PALETTE
+    const COLORS = dictionary.UI.COLORS.SCHEME
 
     return CardService.newCardSection()
         .addWidget(CardService.newTextInput()
@@ -29,11 +29,11 @@ function UserSection() {
                    .setType(CardService.SelectionInputType.DROPDOWN)
                    .setFieldName("temperature_unit_list")
                    .setTitle("Temperature Scale")
-                   .addItem("Fahrenheit", "dropdown_item_f", isCurrentTempUnitF)
-                   .addItem("Celsius", "dropdown_item_c", !isCurrentTempUnitF))
+                   .addItem("Fahrenheit", "dropdown_item_f", !isCurrentTempUnitC)
+                   .addItem("Celsius", "dropdown_item_c", isCurrentTempUnitC))
 
         .addWidget(CardService.newTextButton()
-                   .setText(`<font color="${COLORS.ORANGE}">[ Submit ]</font>`)
+                   .setText(`<font color="${COLORS.SECONDARY}">[ Submit ]</font>`)
                    .setOnClickAction(processUserFormAction))
         .setCollapsible(false)
 }
