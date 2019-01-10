@@ -13,7 +13,9 @@ function UserSection() {
 
     const COLORS = dictionary.UI.COLORS.SCHEME
 
-    return CardService.newCardSection()
+    const isNotMint = userProperties.getProperty(UPK.STATE.MINT) !== "MINT"
+
+    const card = CardService.newCardSection()
         .addWidget(CardService.newTextInput()
                    .setFieldName("user_name_key")
                    .setTitle("Your Name (optional)")
@@ -35,5 +37,8 @@ function UserSection() {
         .addWidget(CardService.newTextButton()
                    .setText(`<font color="${COLORS.SECONDARY}">[ Submit ]</font>`)
                    .setOnClickAction(processUserFormAction))
-        .setCollapsible(false)
+    if (isNotMint) {
+        card.addWidget(ResetWidget())
+    }
+    return card.setCollapsible(false)
 }
