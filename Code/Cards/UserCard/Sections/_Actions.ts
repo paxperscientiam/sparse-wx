@@ -8,14 +8,16 @@ function submitNameCallback(e) {
         return
     }
 
-    if (validateUserName(name) && name.length > 0) {
+    const isUserNameValid = validateUserName(name)
+
+    if (isUserNameValid[0] && name.length > 0) {
         Logger.log(`User's chosen name is ${name}.`)
         userProperties.setProperty(upk.USER.NAME, name)
         return {
             message: `Hello ${name}, thanks for using SparseWX.`,
         }
     } else {
-        throw new Error("Sorry, try a different name.")
+        throw new Error(isUserNameValid[1].message)
     }
 }
 

@@ -1,15 +1,29 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function validateUserName(input: string) {
-    let isCJK = /[\u4e00-\u9fa5 -]/.test(input)
-    isCJK = true
-    // https://stackoverflow.com/a/2385967
+    if (/^.{26,}$/i.test(input)) {
+        // test for length
+        return [false, {message: "Name exceeds maximum allowed length"}]
+    }
+
+    if (/^.$/i.test(input)) {
+        return [false, {message: "Name must be at least two characters long"}]
+    }
+
     // tslint:disable-next-line:max-line-length
-    const isLatin = /^[0-9a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s,\.'\?\\!-]{2,25}$/iu.test(input)
-    //  if (isLatin || isCJK) {
-    //         return true
-    //     }
-    //     return false
-    return isLatin
+    const isLatin = /^[0-9a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s,\.'\?\\!-]{2,25}$/i.test(input)
+    if (!isLatin) {
+        return [false, {message: "Sorry, try another name"}]
+    }
+
+    return [true, {message: "OK"}]
+    //    return isLatin
+    //         let isCJK = /[\u4e00-\u9fa5 -]/.test(input)
+    //     isCJK = true
+    //     // https://stackoverflow.com/a/2385967
+    //    //  if (isLatin || isCJK) {
+    //     //         return true
+    //     //     }
+    //     //     return false;
 }
 
 function validateZIP(input: string) {
