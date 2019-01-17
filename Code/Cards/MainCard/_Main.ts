@@ -32,64 +32,6 @@ function MainCard(dictionary) {
     return card
 }
 
-// function MainCard() {
-//     let msgWxUpdate
-//     const location = (new LocationService())
-//     const icons = (new DictionaryIcons()).ui
-//     const dictionary = (new Dictionary())
-//     const props = dictionary.PROPS
-//     const status = dictionary.status
-//     const _wx = dictionary.wx
-
-//     if (userProperties.getProperty(props.STATE.WX_SERVICE) !== "OK") {
-//         return getWeatherServiceFallbackCard()
-//     }
-
-//     //         const location = (new LocationService())
-//     //         const locationStatus = location.status
-
-//     //         let updateTime = userProperties.getProperty("WX_UPDATE_TIME")
-//     //         try {
-//     //             const wxUpdateTime = formatDateService(updateTime, "h:mma dd MMM")
-//     //             msgWxUpdate = `Last updated: ${wxUpdateTime}`;
-//     //             //        userProperties.setProperty("msgWxUpdate", msgWxUpdate)
-//     //         } catch (e) {
-//     //             msgWxUpdate = `Last updated: ?`;
-//     //             //        userProperties.setProperty("msgWxUpdate", msgWxUpdate)
-//     //         } finally {
-//     //             userProperties.setProperty("msgWxUpdate", msgWxUpdate)
-//     //             Logger.log(msgWxUpdate)
-//     //         }
-
-//     //   const ready = userProperties.getProperty(props.STATE.MINT)
-//     //     let wxSection
-//     //     if (ready === "ERR") {
-//     //         wxSection = getWxNotReadySection()
-//     //     } else {
-//     //         wxSection = getWeatherSection()
-//     //     }
-
-//     const mainCard = CardService.newCardBuilder()
-//         .setName("mainCard")
-//         .setHeader(CardService.newCardHeader()
-//                    .setTitle(getMainCardTitle())
-//                    .setSubtitle(getMainCardSubtitle())
-//                    .setImageUrl(icons.IMG_LOGO))
-
-//     if (userProperties.getProperty(props.STATE.MINT) === "USED") {
-//         mainCard.addSection(getDisclaimerSection())
-//     } else {
-//         mainCard.addSection(getWeatherSectionFallbackSection())
-//     }
-
-//     return mainCard
-//     //        .addSection(wxSection)
-//     //        .addSection(getNavSection())
-
-//     //         ;
-//     //
-// }
-
 function getMainCardTitle(dictionary): string {
     const UPK = dictionary.PROPS
     const date = new DateArray()

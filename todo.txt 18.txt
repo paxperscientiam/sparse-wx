@@ -50,7 +50,7 @@ need uri handling
 
 address could be link to maps
 update button color programmatically
-
+how to make caching work effectively?
 
 let user put in their own timezone
 
@@ -70,7 +70,7 @@ Utilities should be fully independent of project
 Things like widgets cards etc should stand on their own
 for things be sure to use injection
 Employ interface at WeatherWidget function
-
+I think usercard should allow submit but only have a single button for processing. Hm
 
 
 
@@ -89,4 +89,3 @@ If UserCard already defined, dont rebuild when going from Main to UserCard
 
 color code temperature
 Make sure all us possessions work
-instead of returning blank headers just dont add header or something like that

@@ -11,6 +11,8 @@ function getWeatherSection() {
     const UI = dictionary.UI
     const COLORS = UI.PALETTE
 
+    const isNotMint = userProperties.getProperty(UPK.STATE.MINT) === "USED"
+
     const alertUrl = dictionary.INTERFACE.NationalWeatherServiceInterface.URL.STATE_ALERTS
 
     const userstate = userProperties.getProperty(UPK.USER.STATE)
@@ -44,7 +46,11 @@ function getWeatherSection() {
     const dateUpdateDate = new Date(strUpdateDate)
 
     if (isNull(strUpdateDate) || isNaN(dateUpdateDate)) {
-        sectionHeader += "unknown"
+        if (isNotMint) {
+            sectionHeader += "unknown"
+        } else {
+            sectionHeader = " "
+        }
     } else if (dateUpdateDate instanceof Date) {
         sectionHeader += formatDateService(dateUpdateDate)
         if (objForecastStaleness[0]) {
@@ -54,9 +60,11 @@ function getWeatherSection() {
     }
 
     const wxSection = CardService.newCardSection()
-        .setHeader(sectionHeader)
-        .addWidget(CardService.newTextParagraph()
-                   .setText(header))
+    if (sectionHeader.length > 1) {
+        wxSection.setHeader(sectionHeader)
+    }
+    wxSection.addWidget(CardService.newTextParagraph()
+                        .setText(header))
 
     try {
         let i = 0
@@ -66,9 +74,16 @@ function getWeatherSection() {
         } while (i < UI.WX_SECTION__WIDGET_COUNT)
     } catch (e) {
         Logger.log(e)
+        let noWXcomment
+        if (isNotMint) {
+            noWXcomment = "Unable to determine your location. Have you set your address?"
+        } else {
+            noWXcomment = "Welcome to SparseWx. To get started, click [ SET ADDRESS ] below."
+        }
+
         wxSection.addWidget(CardService.newKeyValue()
                             .setIconUrl(UI.WX.ERROR)
-                            .setContent("Unable to determine your location. Have you set your address?")
+                            .setContent(noWXcomment)
                             .setMultiline(true))
     }
     return wxSection

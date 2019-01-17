@@ -13,7 +13,7 @@ function UserSection() {
 
     const COLORS = dictionary.UI.COLORS.SCHEME
 
-    const isNotMint = userProperties.getProperty(UPK.STATE.MINT) !== "MINT"
+    const isNotMint = userProperties.getProperty(UPK.STATE.MINT) === "USED"
 
     const card = CardService.newCardSection()
         .addWidget(CardService.newTextInput()
