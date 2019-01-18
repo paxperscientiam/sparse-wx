@@ -6,7 +6,6 @@
 // }
 
 function getWeatherSection() {
-    const dictionary = new Dictionary()
     const UPK = dictionary.PROPS
     const UI = dictionary.UI
     const COLORS = UI.PALETTE

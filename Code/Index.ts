@@ -1,7 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function buildAddOn() {
     Logger.clear()
-    const dictionary = new Dictionary()
     const PROPS = dictionary.PROPS
     const userCard = UserCard(dictionary)
 
@@ -17,7 +16,7 @@ function buildAddOn() {
         userProperties.setProperty(PROPS.STATE.LOCATION_SERVICE, "ERR")
     }
 
-    return MainCard(dictionary).build()
+    return MainCard().build()
 
     //     //////////
     //     const ls = new LocationService()

@@ -19,7 +19,6 @@ function getCoordinatesFromAddressService(address: string) {
 }
 
 function processGeocoderResultsService(polity, geometry) {
-    const dictionary = new Dictionary()
     const upk = dictionary.PROPS
     const GeoInterface = dictionary.INTERFACE.GoogleGeoCodeInterface
 

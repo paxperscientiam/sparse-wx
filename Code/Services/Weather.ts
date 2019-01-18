@@ -1,7 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
 function weatherPrimeService(coordinates: string) {
-    const dictionary = new Dictionary()
     const UPK = dictionary.PROPS
 
     if (coordinates === undefined) {
@@ -20,7 +19,6 @@ function weatherPrimeService(coordinates: string) {
 }
 
 function weatherServicePrimeTest() {
-    const dictionary = new Dictionary()
     const ICONS = dictionary.ICONS
     const PROPS = dictionary.PROPS
 
@@ -28,7 +26,6 @@ function weatherServicePrimeTest() {
 }
 
 function WeatherService(coord, period) {
-    const dictionary = new Dictionary()
     const nwsUrlService = new NWSUrlService()
     //
     const UPK = dictionary.PROPS
@@ -72,7 +69,6 @@ function WeatherService(coord, period) {
 }
 
 function weatherSearch(mode, segment) {
-    const dictionary = new Dictionary()
     const WX_INTERFACE = dictionary.INTERFACE.NationalWeatherServiceInterface
     const url = WX_INTERFACE.API._[0] +  WX_INTERFACE.API._[1].POINTS + "/" + segment
     switch (mode) {
@@ -123,7 +119,6 @@ function WeatherIconService(WxCondition, isDaytime) {
 
 function checkWeatherServiceStatus() {
     const url = (new NWSUrlService()).URL_BASE
-    const dictionary = new Dictionary()
     const params = dictionary.HTTP.WX_SERVICE.PARAMS
     let result
     try {
@@ -136,7 +131,6 @@ function checkWeatherServiceStatus() {
 
 function getWeatherMeta() {
     const url = new NWSUrlService()
-    const dictionary = new Dictionary()
     const params = dictionary.HTTP.WX_SERVICE.PARAMS
 
     const url = "https://api.weather.gov/points/37.5407,-77.4360"
@@ -163,7 +157,6 @@ function getForecastStalenessService() {
 }
 
 function getAlertsByStateService() {
-    const dictionary = new Dictionary()
     const PROPS = dictionary.PROPS
     const params = dictionary.HTTP.WX_SERVICE.PARAMS
     const userstate = userProperties.getProperty(PROPS.USER.STATE)
@@ -187,7 +180,6 @@ function getAlertsByStateService() {
 
 // function getAlertsByArea() {
 //     // 'area' is two letter state code, capital letters
-//     const dictionary = new Dictionary()
 //     const UPK = dictionary.PROPS
 //     Logger.log(
 

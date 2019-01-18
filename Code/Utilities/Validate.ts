@@ -36,7 +36,6 @@ function validateMailingAddress(address: string) {
     if (address === "" || address === null || address === undefined) {
         return false
     }
-    const dictionary = new Dictionary()
     const UPK = dictionary.PROPS
     const GeoInterface = dictionary.INTERFACE.GoogleGeoCodeInterface
 

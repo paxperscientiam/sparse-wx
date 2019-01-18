@@ -1,5 +1,4 @@
 function ResetWidget() {
-    const dictionary = new Dictionary()
     const UPK = dictionary.PROPS
     const UI = dictionary.UI
 

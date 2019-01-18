@@ -1,7 +1,5 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function getDisclaimerSection() {
-    const dictionary = new Dictionary()
-
     return CardService.newCardSection()
         .setHeader("Acknowledgments")
         .addWidget(CardService

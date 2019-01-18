@@ -1,6 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
-function MainCard(dictionary) {
+function MainCard() {
     const ICONS = dictionary.ICONS
     const PROPS = dictionary.PROPS
 
@@ -14,25 +14,20 @@ function MainCard(dictionary) {
         return getWeatherServiceFallbackCard()
     }
 
-    //     if (userProperties.getProperty(PROPS.STATE.MINT) === "USED") {
-    //         const thing = getCoordinatesFromAddressService(userProperties.getProperty(PROPS.USER.ADDRESS))
-    //         weatherPrimeService(thing.coo)
-    //     }
-
     const card = CardService.newCardBuilder()
         .setName("mainCard")
         .setHeader(CardService.newCardHeader()
-                   .setTitle(getMainCardTitle(dictionary))
+                   .setTitle(getMainCardTitle())
                    .setSubtitle(getMainCardSubtitle())
                    .setImageUrl(ICONS.UI.IMG_LOGO))
-        .addSection(getWeatherSection(dictionary))
+        .addSection(getWeatherSection())
         .addSection(getNavSection())
         .addSection(getDisclaimerSection())
 
     return card
 }
 
-function getMainCardTitle(dictionary): string {
+function getMainCardTitle(): string {
     const UPK = dictionary.PROPS
     const date = new DateArray()
 

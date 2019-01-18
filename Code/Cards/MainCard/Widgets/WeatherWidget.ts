@@ -1,8 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
 function WeatherWidget(period = 0) {
-
-    const dictionary = new Dictionary()
     const ICONS = dictionary.ICONS
 
     const COLORS = dictionary.UI.PALETTE

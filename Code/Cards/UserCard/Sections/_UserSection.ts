@@ -1,6 +1,5 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function UserSection() {
-    const dictionary = new Dictionary()
     const UPK = dictionary.PROPS
 
     const isCurrentTempUnitC = userProperties.getProperty(UPK.USER.TEMP_UNIT) === "dropdown_item_c"

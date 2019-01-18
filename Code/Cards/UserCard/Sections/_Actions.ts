@@ -1,6 +1,5 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function submitNameCallback(e) {
-    const dictionary = new Dictionary()
     const upk = dictionary.PROPS
     const name = e.formInput.user_name_key
 
@@ -22,7 +21,6 @@ function submitNameCallback(e) {
 }
 
 function submitAddressCallback(e) {
-    const dictionary = new Dictionary()
     const upk = dictionary.PROPS
     const BRAND = dictionary.BRAND
     const address = e.formInput.user_address_key
@@ -53,7 +51,6 @@ function submitAddressCallback(e) {
 }
 
 function submitTemperatureUnitCallback(e) {
-    const dictionary = new Dictionary()
     const UPK = dictionary.PROPS
 
     const chosenTempUnit = e.formInputs.temperature_unit_list[0]
@@ -66,7 +63,6 @@ function submitTemperatureUnitCallback(e) {
 }
 
 function processUserPreferencesFormCallback(e) {
-    const dictionary = new Dictionary()
     Logger.log(e.formInput)
     try {
         submitAddressCallback(e)
@@ -114,7 +110,6 @@ function processUserPreferencesFormCallback(e) {
 }
 
 function goToUserCardCallback() {
-    const dictionary = new Dictionary()
     return CardService.newActionResponseBuilder()
         .setNavigation(
             CardService.newNavigation().pushCard(UserCard(dictionary).build()),
@@ -124,7 +119,6 @@ function goToUserCardCallback() {
 }
 
 function goToHomeCardCallback() {
-    const dictionary = new Dictionary()
     return CardService.newActionResponseBuilder()
         .setNavigation(
             CardService.newNavigation().pushCard(MainCard(dictionary).build()),
@@ -134,7 +128,6 @@ function goToHomeCardCallback() {
 }
 
 function refreshHomeCardCallback() {
-    const dictionary = new Dictionary()
     return CardService.newActionResponseBuilder()
         .setNavigation(
             CardService.newNavigation().updateCard(MainCard(dictionary).build()),

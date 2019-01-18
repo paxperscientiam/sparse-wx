@@ -224,51 +224,5 @@ function Dictionary() {
             COLOR_ONE: "#4a707a",
         },
     }
-
-    //     this.ipAddressProviders = {
-    //         sites: [
-    //             {
-    //                 url: "https://api.ipify.org",
-    //                 query: {
-    //                     format: "json"
-    //                 },
-    //                 params: {},
-    //                 cacheName: "ip",
-    //                 providerId: "IP_IPIFY",
-    //                 form: {
-    //                     ip: "ip"
-    //                 }
-    //             },
-    //             {
-    //                 url: "https://ipinfo.io/geo",
-    //                 query: {
-    //                     token: "ac4c12d010bed2"
-    //                 },
-    //                 params: {},
-    //                 cacheName: "ip",
-    //                 providerId: "IP_IPINFO",
-    //                 form: {
-    //                     ip: "ip",
-    //                     country: "country",
-    //                     state: "region",
-    //                     city: "city",
-    //                     coordinates: "loc"
-    //                 }
-    //             },
-    //             {
-    //                 url: "https://ifconfig.co/json",
-    //                 query: {},
-    //                 params: {},
-    //                 cacheName: "ip",
-    //                 providerId: "IP_IFCONFIG",
-    //                 form: {
-    //                     ip: "ip",
-    //                     country: "country",
-    //                     city: "city",
-    //                     latitude: "latitude",
-    //                     longitude: "longitude"
-    //                 }
-    //             },
-    //         ]
-    //     }
 }
+const dictionary = new Dictionary()
