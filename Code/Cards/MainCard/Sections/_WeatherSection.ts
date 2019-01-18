@@ -1,10 +1,4 @@
 //     Copyright (C) 2018 Christopher David Ramos
-
-// function getWeatherSection(dictionary) {
-//     //  const upk = dictionary.PROPS
-//     return getWeatherSectionFallbackSection()
-// }
-
 function getWeatherSection() {
     const UPK = dictionary.PROPS
     const UI = dictionary.UI
@@ -79,11 +73,7 @@ function getWeatherSection() {
         } else {
             noWXcomment = "Welcome to SparseWx. To get started, click [ SET ADDRESS ] below."
         }
-
-        wxSection.addWidget(CardService.newKeyValue()
-                            .setIconUrl(UI.WX.ERROR)
-                            .setContent(noWXcomment)
-                            .setMultiline(true))
+        wxSection.addWidget(WeatherErrorWidget(noWXcomment))
     }
     return wxSection
 }
