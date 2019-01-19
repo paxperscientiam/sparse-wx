@@ -135,6 +135,8 @@ function Dictionary() {
             URLS: {
                 LICENSE: "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/f6dde7ebf2d73eff18599f732912a4f5f748d27d/LICENSE",
                 NWS: "https://www.weather.gov/",
+
+                PRIVACY: "https://github.com/paxperscientiam/sparse-wx/blob/privacy-policy.md/privacy.md",
             },
             version: " ",
         })

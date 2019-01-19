@@ -7,6 +7,7 @@ function getDisclaimerSection() {
                    .setText(doGet("Templates/userNotices", {
                        license: dictionary.BRAND.URLS.LICENSE,
                        nws: dictionary.BRAND.URLS.NWS,
+                       privacy: dictionary.BRAND.URLS.PRIVACY,
                    })))
         .setCollapsible(true)
 }
