@@ -15,7 +15,6 @@ function getNavSection() {
     }
 
     return CardService.newCardSection()
-        .setHeader(UI.PLACEHOLDER_TEXT.CARD_SECTION_HEADER)
         .addWidget(NavButtonsWidget({
             settingsTextButton,
         }))

@@ -217,6 +217,8 @@ function Dictionary() {
         PRIMARY    : this.UI.PALETTE.NAVY,
         SECONDARY  : this.UI.PALETTE.RED,
         TERTIARY   : this.UI.PALETTE.SILVER,
+
+        HIGHLIGHT  : this.UI.PALETTE.ORANGE,
     }
 
     this.UI.WIDGETS = {

@@ -54,7 +54,7 @@ function WeatherWidget(period = 0) {
     const icon = WeatherIconService(Weather.condition, Weather.isDaytime)
 
     if (isHoldayService(name)) {
-        headlineColor = COLORS.ORANGE
+        headlineColor = COLORS.SCHEME.HIGHLIGHT
     }
 
     return CardService.newKeyValue()
