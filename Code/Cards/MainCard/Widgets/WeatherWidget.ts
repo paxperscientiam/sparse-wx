@@ -49,12 +49,17 @@ function WeatherWidget(period = 0) {
     const windPhrase = WindSpeedHandler(Weather.windSpeed)
     const windMessage = `${windPhrase} to the ${windDirection}`
     const name = Weather.name
+    let headlineColor = "black"
 
     const icon = WeatherIconService(Weather.condition, Weather.isDaytime)
 
+    if (isHoldayService(name)) {
+        headlineColor = COLORS.ORANGE
+    }
+
     return CardService.newKeyValue()
         .setIconUrl(icon)
-        .setContent(doGet("Templates/weatherToday", {message, windMessage, name, UI_WIDGET, COLORS }))
+        .setContent(doGet("Templates/weatherToday", {message, windMessage, name, UI_WIDGET, COLORS, headlineColor }))
         .setMultiline(true)
 
     //   } catch (e) {
