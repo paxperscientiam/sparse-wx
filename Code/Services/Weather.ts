@@ -80,6 +80,8 @@ function WeatherIconService(WxCondition, isDaytime) {
     const TIME = isDaytime ? "DAY" : "NIGHT"
     const ICONS = (new DictionaryIcons()).WX
 
+    Logger.log(`WX CONDITION: ${WxCondition}`)
+
     if (/^part.*sunny/i.test(WxCondition)) {
         return ICONS.PARTLYSUNNY[TIME]
     } else if (/^sunny/i.test(WxCondition) ) {
@@ -88,6 +90,7 @@ function WeatherIconService(WxCondition, isDaytime) {
         return ICONS.PARTLYCLOUDY[TIME]
     } else if (/^cloudy/i.test(WxCondition) ) {
         return ICONS.CLOUDY[TIME]
+        // RAIN
     } else if (/^(light|heavy) rain|rain/i.test(WxCondition) ) {
         return ICONS.RAINY[TIME]
     } else if (/flurries/i.test(WxCondition) ) {
@@ -96,14 +99,16 @@ function WeatherIconService(WxCondition, isDaytime) {
         return ICONS.FOG[TIME]
     } else if (/haze/i.test(WxCondition) ) {
         return ICONS.HAZY[TIME]
-    } else if (/chance.*rain/i.test(WxCondition) ) {
+    } else if (/(chance|likely).*rain/i.test(WxCondition) ) {
         return ICONS.CHANCERAIN[TIME]
-    } else if (/chance.*sleet/i.test(WxCondition) ) {
+    } else if (/(chance|likely).*sleet/i.test(WxCondition) ) {
         return ICONS.CHANCESLEET
-    } else if (/chance.*snow/i.test(WxCondition) ) {
+        // SNOW
+    } else if (/(chance|likely).*snow/i.test(WxCondition) ) {
         return ICONS.CHANCESNOW[TIME]
-    } else if (/chance.*storm/i.test(WxCondition) ) {
+    } else if (/(chance|likely).*storm/i.test(WxCondition) ) {
         return ICONS.CHANCETSTORMS[TIME]
+        //
     } else if (/mostly sunny/i.test(WxCondition) ) {
         return ICONS.MOSTLYCLOUDY[TIME]
     } else if (/mostly cloudy/i.test(WxCondition) ) {
