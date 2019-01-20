@@ -1,5 +1,5 @@
 show liklihoods
-
+weather alert links
 
 
 
@@ -81,7 +81,7 @@ Store wx data with implicit refereces thats created here FIX21313
 
 Could I color code days?
 
-
+UserInfoSection should still display address even when there is no username set
 Should allow for unsetting username
 
 Allow for longer suggestions list
@@ -90,7 +90,3 @@ If UserCard already defined, dont rebuild when going from Main to UserCard
 color code temperature
 Make sure all us possessions work
 instead of returning blank headers just dont add header or something like that
-reset button doesnt seem to work
-widgets should be free of conditionals
-Declare dictionary globally and not in each function
-if a holiday make day time stand out

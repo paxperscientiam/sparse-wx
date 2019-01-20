@@ -32,7 +32,11 @@ function WeatherWidget(period = 0) {
 
     const windspeedForApparentTemperatureService = ((Weather.windSpeed).replace(" mph", "")).split(" to ")
 
-    let apparentTemperature = apparentTemperatureService(temperature, windspeedForApparentTemperatureService[0])
+    let apparentTemperature = apparentTemperatureService({
+        temperature,
+        windspeed: windspeedForApparentTemperatureService[0],
+    })
+
     Logger.log(`apparent temperature is ${apparentTemperature} F`)
 
     if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_c") {
