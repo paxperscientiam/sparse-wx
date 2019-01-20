@@ -23,7 +23,6 @@ function WeatherWidget(period = 0) {
         throw new Error("Unable to determine your location")
     }
 
-    //   try {
     const coord = `${lat},${lon}`
     Logger.log("coords for WeatherService function: " + coord)
     const Weather = new WeatherService(coord, period)
@@ -31,7 +30,9 @@ function WeatherWidget(period = 0) {
     let temperature = Weather.temp
     let temperatureUnit = Weather.unit
 
-    let apparentTemperature = apparentTemperatureService(temperature, Weather.windSpeed)
+    const windspeedForApparentTemperatureService = ((Weather.windSpeed).replace(" mph", "")).split(" to ")
+
+    let apparentTemperature = apparentTemperatureService(temperature, windspeedForApparentTemperatureService[0])
     Logger.log(`apparent temperature is ${apparentTemperature} F`)
 
     if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_c") {
@@ -39,8 +40,9 @@ function WeatherWidget(period = 0) {
         apparentTemperature = convertFahrenheit(apparentTemperature)
         temperatureUnit = "C"
     }
+    const message  = `${temperature}°${temperatureUnit}, ${Weather.condition}`
+    const apparentTemperatureMessage = `feels like ${apparentTemperature}°${temperatureUnit}`
 
-    const message  = `${temperature}°${temperatureUnit} / ${apparentTemperature}°${temperatureUnit}, ${Weather.condition}`
     Logger.log(`wx message: ${message}`)
 
     const ws2ws = dictionary.CARDINAL_DIRECTIONS
@@ -63,6 +65,6 @@ function WeatherWidget(period = 0) {
 
     return CardService.newKeyValue()
         .setIconUrl(icon)
-        .setContent(doGet("Templates/weatherToday", {message, windMessage, name, UI_WIDGET, COLORS, headlineColor }))
+        .setContent(doGet("Templates/weatherToday", {message, apparentTemperatureMessage, windMessage, name, UI_WIDGET, COLORS, headlineColor }))
         .setMultiline(true)
 }

@@ -59,8 +59,6 @@ function WeatherService(coord, period) {
     this.windSpeed = wx.properties.periods[period].windSpeed
     this.isDaytime = wx.properties.periods[period].isDaytime
     //
-    this.apparentTemp = apparentTemperatureService(this.temp, this.windSpeed)
-
     this.updateTime = wx.properties.updateTime
     this.timeZone = wxRaw.properties.timeZone
 
