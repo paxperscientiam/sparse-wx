@@ -31,12 +31,16 @@ function WeatherWidget(period = 0) {
     let temperature = Weather.temp
     let temperatureUnit = Weather.unit
 
+    let apparentTemperature = apparentTemperatureService(temperature, Weather.windSpeed)
+    Logger.log(`apparent temperature is ${apparentTemperature} F`)
+
     if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_c") {
         temperature = convertFahrenheit(temperature)
+        apparentTemperature = convertFahrenheit(apparentTemperature)
         temperatureUnit = "C"
     }
 
-    const message  = `${temperature}°${temperatureUnit}, ${Weather.condition}`
+    const message  = `${temperature}°${temperatureUnit} / ${apparentTemperature}°${temperatureUnit}, ${Weather.condition}`
     Logger.log(`wx message: ${message}`)
 
     const ws2ws = dictionary.CARDINAL_DIRECTIONS
@@ -61,12 +65,4 @@ function WeatherWidget(period = 0) {
         .setIconUrl(icon)
         .setContent(doGet("Templates/weatherToday", {message, windMessage, name, UI_WIDGET, COLORS, headlineColor }))
         .setMultiline(true)
-
-    //   } catch (e) {
-    //         userProperties.setProperty(STATE.WX_SERVICE, "ERR")
-    //         return CardService.newKeyValue()
-    //             .setIconUrl(WX_ERROR)
-    //             .setContent("Wx service error")
-    //         throw new Error("stop the fucking loop!!!1")
-    //     }
 }
