@@ -77,10 +77,29 @@ function weatherSearch(mode, segment) {
 }
 
 function WeatherIconService(WxCondition, isDaytime) {
+    // https://www.weather.gov/bgm/forecast_terms
+    // POP Percent 	Expression of Uncertainty 	Equivalent Areal Qualifier
+    // 10 percent 	(none used) 	Isolated/ Few
+    // 20 percent 	Slight Chance 	Widely Scattered
+    // 30, 40, & 50 percent 	Chance 	Scattered
+    // 60 & 70 percent 	Likely 	Numerous (or none used)
+    // 80, 90, & 100 percent 	(None used) 	Occasional, periods of, or none used
+
     const TIME = isDaytime ? "DAY" : "NIGHT"
     const ICONS = (new DictionaryIcons()).WX
 
     Logger.log(`WX CONDITION: ${WxCondition}`)
+
+    const popTerms = [
+        "few",
+        "isolated",
+        "slight chance",
+        "widely scattered",
+        "chance",
+        "scattered",
+        "likely",
+        "numerous",
+    ]
 
     if (/^part.*sunny/i.test(WxCondition)) {
         return ICONS.PARTLYSUNNY[TIME]
@@ -90,31 +109,52 @@ function WeatherIconService(WxCondition, isDaytime) {
         return ICONS.PARTLYCLOUDY[TIME]
     } else if (/^cloudy/i.test(WxCondition) ) {
         return ICONS.CLOUDY[TIME]
-        // RAIN
-    } else if (/^(light|heavy) rain|rain/i.test(WxCondition) ) {
-        return ICONS.RAINY[TIME]
-    } else if (/flurries/i.test(WxCondition) ) {
-        return ICONS.FLURRIES[TIME]
-    } else if (/fog/i.test(WxCondition) ) {
-        return ICONS.FOG[TIME]
-    } else if (/haze/i.test(WxCondition) ) {
-        return ICONS.HAZY[TIME]
-    } else if (/(chance|likely).*rain/i.test(WxCondition) ) {
-        return ICONS.CHANCERAIN[TIME]
-    } else if (/(chance|likely).*sleet/i.test(WxCondition) ) {
-        return ICONS.CHANCESLEET
-        // SNOW
-    } else if (/(chance|likely).*snow/i.test(WxCondition) ) {
-        return ICONS.CHANCESNOW[TIME]
-    } else if (/(chance|likely).*storm/i.test(WxCondition) ) {
-        return ICONS.CHANCETSTORMS[TIME]
-        //
     } else if (/mostly sunny/i.test(WxCondition) ) {
         return ICONS.MOSTLYCLOUDY[TIME]
     } else if (/mostly cloudy/i.test(WxCondition) ) {
         return ICONS.MOSTLYCLOUDY[TIME]
     } else if (/clear/i.test(WxCondition) ) {
         return ICONS.CLEAR[TIME]
+    }
+
+    const isChance = popTerms.some((term) => {
+        return (WxCondition.toLowerCase()).indexOf(term) > -1
+    })
+
+    if (isChance) {
+        if (WxCondition.toLowerCase().indexOf("rain") > -1) {
+            return ICONS.CHANCERAIN[TIME]
+            //
+        } else if (WxCondition.toLowerCase().indexOf("sleet") > -1) {
+            return ICONS.CHANCESLEET[TIME]
+            //
+        } else if (WxCondition.toLowerCase().indexOf("snow") > -1) {
+            return ICONS.CHANCESNOW[TIME]
+            //
+        } else if (WxCondition.toLowerCase().indexOf("storm") > -1) {
+            return ICONS.CHANCETSTORMS[TIME]
+            //
+        } else if (WxCondition.toLowerCase().indexOf("flurries") > -1) {
+            return ICONS.CHANCEFLURRIES[TIME]
+        }
+    }
+
+    if (/rain/i.test(WxCondition)) {
+        return ICONS.RAINY[TIME]
+        //
+    } else if (/flurries/i.test(WxCondition) ) {
+        return ICONS.FLURRIES[TIME]
+        //
+    } else if (/fog/i.test(WxCondition) ) {
+        return ICONS.FOG[TIME]
+        //
+    } else if (/haze/i.test(WxCondition) ) {
+        return ICONS.HAZY[TIME]
+        //
+    } else if (/snow/i.test(WxCondition) ) {
+        return ICONS.SNOW[TIME]
+    } else if (/sleet/i.test(WxCondition)) {
+        return ICONS.SLEET[TIME]
     } else {
         return ICONS.UNKNOWN
     }

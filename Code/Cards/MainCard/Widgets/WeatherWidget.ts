@@ -45,6 +45,7 @@ function WeatherWidget(period = 0) {
         temperatureUnit = "C"
     }
     const message  = `${temperature}°${temperatureUnit}, ${Weather.condition}`
+
     const apparentTemperatureMessage = `feels like ${apparentTemperature}°${temperatureUnit}`
 
     Logger.log(`wx message: ${message}`)

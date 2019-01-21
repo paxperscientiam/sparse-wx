@@ -36,7 +36,7 @@ function apparentTemperatureService(args) {
 
     Logger.log("Apparent temperature is unknown.")
 
-    return "?"
+    return "--"
 }
 
 function _calculateHeadIndexService(temperature, RH) {
