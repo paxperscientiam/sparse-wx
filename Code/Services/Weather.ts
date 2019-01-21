@@ -101,18 +101,18 @@ function WeatherIconService(WxCondition, isDaytime) {
         "numerous",
     ]
 
-    if (/^part.*sunny/i.test(WxCondition)) {
+    if (/(partly.*sunny|mostly.*cloudy)/i.test(WxCondition)) {
         return ICONS.PARTLYSUNNY[TIME]
-    } else if (/^sunny/i.test(WxCondition) ) {
-        return ICONS.SUNNY[TIME]
-    } else if (/^part.*cloudy/i.test(WxCondition)) {
+        //
+    } else if (/(partly.*cloudy|mostly.*sunny)/i.test(WxCondition)) {
         return ICONS.PARTLYCLOUDY[TIME]
-    } else if (/^cloudy/i.test(WxCondition) ) {
+        //
+    } else if (/sunny/i.test(WxCondition) ) {
+        return ICONS.SUNNY[TIME]
+        //
+    } else if (/cloudy/i.test(WxCondition) ) {
         return ICONS.CLOUDY[TIME]
-    } else if (/mostly sunny/i.test(WxCondition) ) {
-        return ICONS.MOSTLYCLOUDY[TIME]
-    } else if (/mostly cloudy/i.test(WxCondition) ) {
-        return ICONS.MOSTLYCLOUDY[TIME]
+        //
     } else if (/clear/i.test(WxCondition) ) {
         return ICONS.CLEAR[TIME]
     }
