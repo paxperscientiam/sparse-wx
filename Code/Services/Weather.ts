@@ -158,6 +158,7 @@ function WeatherIconService(WxCondition, isDaytime) {
     } else {
         return ICONS.UNKNOWN
     }
+    return ICONS.UNKNOWN
 }
 //
 

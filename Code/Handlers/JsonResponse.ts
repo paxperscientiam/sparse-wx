@@ -48,3 +48,7 @@ function cacheFetchTest() {
     data = JSON.parse(content)
     Logger.log(data.country)
 }
+
+function fak(a = 3, b = 6) {
+    Logger.log( a * b)
+}

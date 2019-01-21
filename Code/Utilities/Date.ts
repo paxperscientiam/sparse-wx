@@ -1,6 +1,9 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
-function formatDateService(date, format = "E, d MMM y") {
+function formatDateService(date, format?: string) {
+    if (!isSet(format)) {
+        format = "E, d MMM y"
+    }
     const timeZone = getUserTimeZone()
     const date = new Date(date)
     return Utilities.formatDate(date, timeZone, format)

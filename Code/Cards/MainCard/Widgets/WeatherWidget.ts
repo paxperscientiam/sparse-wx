@@ -1,6 +1,10 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
-function WeatherWidget(period = 0) {
+function WeatherWidget(period) {
+    if (!isSet(period)) {
+        period = 0
+    }
+
     const ICONS = dictionary.ICONS
 
     const COLORS = dictionary.UI.PALETTE
@@ -39,10 +43,34 @@ function WeatherWidget(period = 0) {
 
     Logger.log(`apparent temperature is ${apparentTemperature} F`)
 
+    let COLORTEMP = "black"
+    if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_f" ||
+        !isSet(userProperties.getProperty(PROPS.USER.TEMP_UNIT))) {
+        if (temperature < 32 ) {
+            COLORTEMP = COLORS.BLUE
+            Logger.log("COLOR TEMP IS " + COLORTEMP)
+        }
+
+        if (temperature > 75 ) {
+            COLORTEMP = COLORS.MAROON
+            Logger.log("COLOR TEMP IS " + COLORTEMP)
+        }
+    }
+
     if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_c") {
         temperature = convertFahrenheit(temperature)
         apparentTemperature = convertFahrenheit(apparentTemperature)
         temperatureUnit = "C"
+
+        if (temperature < 0 ) {
+            COLORTEMP = COLORS.BLUE
+            Logger.log("COLOR TEMP IS " + COLORTEMP)
+        }
+
+        if (temperature > 24 ) {
+            COLORTEMP = COLORS.MAROON
+            Logger.log("COLOR TEMP IS " + COLORTEMP)
+        }
     }
     const message  = `${temperature}°${temperatureUnit}, ${Weather.condition}`
 
@@ -60,7 +88,8 @@ function WeatherWidget(period = 0) {
     const windPhrase = WindSpeedHandler(Weather.windSpeed)
     const windMessage = `${windPhrase} to the ${windDirection}`
     const name = Weather.name
-    let headlineColor = "black"
+
+
 
     const icon = WeatherIconService(Weather.condition, Weather.isDaytime)
 
@@ -70,6 +99,6 @@ function WeatherWidget(period = 0) {
 
     return CardService.newKeyValue()
         .setIconUrl(icon)
-        .setContent(doGet("Templates/weatherToday", {message, apparentTemperatureMessage, windMessage, name, UI_WIDGET, COLORS, headlineColor }))
+        .setContent(doGet("Templates/weatherToday", {message, apparentTemperatureMessage, windMessage, name, UI_WIDGET, COLORS, COLORTEMP }))
         .setMultiline(true)
 }
