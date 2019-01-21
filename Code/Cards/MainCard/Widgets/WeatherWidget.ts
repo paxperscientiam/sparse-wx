@@ -55,6 +55,11 @@ function WeatherWidget(period) {
             COLORTEMP = COLORS.MAROON
             Logger.log("COLOR TEMP IS " + COLORTEMP)
         }
+
+        if (temperature > 100 ) {
+            COLORTEMP = COLORS.ORANGE
+            Logger.log("COLOR TEMP IS " + COLORTEMP)
+        }
     }
 
     if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_c") {
@@ -69,6 +74,11 @@ function WeatherWidget(period) {
 
         if (temperature > 24 ) {
             COLORTEMP = COLORS.MAROON
+            Logger.log("COLOR TEMP IS " + COLORTEMP)
+        }
+
+        if (temperature > 37 ) {
+            COLORTEMP = COLORS.ORANGE
             Logger.log("COLOR TEMP IS " + COLORTEMP)
         }
     }
