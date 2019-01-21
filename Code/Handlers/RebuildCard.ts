@@ -2,3 +2,7 @@
 function rebuildUserCard() {
     UserCard.build()
 }
+
+function rebuildMainCard() {
+    //
+}

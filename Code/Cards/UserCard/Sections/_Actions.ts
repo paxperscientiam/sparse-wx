@@ -21,12 +21,14 @@ function submitNameCallback(e) {
 }
 
 function submitAddressCallback(e) {
-    const upk = dictionary.PROPS
+    const UPK = dictionary.PROPS
     const BRAND = dictionary.BRAND
     const address = e.formInput.user_address_key
 
-    if (!isSet(address)) {
-        return
+    const isNotMint = userProperties.getProperty(UPK.STATE.MINT) === "USED"
+
+    if (!isSet(address) && !isNotMint) {
+        throw new Error("Try setting an address first.")
     }
 
     const isValid = validateMailingAddress(address)
