@@ -33,9 +33,10 @@ function validateZIP(input: string) {
 
 function validateMailingAddress(address: string) {
     // https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingAddressTypes
-    if (address === "" || address === null || address === undefined) {
-        return false
+    if (!isSet(address)) {
+        return [false, "No valid address."]
     }
+
     const UPK = dictionary.PROPS
     const GeoInterface = dictionary.INTERFACE.GoogleGeoCodeInterface
 

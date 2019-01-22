@@ -3,21 +3,21 @@ function textColorTemperatureService(temperature) {
     const PROPS = dictionary.PROPS
 
     if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_c") {
-        temperature = convertCelsius(temperature)
+        temperature = convertFahrenheit(temperature)
     }
 
     if (temperature < 32 ) {
-        Logger.log("COLOR TEMP IS " + COLORTEMP)
+        Logger.log(`Blue for ${temperature}`)
         return COLORS.BLUE
     }
 
     if (temperature > 75 ) {
-        Logger.log("COLOR TEMP IS " + COLORTEMP)
+        Logger.log(`Maroon for ${temperature}`)
         return COLORS.MAROON
     }
 
     if (temperature > 100 ) {
-        Logger.log("COLOR TEMP IS " + COLORTEMP)
+        Logger.log(`Orange for ${temperature}`)
         return COLORS.ORANGE
     }
 

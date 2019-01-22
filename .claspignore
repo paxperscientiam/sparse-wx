@@ -8,4 +8,4 @@ Code/Handlers/Auth.ts
 
 Code/Vendor/**
 Code/Clojure/**
-Code/_Old/**
+**/_Old/**

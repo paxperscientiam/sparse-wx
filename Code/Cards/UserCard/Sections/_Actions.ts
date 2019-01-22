@@ -27,7 +27,9 @@ function submitAddressCallback(e) {
 
     const isNotMint = userProperties.getProperty(UPK.STATE.MINT) === "USED"
 
-    if (!isSet(address) && !isNotMint) {
+    const storedAddress = userProperties.getProperty(UPK.USER_ADDRESS)
+
+    if (!isSet(storedAddress) && !isNotMint) {
         throw new Error("Try setting an address first.")
     }
 

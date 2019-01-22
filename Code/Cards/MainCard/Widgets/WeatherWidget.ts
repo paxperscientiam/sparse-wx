@@ -62,8 +62,6 @@ function WeatherWidget(period) {
     const windMessage = `${windPhrase} to the ${windDirection}`
     const name = Weather.name
 
-
-
     const icon = WeatherIconService(Weather.condition, Weather.isDaytime)
 
     if (isHoldayService(name)) {

@@ -47,3 +47,9 @@ Configure Marketplace SDK
 - [ ] Enable individual install on Configuration panel
 - [ ] set visibility
 - [ ] Set the "reach" in the Publish panel
+
+
+https://developers.google.com/gmail/add-ons/how-tos/publish
+https://developers.google.com/gmail/add-ons/how-tos/publish#step_3_request_review_for_public_add-ons
+https://developers.google.com/terms/api-services-user-data-policy
+https://developers.google.com/gmail/add-ons/how-tos/publish#step_4_enable_the_marketplace_sdk
