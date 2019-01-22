@@ -4,7 +4,7 @@ function submitNameCallback(e) {
     const name = e.formInput.user_name_key
 
     if (!isSet(name)) {
-        return
+        return false
     }
 
     const isUserNameValid = validateUserName(name)
@@ -12,9 +12,7 @@ function submitNameCallback(e) {
     if (isUserNameValid[0] && name.length > 0) {
         Logger.log(`User's chosen name is ${name}.`)
         userProperties.setProperty(upk.USER.NAME, name)
-        return {
-            message: `Hello ${name}, thanks for using SparseWX.`,
-        }
+        return true
     } else {
         throw new Error(isUserNameValid[1].message)
     }
@@ -29,8 +27,13 @@ function submitAddressCallback(e) {
 
     const storedAddress = userProperties.getProperty(UPK.USER_ADDRESS)
 
-    if (!isSet(storedAddress) && !isNotMint) {
+    if (!isSet(address) && !isNotMint) {
         throw new Error("Try setting an address first.")
+    }
+
+    if (!isSet(address)) {
+        // false means don't process
+        return false
     }
 
     const isValid = validateMailingAddress(address)
@@ -52,6 +55,8 @@ function submitAddressCallback(e) {
         }
         throw new Error(response)
     }
+    // true means to process
+    return true
 }
 
 function submitTemperatureUnitCallback(e) {
@@ -60,16 +65,18 @@ function submitTemperatureUnitCallback(e) {
     const chosenTempUnit = e.formInputs.temperature_unit_list[0]
 
     if (!isSet(chosenTempUnit)) {
-        return
+        return false
     }
 
     userProperties.setProperty(UPK.USER.TEMP_UNIT, chosenTempUnit)
+    return true
 }
 
 function processUserPreferencesFormCallback(e) {
     Logger.log(e.formInput)
+    let shouldProcess = false
     try {
-        submitAddressCallback(e)
+        shouldProcess = (shouldProcess !== shouldsubmitAddressCallback(e))
     } catch (event) {
         return CardService.newActionResponseBuilder()
             .setNotification(CardService.newNotification()
@@ -80,7 +87,7 @@ function processUserPreferencesFormCallback(e) {
     }
 
     try {
-        submitTemperatureUnitCallback(e)
+        shouldProcess = (shouldProcess !== submitTemperatureUnitCallback(e))
     } catch (event) {
         return CardService.newActionResponseBuilder()
             .setNotification(CardService.newNotification()
@@ -91,7 +98,7 @@ function processUserPreferencesFormCallback(e) {
     }
 
     try {
-        submitNameCallback(e)
+        shouldProcess = (shouldProcess !== submitNameCallback(e))
     } catch (event) {
         return CardService.newActionResponseBuilder()
             .setNotification(CardService.newNotification()
@@ -101,14 +108,20 @@ function processUserPreferencesFormCallback(e) {
             .build()
     }
 
+    Logger.log(`Should I process: ${shouldProcess}`)
+    if (shouldProcess) {
+        return CardService.newActionResponseBuilder()
+            .setNavigation(CardService
+                           .newNavigation()
+                           .popCard()
+                           .updateCard(MainCard(dictionary).build()))
+            .setNotification(CardService.newNotification()
+                             .setType(CardService.NotificationType.INFO)
+                             .setText(`Settings changed`))
+            .setStateChanged(true)
+            .build()
+    }
     return CardService.newActionResponseBuilder()
-        .setNavigation(CardService
-                       .newNavigation()
-                       .popCard()
-                       .updateCard(MainCard(dictionary).build()))
-        .setNotification(CardService.newNotification()
-                         .setType(CardService.NotificationType.INFO)
-                         .setText(`Settings changed`))
         .setStateChanged(false)
         .build()
 }
