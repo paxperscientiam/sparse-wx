@@ -66,6 +66,12 @@ function submitTemperatureUnitCallback(e) {
 
     const chosenTempUnit = e.formInputs.temperature_unit_list[0]
 
+    const currentTempUnit = userProperties.getProperty(UPK.USER.TEMP_UNIT)
+
+    if (currentTempUnit === chosenTempUnit) {
+        return false
+    }
+
     if (!isSet(chosenTempUnit)) {
         return false
     }
