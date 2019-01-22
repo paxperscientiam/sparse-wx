@@ -14,5 +14,5 @@ function ResetWidget() {
 
 function resetAddonCallback() {
     clearConfig()
-    goToUserCardCallback()
+    rebuildUserCard()
 }
