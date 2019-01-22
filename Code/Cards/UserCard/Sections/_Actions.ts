@@ -16,6 +16,8 @@ function submitNameCallback(e) {
     } else {
         throw new Error(isUserNameValid[1].message)
     }
+
+    return false
 }
 
 function submitAddressCallback(e) {
@@ -56,7 +58,7 @@ function submitAddressCallback(e) {
         throw new Error(response)
     }
     // true means to process
-    return true
+    return false
 }
 
 function submitTemperatureUnitCallback(e) {
@@ -76,7 +78,8 @@ function processUserPreferencesFormCallback(e) {
     Logger.log(e.formInput)
     let shouldProcess = false
     try {
-        shouldProcess = (shouldProcess !== shouldsubmitAddressCallback(e))
+        shouldProcess = (shouldProcess || submitAddressCallback(e))
+        Logger.log(`Process status after address change?: ${shouldProcess}`)
     } catch (event) {
         return CardService.newActionResponseBuilder()
             .setNotification(CardService.newNotification()
@@ -87,7 +90,8 @@ function processUserPreferencesFormCallback(e) {
     }
 
     try {
-        shouldProcess = (shouldProcess !== submitTemperatureUnitCallback(e))
+        shouldProcess = (shouldProcess || submitTemperatureUnitCallback(e))
+        Logger.log(`Process status after tempUnit change: ${shouldProcess}`)
     } catch (event) {
         return CardService.newActionResponseBuilder()
             .setNotification(CardService.newNotification()
@@ -98,7 +102,8 @@ function processUserPreferencesFormCallback(e) {
     }
 
     try {
-        shouldProcess = (shouldProcess !== submitNameCallback(e))
+        shouldProcess = (shouldProcess || submitNameCallback(e))
+        Logger.log(`Process status after name change: ${shouldProcess}`)
     } catch (event) {
         return CardService.newActionResponseBuilder()
             .setNotification(CardService.newNotification()
@@ -122,6 +127,9 @@ function processUserPreferencesFormCallback(e) {
             .build()
     }
     return CardService.newActionResponseBuilder()
+        .setNotification(CardService.newNotification()
+                         .setType(CardService.NotificationType.INFO)
+                         .setText(`Nothing changed`))
         .setStateChanged(false)
         .build()
 }
