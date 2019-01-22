@@ -1,6 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function UserAddressSection() {
-    const UPK = (new Dictionary()).PROPS // userPropKeys
+    const UPK = dictionary.PROPS // userPropKeys
 
     let address = userProperties.getProperty(UPK.USER_ADDRESS)
     let userName = userProperties.getProperty(UPK.USER_NAME)
