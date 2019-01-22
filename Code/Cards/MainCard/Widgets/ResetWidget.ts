@@ -14,5 +14,10 @@ function ResetWidget() {
 
 function resetAddonCallback() {
     clearConfig()
-    rebuildUserCard()
+    return CardService.newActionResponseBuilder()
+        .setNavigation(
+            CardService.newNavigation().updateCard(UserCard()),
+        )
+        .setStateChanged(true)
+        .build()
 }
