@@ -9,7 +9,6 @@
         "https://api.weather.gov/",
         "https://github.com/paxperscientiam/sparse-wx/",
         "https://www.weather.gov/",
-        "https://web.archive.org/web/20161108184054/http://www.ajager.com:80/weather-underground/",
         "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/f6dde7ebf2d73eff18599f732912a4f5f748d27d/LICENSE",
         "https://alerts.weather.gov/cap/"
     ],
@@ -28,7 +27,6 @@
             "https://github.com/paxperscientiam/sparse-wx/",
             "https://www.weather.gov/",
             "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/",
-            "https://web.archive.org/web/20161108184054/http://www.ajager.com:80/weather-underground/",
             "https://alerts.weather.gov/cap/"
         ],
         "primaryColor": "#003399",
