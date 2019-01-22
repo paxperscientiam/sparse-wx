@@ -43,45 +43,8 @@ function WeatherWidget(period) {
 
     Logger.log(`apparent temperature is ${apparentTemperature} F`)
 
-    let COLORTEMP = "black"
-    if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_f" ||
-        !isSet(userProperties.getProperty(PROPS.USER.TEMP_UNIT))) {
-        if (temperature < 32 ) {
-            COLORTEMP = COLORS.BLUE
-            Logger.log("COLOR TEMP IS " + COLORTEMP)
-        }
+    const COLORTEMP = textColorTemperatureService(temperature)
 
-        if (temperature > 75 ) {
-            COLORTEMP = COLORS.MAROON
-            Logger.log("COLOR TEMP IS " + COLORTEMP)
-        }
-
-        if (temperature > 100 ) {
-            COLORTEMP = COLORS.ORANGE
-            Logger.log("COLOR TEMP IS " + COLORTEMP)
-        }
-    }
-
-    if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_c") {
-        temperature = convertFahrenheit(temperature)
-        apparentTemperature = convertFahrenheit(apparentTemperature)
-        temperatureUnit = "C"
-
-        if (temperature < 0 ) {
-            COLORTEMP = COLORS.BLUE
-            Logger.log("COLOR TEMP IS " + COLORTEMP)
-        }
-
-        if (temperature > 24 ) {
-            COLORTEMP = COLORS.MAROON
-            Logger.log("COLOR TEMP IS " + COLORTEMP)
-        }
-
-        if (temperature > 37 ) {
-            COLORTEMP = COLORS.ORANGE
-            Logger.log("COLOR TEMP IS " + COLORTEMP)
-        }
-    }
     const message  = `${temperature}°${temperatureUnit}, ${Weather.condition}`
 
     const apparentTemperatureMessage = `feels like ${apparentTemperature}°${temperatureUnit}`

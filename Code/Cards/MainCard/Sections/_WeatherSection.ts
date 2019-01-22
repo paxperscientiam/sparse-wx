@@ -27,7 +27,7 @@ function getWeatherSection() {
 
     if (isSet(header)) {
         if (objgetAlertsByStateService[0]) {
-            header += ` (⚠ ${objgetAlertsByStateService[1]} state <a href="${alertUrl}${userstate}.php?x=1" target="_blank">alerts</a>)`
+            header += ` (⚠ ${objgetAlertsByStateService[1]} state <a href="${alertUrl}${userstate}.php?x=1" target="_blank" title="NOAA Alerts">alerts</a>)`
         }
     }
 
