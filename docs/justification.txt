@@ -1,0 +1,15 @@
+Scope, calendar.readonly
+* https://www.googleapis.com/auth/calendar.readonly
+* Obtain user's preferred time zone
+
+Scope, gmail.addons.execute
+* https://www.googleapis.com/auth/gmail.addons.execute
+* required
+
+Scope, script.external_request
+* https://www.googleapis.com/auth/script.external_request
+* For making API calls to api.weather.gov
+
+Scope, script.locale
+* https://www.googleapis.com/auth/script.locale
+* internationalization, authorization
