@@ -188,7 +188,7 @@ function getWeatherMeta() {
 }
 
 function getForecastStalenessService() {
-    const PROPS = (new Dictionary()).PROPS
+    const PROPS = dictionary.PROPS
     const lastUpdateTime = userProperties.getProperty(PROPS.WX.WX_UPDATE_TIME)
     let diff
 

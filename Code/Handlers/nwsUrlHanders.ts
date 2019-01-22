@@ -1,7 +1,7 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function NWSUrlService() {
     constructor () {
-        this.NWS_INTERFACE = (new Dictionary()).INTERFACE.NationalWeatherServiceInterface
+        this.NWS_INTERFACE = dictionary.INTERFACE.NationalWeatherServiceInterface
         this.API = this.NWS_INTERFACE.API
 
         this.URL_BASE = this.API._

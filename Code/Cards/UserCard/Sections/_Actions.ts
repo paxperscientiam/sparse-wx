@@ -98,7 +98,7 @@ function processUserPreferencesFormCallback(e) {
             .setStateChanged(false)
             .build()
     }
-    Logger.log("ALMOST BABY")
+
     return CardService.newActionResponseBuilder()
         .setNavigation(CardService
                        .newNavigation()
@@ -141,7 +141,7 @@ function refreshHomeCardCallback() {
 function getAddressSuggestionsCallback() {
     Logger.log("Address suggestions callback ... called")
     // will use recent entries
-    const PROPS = (new Dictionary()).PROPS
+    const PROPS = dictionary.PROPS
 
     const suggestions = CardService.newSuggestions()
 
