@@ -42,5 +42,8 @@
     "timeZone": "America/New_York",
     "dependencies": {
     },
-    "exceptionLogging": "STACKDRIVER"
+    "exceptionLogging": "STACKDRIVER",
+    "executionApi": {
+        "access": "ANYONE"
+    }
 }

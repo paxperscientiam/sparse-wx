@@ -1,7 +1,7 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
 function MainCard() {
-    const ICONS = dictionary.ICONS
+    const ICONS = dictionary.UI.ICONS
     const PROPS = dictionary.PROPS
 
     if (isSet(userProperties.getProperty(PROPS.USER.ADDRESS))) {

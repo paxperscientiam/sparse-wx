@@ -179,9 +179,9 @@ function Dictionary() {
         },
     )
 
-    this.ICONS = new DictionaryIcons()
+    this.UI = {}
 
-    this.UI = this.ICONS
+    this.UI.ICONS = new DictionaryIcons()
 
     this.UI.WX_SECTION__WIDGET_COUNT = 8
 
