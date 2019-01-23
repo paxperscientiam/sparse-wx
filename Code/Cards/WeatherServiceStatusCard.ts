@@ -1,6 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function getWeatherServiceFallbackCard() {
-    const BRAND = (new Dictionary()).BRAND
+    const BRAND = dictionary.BRAND
     //    const actionComposeNew = CardService.newAction().setFunctionName("composeEmailNewCallback")
     return CardService.newCardBuilder()
         .setName("mainCard")

@@ -1,8 +1,7 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function UserCard() {
     Logger.log("Usercard created")
-    const icons = new DictionaryIcons()
-    const UI = icons.UI
+    const UI = dictionary.ICONS.UI
     const UPK = dictionary.PROPS
     const username = userProperties.getProperty(UPK.USER.NAME)
     const useraddress = userProperties.getProperty(UPK.USER.ADDRESS)

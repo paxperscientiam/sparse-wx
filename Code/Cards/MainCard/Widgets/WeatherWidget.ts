@@ -89,9 +89,7 @@ function WeatherWidget(period) {
 function AuxWeatherWidget() {
     const UPK = dictionary.PROPS
     const WX = UPK.WX
-
-    const icons = new DictionaryIcons()
-    const uiIcons = icons.UI
+    const uiIcons = dictionary.ICONS.UI
 
     const cwaUrl = userProperties.getProperty(WX.CWA)
 

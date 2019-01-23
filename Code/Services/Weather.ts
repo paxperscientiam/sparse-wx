@@ -91,7 +91,7 @@ function WeatherIconService(WxCondition, isDaytime) {
     // 80, 90, & 100 percent 	(None used) 	Occasional, periods of, or none used
 
     const TIME = isDaytime ? "DAY" : "NIGHT"
-    const ICONS = (new DictionaryIcons()).WX
+    const ICONS = dictionary.ICONS.WX
 
     Logger.log(`WX CONDITION: ${WxCondition}`)
 
