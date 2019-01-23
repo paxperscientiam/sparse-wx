@@ -65,6 +65,7 @@ function getWeatherSection() {
             wxSection.addWidget(WeatherWidget(i))
             i += 1
         } while (i < UI.WX_SECTION__WIDGET_COUNT)
+        wxSection.addWidget(AuxWeatherWidget)
     } catch (e) {
         Logger.log(e)
         let noWXcomment

@@ -85,3 +85,15 @@ function WeatherWidget(period) {
         }))
         .setMultiline(true)
 }
+
+function AuxWeatherWidget() {
+    const UPK = dictionary.PROPS
+    const WX = UPK.WX
+
+    const cwaUrl = userProperties.getProperty(WX.CWA)
+
+    return CardService.newImageButton()
+        .setIcon(CardService.Icon.AIRPLANE)
+        .setOpenLink(CardService.newOpenLink()
+                     .setUrl(cwaUrl));
+}

@@ -113,6 +113,8 @@ function Dictionary() {
 
             WX_TIMEZONE: "WX_TZ",
             WX_TZ: "WX_TZ",
+
+            CWA: "WX_CWA",
         },
 
         CACHE: {

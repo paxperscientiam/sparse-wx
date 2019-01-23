@@ -62,8 +62,13 @@ function WeatherService(coord, period) {
     this.updateTime = wx.properties.updateTime
     this.timeZone = wxRaw.properties.timeZone
 
+    this.cwa = wxRaw.properties.cwa
+
+    this.cwaUrl = `https://www.weather.gov/${this.cwa}`
+
     userProperties.setProperty(WX.WX_UPDATE_TIME, this.updateTime)
-    userProperties.setProperty(WX.TZ, this.timeZone)
+    userProperties.setProperty(WX.WX_TZ, this.timeZone)
+    userProperties.setProperty(WX.CWA, this.cwaUrl)
 
 }
 
