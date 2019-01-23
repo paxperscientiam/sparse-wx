@@ -49,7 +49,7 @@ function submitAddressCallback(e) {
     } else {
         const response = "Sorry, try a different address."
         if (isValid[1] === "ZERO_RESULTS") {
-            throw new Error("Sorry, that address wasn't found. Try something more specific.")
+            throw new Error("Sorry, that address wasn't found. Try something else.")
         }
 
         if (isValid[1] === "UNSUPPORTED_REGION") {

@@ -90,10 +90,13 @@ function AuxWeatherWidget() {
     const UPK = dictionary.PROPS
     const WX = UPK.WX
 
+    const icons = new DictionaryIcons()
+    const uiIcons = icons.UI
+
     const cwaUrl = userProperties.getProperty(WX.CWA)
 
     return CardService.newImageButton()
-        .setIcon(CardService.Icon.AIRPLANE)
+        .setIconUrl(uiIcons.IMG_INFO)
         .setOpenLink(CardService.newOpenLink()
-                     .setUrl(cwaUrl));
+                     .setUrl(cwaUrl))
 }
