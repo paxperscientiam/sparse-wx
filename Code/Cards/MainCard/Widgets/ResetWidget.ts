@@ -16,7 +16,7 @@ function resetAddonCallback() {
     clearConfig()
     return CardService.newActionResponseBuilder()
         .setNavigation(
-            CardService.newNavigation().popCard().updateCard(UserCard().build()),
+            CardService.newNavigation().popCard().updateCard(MainCard().build()),
         )
         .setStateChanged(true)
         .build()
