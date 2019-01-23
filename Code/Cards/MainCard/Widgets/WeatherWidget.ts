@@ -45,7 +45,13 @@ function WeatherWidget(period) {
 
     const COLORTEMP = textColorTemperatureService(temperature)
 
+    COLORS.TEMP = COLORTEMP
+
     const message  = `${temperature}°${temperatureUnit}, ${Weather.condition}`
+
+    const precipitationMessage = `${Weather.condition}.`.capitalize()
+
+    const temperatureDisplay = `${temperature}°${temperatureUnit}`
 
     const apparentTemperatureMessage = `feels like ${apparentTemperature}°${temperatureUnit}`
 
@@ -59,7 +65,7 @@ function WeatherWidget(period) {
     }
 
     const windPhrase = WindSpeedHandler(Weather.windSpeed)
-    const windMessage = `${windPhrase} to the ${windDirection}`
+    const windMessage = `${windPhrase} to the ${windDirection}.`
     const name = Weather.name
 
     const icon = WeatherIconService(Weather.condition, Weather.isDaytime)
@@ -70,6 +76,12 @@ function WeatherWidget(period) {
 
     return CardService.newKeyValue()
         .setIconUrl(icon)
-        .setContent(doGet("Templates/weatherToday", {message, apparentTemperatureMessage, windMessage, name, UI_WIDGET, COLORS, COLORTEMP }))
+        .setContent(doGet("Templates/weatherToday", {
+            COLORS,
+            name,
+            precipitationMessage,
+            temperatureDisplay,
+            windMessage,
+        }))
         .setMultiline(true)
 }

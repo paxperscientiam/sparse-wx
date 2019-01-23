@@ -125,7 +125,7 @@ function processUserPreferencesFormCallback(e) {
             .setNavigation(CardService
                            .newNavigation()
                            .popCard()
-                           .updateCard(MainCard(dictionary).build()))
+                           .updateCard(MainCard().build()))
             .setNotification(CardService.newNotification()
                              .setType(CardService.NotificationType.INFO)
                              .setText(`Settings changed`))
