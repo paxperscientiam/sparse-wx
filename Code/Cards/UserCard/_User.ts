@@ -1,6 +1,8 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function UserCard() {
     Logger.log("Usercard created")
+    const icons = new DictionaryIcons()
+    const UI = icons.UI
     const UPK = dictionary.PROPS
     const username = userProperties.getProperty(UPK.USER.NAME)
     const useraddress = userProperties.getProperty(UPK.USER.ADDRESS)
@@ -8,10 +10,10 @@ function UserCard() {
 
     const card = CardService.newCardBuilder()
         .setName("userCard")
-        .setHeader(CardService
-                   .newCardHeader()
+        .setHeader(CardService.newCardHeader()
                    .setTitle("User Settings")
-                   .setSubtitle(UI.PLACEHOLDER_TEXT.CARD_SUBTITLE))
+                   .setSubtitle(UI.PLACEHOLDER_TEXT.CARD_SUBTITLE)
+                   .setImageUrl(UI.IMG_COG))
         .addSection(UserSection())
     if (isSet(useraddress)) {
         card.addSection(UserInfoSection({username, useraddress}))
