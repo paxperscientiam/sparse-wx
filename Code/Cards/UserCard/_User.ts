@@ -1,5 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function UserCard() {
+    Logger.log("Usercard created")
     const UPK = dictionary.PROPS
     const username = userProperties.getProperty(UPK.USER.NAME)
     const useraddress = userProperties.getProperty(UPK.USER.ADDRESS)

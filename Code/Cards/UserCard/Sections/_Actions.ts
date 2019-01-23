@@ -143,7 +143,8 @@ function processUserPreferencesFormCallback(e) {
 function goToUserCardCallback() {
     return CardService.newActionResponseBuilder()
         .setNavigation(
-            CardService.newNavigation().pushCard(UserCard().build()),
+            //CardService.newNavigation().pushCard(UserCard().build()),
+            CardService.newNavigation().popToNamedCard("userCard"),
         )
         .setStateChanged(false)
         .build()

@@ -2,7 +2,7 @@
 function buildAddOn() {
     Logger.clear()
     const PROPS = dictionary.PROPS
-    const userCard = UserCard(dictionary)
+    const userCard = UserCard()
 
     if (checkWeatherServiceStatus() === "OK") {
         userProperties.setProperty(PROPS.STATE.WX_SERVICE, "OK")
@@ -16,32 +16,8 @@ function buildAddOn() {
         userProperties.setProperty(PROPS.STATE.LOCATION_SERVICE, "ERR")
     }
 
-    return MainCard().build()
-
-    //     //////////
-    //     const ls = new LocationService()
-    //     ls.init()
-    //     Logger.log(ls.status)
-
-    //     if (userProperties.getProperty(PROPS.STATE.WX_SERVICE) === "OK") {
-    //         // Prime the pump
-    //         weatherServicePrime()
-    //     }
-
-    //  const mainCard = MainCard()
-    //     const userCard = UserCard()
-
-    //     // userCard.build()
-
-    //     return mainCard.build()
-
-    //
-    //  const buttonSet = CardService.newButtonSet()
-    //         .addButton(createToCardButton({
-    //             card: "userCard",
-    //             text: "settings",
-    //         }))
-
-    //     card.addSection(CardService.newCardSection()
-    //                     .addWidget(buttonSet))
+    return [
+        MainCard().build(),
+        UserCard().build(),
+    ]
 }
