@@ -5,7 +5,7 @@ function WeatherWidget(period) {
         period = 0
     }
 
-    const ICONS = dictionary.ICONS
+    const ICONS = dictionary.UI.ICONS
 
     const COLORS = dictionary.UI.PALETTE
 
@@ -13,8 +13,6 @@ function WeatherWidget(period) {
     const WX_ICONS = ICONS.WX
 
     const UI_WIDGET = dictionary.UI.WIDGETS.WEATHER_TODAY
-
-    const PROPS = dictionary.PROPS
     const STATE = PROPS.STATE
 
     const lat = Number(userProperties.getProperty(PROPS.USER.LAT)).toFixed(4)
@@ -87,7 +85,6 @@ function WeatherWidget(period) {
 }
 
 function AuxWeatherWidget() {
-    const UPK = dictionary.PROPS
     const WX = UPK.WX
     const uiIcons = dictionary.UI.ICONS.UI
 

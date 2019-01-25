@@ -1,6 +1,5 @@
 function textColorTemperatureService(temperature) {
     const COLORS = dictionary.UI.PALETTE
-    const PROPS = dictionary.PROPS
 
     if (userProperties.getProperty(PROPS.USER.TEMP_UNIT) === "dropdown_item_c") {
         temperature = convertFahrenheit(temperature)

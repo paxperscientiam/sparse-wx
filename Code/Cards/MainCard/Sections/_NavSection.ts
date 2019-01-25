@@ -1,7 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
 function getNavSection() {
-    const UPK = dictionary.PROPS
     const UI = dictionary.UI
 
     const COLORS = UI.COLORS.SCHEME

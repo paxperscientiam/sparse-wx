@@ -232,3 +232,6 @@ function Dictionary() {
     }
 }
 const dictionary = new Dictionary()
+const ICONS = dictionary.UI.ICONS
+const PROPS = dictionary.PROPS
+const UPK = PROPS

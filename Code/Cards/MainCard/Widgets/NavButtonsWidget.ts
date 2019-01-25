@@ -1,6 +1,5 @@
 function NavButtonsWidget(strButtons) {
     const UI = dictionary.UI
-    const UPK = dictionary.PROPS
     const COLORS = UI.COLORS.SCHEME
     const STATE_MINT = userProperties.getProperty(UPK.STATE.MINT)
 

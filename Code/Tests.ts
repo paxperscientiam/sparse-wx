@@ -64,7 +64,6 @@ function getWeatherDataTest() {
     const dictionary = new Dictionary()
     const nwsUrlService = new NWSUrlService()
     //
-    const UPK = dictionary.PROPS
     const WX = UPK.WX
 
     const urlForMeta = nwsUrlService.meta(coord)

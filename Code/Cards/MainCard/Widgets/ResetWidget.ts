@@ -1,5 +1,4 @@
 function ResetWidget() {
-    const UPK = dictionary.PROPS
     const UI = dictionary.UI
 
     const COLORS = UI.COLORS.SCHEME
@@ -16,7 +15,7 @@ function resetAddonCallback() {
     clearConfig()
     return CardService.newActionResponseBuilder()
         .setNavigation(
-            CardService.newNavigation().popCard().updateCard(MainCard().build()),
+            CardService.newNavigation().updateCard(UserCard().build()),
         )
         .setStateChanged(true)
         .build()

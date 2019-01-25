@@ -21,7 +21,6 @@ function submitNameCallback(e) {
 }
 
 function submitAddressCallback(e) {
-    const UPK = dictionary.PROPS
     const BRAND = dictionary.BRAND
     const address = e.formInput.user_address_key
 
@@ -62,8 +61,6 @@ function submitAddressCallback(e) {
 }
 
 function submitTemperatureUnitCallback(e) {
-    const UPK = dictionary.PROPS
-
     const chosenTempUnit = e.formInputs.temperature_unit_list[0]
 
     const currentTempUnit = userProperties.getProperty(UPK.USER.TEMP_UNIT)
@@ -124,8 +121,8 @@ function processUserPreferencesFormCallback(e) {
         return CardService.newActionResponseBuilder()
             .setNavigation(CardService
                            .newNavigation()
-                           .popCard()
-                           .updateCard(MainCard().build()))
+                           .updateCard(MainCard().build()),
+                          )
             .setNotification(CardService.newNotification()
                              .setType(CardService.NotificationType.INFO)
                              .setText(`Settings changed`))
@@ -143,9 +140,7 @@ function processUserPreferencesFormCallback(e) {
 function goToUserCardCallback() {
     return CardService.newActionResponseBuilder()
         .setNavigation(
-            //CardService.newNavigation().pushCard(UserCard().build()),
-            CardService.newNavigation().popToNamedCard("userCard"),
-        )
+            CardService.newNavigation().pushCard(UserCard().build()))
         .setStateChanged(false)
         .build()
 }
@@ -153,7 +148,7 @@ function goToUserCardCallback() {
 function goToHomeCardCallback() {
     return CardService.newActionResponseBuilder()
         .setNavigation(
-            CardService.newNavigation().pushCard(MainCard(dictionary).build()),
+            CardService.newNavigation().pushCard(MainCard().build()),
         )
         .setStateChanged(false)
         .build()
@@ -162,7 +157,7 @@ function goToHomeCardCallback() {
 function refreshHomeCardCallback() {
     return CardService.newActionResponseBuilder()
         .setNavigation(
-            CardService.newNavigation().updateCard(MainCard(dictionary).build()),
+            CardService.newNavigation().updateCard(MainCard().build()),
         )
         .setStateChanged(false)
         .build()
@@ -171,8 +166,6 @@ function refreshHomeCardCallback() {
 function getAddressSuggestionsCallback() {
     Logger.log("Address suggestions callback ... called")
     // will use recent entries
-    const PROPS = dictionary.PROPS
-
     const suggestions = CardService.newSuggestions()
 
     const arrSuggestionsTemp = [

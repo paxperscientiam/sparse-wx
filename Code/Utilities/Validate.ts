@@ -36,8 +36,6 @@ function validateMailingAddress(address: string) {
     if (!isSet(address)) {
         return [false, "No valid address."]
     }
-
-    const UPK = dictionary.PROPS
     const GeoInterface = dictionary.INTERFACE.GoogleGeoCodeInterface
 
     const response = Maps.newGeocoder()

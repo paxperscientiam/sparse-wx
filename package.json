@@ -11,7 +11,8 @@
     },
     "scripts": {
         "lint": "tslint ./Code/**/*.ts -e ./Code/_Old/**/*",
-        "push": "if git bump && clasp push ; then terminal-notifier -title wxbuild -message success; else terminal-notifier -title wxbuild -message fail; fi"
+        "push": "if git bump && clasp push ; then terminal-notifier -title wxbuild -message success; else terminal-notifier -title wxbuild -message fail; fi",
+        "test:remote": "clasp push && clasp run buildAddOn"
     },
     "dependencies": {
         "traverse": "^0.6.6",

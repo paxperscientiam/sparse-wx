@@ -1,9 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
 function MainCard() {
-    const ICONS = dictionary.UI.ICONS
-    const PROPS = dictionary.PROPS
-
     if (isSet(userProperties.getProperty(PROPS.USER.ADDRESS))) {
         userProperties.setProperty(PROPS.STATE.MINT, "USED")
     } else {
@@ -14,7 +11,7 @@ function MainCard() {
         return getWeatherServiceFallbackCard()
     }
 
-    const card = CardService.newCardBuilder()
+    return CardService.newCardBuilder()
         .setName("mainCard")
         .setHeader(CardService.newCardHeader()
                    .setTitle(getMainCardTitle())
@@ -23,12 +20,9 @@ function MainCard() {
         .addSection(getWeatherSection())
         .addSection(getNavSection())
         .addSection(getDisclaimerSection())
-
-    return card
 }
 
 function getMainCardTitle(): string {
-    const UPK = dictionary.PROPS
     const date = new DateArray()
 
     const userName = userProperties.getProperty(UPK.USER.NAME)

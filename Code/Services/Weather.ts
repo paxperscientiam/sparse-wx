@@ -1,8 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
 function weatherPrimeService(coordinates: string) {
-    const UPK = dictionary.PROPS
-
     if (coordinates === undefined) {
         coordinates = userProperties.getProperty(UPK.USER.COORDINATE)
     }
@@ -19,16 +17,12 @@ function weatherPrimeService(coordinates: string) {
 }
 
 function weatherServicePrimeTest() {
-    const ICONS = dictionary.ICONS
-    const PROPS = dictionary.PROPS
-
     weatherServicePrime(userProperties.getProperty(PROPS.USER.COORDINATE))
 }
 
 function WeatherService(coord, period) {
     const nwsUrlService = new NWSUrlService()
     //
-    const UPK = dictionary.PROPS
     const WX = UPK.WX
 
     const urlForMeta = nwsUrlService.meta(coord)
@@ -91,7 +85,7 @@ function WeatherIconService(WxCondition, isDaytime) {
     // 80, 90, & 100 percent 	(None used) 	Occasional, periods of, or none used
 
     const TIME = isDaytime ? "DAY" : "NIGHT"
-    const ICONS = dictionary.ICONS.WX
+    const ICONS = dictionary.UI.ICONS.WX
 
     Logger.log(`WX CONDITION: ${WxCondition}`)
 
@@ -193,7 +187,6 @@ function getWeatherMeta() {
 }
 
 function getForecastStalenessService() {
-    const PROPS = dictionary.PROPS
     const lastUpdateTime = userProperties.getProperty(PROPS.WX.WX_UPDATE_TIME)
     let diff
 
@@ -207,7 +200,6 @@ function getForecastStalenessService() {
 }
 
 function getAlertsByStateService() {
-    const PROPS = dictionary.PROPS
     const params = dictionary.HTTP.WX_SERVICE.PARAMS
     const userstate = userProperties.getProperty(PROPS.USER.STATE)
 
@@ -227,10 +219,3 @@ function getAlertsByStateService() {
     }
     return [false, "ERR"]
 }
-
-// function getAlertsByArea() {
-//     // 'area' is two letter state code, capital letters
-//     const UPK = dictionary.PROPS
-//     Logger.log(
-
-// }

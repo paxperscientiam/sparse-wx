@@ -29,7 +29,7 @@
             "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/",
             "https://alerts.weather.gov/cap/"
         ],
-        "primaryColor": "#003399",
+        "primaryColor": "#cccccc",
         "secondaryColor": "#000000",
         "universalActions": [{
             "text": "⚒ Project site",

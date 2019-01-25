@@ -1,7 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 function buildAddOn() {
     Logger.clear()
-    const PROPS = dictionary.PROPS
     const userCard = UserCard()
 
     if (checkWeatherServiceStatus() === "OK") {
@@ -18,6 +17,5 @@ function buildAddOn() {
 
     return [
         MainCard().build(),
-        UserCard().build(),
     ]
 }
