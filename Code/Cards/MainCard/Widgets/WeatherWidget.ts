@@ -5,8 +5,6 @@ function WeatherWidget(period) {
         period = 0
     }
 
-    const ICONS = dictionary.UI.ICONS
-
     const COLORS = dictionary.UI.PALETTE
 
     const UI_ICONS = ICONS.UI

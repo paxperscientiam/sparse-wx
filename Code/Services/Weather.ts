@@ -85,7 +85,7 @@ function WeatherIconService(WxCondition, isDaytime) {
     // 80, 90, & 100 percent 	(None used) 	Occasional, periods of, or none used
 
     const TIME = isDaytime ? "DAY" : "NIGHT"
-    const ICONS = dictionary.UI.ICONS.WX
+    const ICONS_WX = dictionary.UI.ICONS.WX
 
     Logger.log(`WX CONDITION: ${WxCondition}`)
 
@@ -101,19 +101,19 @@ function WeatherIconService(WxCondition, isDaytime) {
     ]
 
     if (/(partly.*sunny|mostly.*cloudy)/i.test(WxCondition)) {
-        return ICONS.PARTLYSUNNY[TIME]
+        return ICONS_WX.PARTLYSUNNY[TIME]
         //
     } else if (/(partly.*cloudy|mostly.*sunny)/i.test(WxCondition)) {
-        return ICONS.PARTLYCLOUDY[TIME]
+        return ICONS_WX.PARTLYCLOUDY[TIME]
         //
     } else if (/sunny/i.test(WxCondition) ) {
-        return ICONS.SUNNY[TIME]
+        return ICONS_WX.SUNNY[TIME]
         //
     } else if (/cloudy/i.test(WxCondition) ) {
-        return ICONS.CLOUDY[TIME]
+        return ICONS_WX.CLOUDY[TIME]
         //
     } else if (/clear/i.test(WxCondition) ) {
-        return ICONS.CLEAR[TIME]
+        return ICONS_WX.CLEAR[TIME]
     }
 
     const isChance = popTerms.some((term) => {
@@ -122,42 +122,42 @@ function WeatherIconService(WxCondition, isDaytime) {
 
     if (isChance) {
         if (WxCondition.toLowerCase().indexOf("rain") > -1) {
-            return ICONS.CHANCERAIN[TIME]
+            return ICONS_WX.CHANCERAIN[TIME]
             //
         } else if (WxCondition.toLowerCase().indexOf("sleet") > -1) {
-            return ICONS.CHANCESLEET[TIME]
+            return ICONS_WX.CHANCESLEET[TIME]
             //
         } else if (WxCondition.toLowerCase().indexOf("snow") > -1) {
-            return ICONS.CHANCESNOW[TIME]
+            return ICONS_WX.CHANCESNOW[TIME]
             //
         } else if (WxCondition.toLowerCase().indexOf("storm") > -1) {
-            return ICONS.CHANCETSTORMS[TIME]
+            return ICONS_WX.CHANCETSTORMS[TIME]
             //
         } else if (WxCondition.toLowerCase().indexOf("flurries") > -1) {
-            return ICONS.CHANCEFLURRIES[TIME]
+            return ICONS_WX.CHANCEFLURRIES[TIME]
         }
     }
 
     if (/rain/i.test(WxCondition)) {
-        return ICONS.RAINY[TIME]
+        return ICONS_WX.RAINY[TIME]
         //
     } else if (/flurries/i.test(WxCondition) ) {
-        return ICONS.FLURRIES[TIME]
+        return ICONS_WX.FLURRIES[TIME]
         //
     } else if (/fog/i.test(WxCondition) ) {
-        return ICONS.FOG[TIME]
+        return ICONS_WX.FOG[TIME]
         //
     } else if (/haze/i.test(WxCondition) ) {
-        return ICONS.HAZY[TIME]
+        return ICONS_WX.HAZY[TIME]
         //
     } else if (/snow/i.test(WxCondition) ) {
-        return ICONS.SNOW[TIME]
+        return ICONS_WX.SNOW[TIME]
     } else if (/sleet/i.test(WxCondition)) {
-        return ICONS.SLEET[TIME]
+        return ICONS_WX.SLEET[TIME]
     } else {
-        return ICONS.UNKNOWN
+        return ICONS_WX.UNKNOWN
     }
-    return ICONS.UNKNOWN
+    return ICONS_WX.UNKNOWN
 }
 //
 
