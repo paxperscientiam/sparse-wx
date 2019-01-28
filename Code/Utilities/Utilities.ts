@@ -45,3 +45,48 @@ function flattenObj(ob) {
 function testUtils() {
     Logger.log()
 }
+
+const curryIt = (uncurried) => {
+    const parameters = Array.prototype.slice.call(arguments, 1)
+    return function() {
+        return uncurried.apply(this, parameters.concat(
+            Array.prototype.slice.call(arguments, 0),
+        ))
+    }
+}
+
+// https://jsleao.wordpress.com/2015/02/22/curry-and-compose-why-you-should-be-using-something-like-ramda-in-your-code/
+// https://hackernoon.com/currying-in-js-d9ddc64f162e
+function curry(fn) {
+    return (...xs) => {
+        if (xs.length === 0) {
+            throw Error("EMPTY INVOCATION")
+        }
+
+        if (xs.length >= fn.length) {
+            return fn(...xs)
+        }
+
+        return curry(fn.bind(null, ...xs))
+    }
+}
+
+function compose(/* fn1, fn2, ... */) {
+    const funcs = arguments
+    return function() {
+        let args = arguments
+        for (let i = funcs.length - 1; i >= 0; i--) {
+            args = [funcs[i].apply(this, args)]
+        }
+        return args[0]
+    }
+}
+
+function prefixKeys(prefix, obj) {
+    return Object
+        .keys(obj)
+        .reduce((acc, key) => ({
+            ...acc,
+            ...{ [`${prefix}${key}` || key]: obj[key] },
+        }), {})
+}

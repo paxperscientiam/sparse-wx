@@ -6,6 +6,8 @@ Code/Handlers/Auth.ts
 **/node_modules/ajv/**
 !node_modules/traverse/index.js
 
+**/**.js/**
+
 Code/Vendor/**
 Code/Clojure/**
 **/_Old/**

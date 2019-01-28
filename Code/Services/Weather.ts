@@ -168,6 +168,7 @@ function checkWeatherServiceStatus() {
     try {
         result = (new JsonResponseHandler(url, {}, params))
     } catch (e) {
+        Logger.log(`checkWeatherServiceStatus: ${e}`)
         return "ERR"
     }
     return result.data.status
