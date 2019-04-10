@@ -4,6 +4,7 @@
         "url": "https://github.com/paxperscientiam/sparse-wx/issues",
         "email": "sparsewx@paxperscientiam.com"
     },
+  "description": "SparseWx is an addon for providing National Weather Service forecasts at a user-provided location.",
     "author": {
         "name": "Christopher David Ramos",
         "email": "chrisdavidramos@gmail.com",

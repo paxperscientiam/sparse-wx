@@ -11,8 +11,8 @@ Requirements, before submitting for review
 
 
 Technical requirements
-- [ ] Manifest must be well defined [link](https://developers.google.com/gmail/add-ons/concepts/manifests)
-- [ ] he add-on script has error-handling and shows relevant error messages to the user.
+- [x] Manifest must be well defined [link](https://developers.google.com/gmail/add-ons/concepts/manifests)
+- [ ] the add-on script has error-handling and shows relevant error messages to the user.
 - [ ] All users of the add-on can access any hosted image used in your add-on
 - [ ] Use versioned deployment [deployment](https://developers.google.com/apps-script/concepts/deployments#creating_a_versioned_deployment) [version](https://developers.google.com/apps-script/guides/versions)
 
