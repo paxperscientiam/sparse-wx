@@ -138,7 +138,7 @@ ${formatDateService(dateUpdateDate)}`
     wxSection.addWidget(_KeyValue({
       content: `<p><font color="#AAAAAA">${widgetTextUpdateTime}</font></p>`,
       multiline: true,
-    })).addWidget(CardService.newImage().setAltText("A nice image").setImageUrl("https://image.png"))
+    }))
   } catch (e) {
     Logger.log(`[${timeStamp()}] ${e.message}`)
     wxSection.addWidget(WeatherErrorWidget(e.message))

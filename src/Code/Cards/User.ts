@@ -14,9 +14,11 @@ export function UserCard(args = {}, computed = {}): CardBuilder {
     ...args,
   }
 
+  const widget = CardService.newImage().setAltText("A nice image").setImageUrl("https://raw.githubusercontent.com/paxperscientiam/sparse-wx/test-flag/Img/out/us-flag-large.png")
+
   return _Card(cardData).addSections([
     UserSection(),
     UserInfoSection(),
-    DisclaimerSection(),
+    DisclaimerSection({widget}),
   ])
 }
