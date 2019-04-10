@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "types" : ["app", "node", "google-apps-script"],
+    "typeRoots": [
+      "src/@types",
+      "src/node_modules.noSync/node_modules/@types"
+    ],
+    "outDir": "dist",
+    "baseUrl": "src/node_modules.noSync/node_modules",
+    "paths": {
+      "Cards": ["../../Code/Cards.ts"],
+      "Services": ["../../Code/Services.ts"],
+      "Vendor": ["../../Code/Vendor.ts"],
+      "Cards/*": ["../../Code/Cards/*"],
+      "Data/*": ["../../Code/Data/*"],
+      "Handlers/*": ["../../Code/Handlers/*"],
+      "Services/*": ["../../Code/Services/*"],
+      "Utilities/*": ["../../Code/Utilities/*"],
+      "Widgets/*": ["../../Code/Cards/MainCard/Widgets/*",
+                    "../../Code/Cards/UserCard/Widgets/*"]
+
+    },
+    "allowJs": true,
+    "checkJs": false,
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es6"],
+    "extendedDiagnostics": true,
+    "moduleResolution": "node",
+    "noImplicitUseStrict": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "src/Code/Tests.ts"
+  ],
+  "include": [
+  ],
+  "files": [
+    "src/index.ts"
+  ]
+}

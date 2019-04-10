@@ -1,0 +1,22 @@
+## -*- mode:text -*-
+
+User UI
+Weather forecast
+... from user given location, or from heuristic location
+
+
+Program API
+
+`LocationService`: (coordinates: string)
+... user provides coordinates
+...... return coordinates
+
+... user provides zip
+...... return `getCoordinatesFromZipService`
+
+... user provides address
+...... return `getCoordinatesFromAddressService`
+
+... coordinates not from user data
+...... return `IpService`
+.......... convert result to coordinates

@@ -1,0 +1,14 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "no-unused-variable": true,
+    "no-var-requires": false,
+    "semicolon": [true, "never"],
+    "member-access": false
+  },
+  "rulesDirectory": []
+}

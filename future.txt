@@ -1,0 +1,3 @@
+Wish list
+* add option to offset timezone and option to use 24h versus amPM
+*

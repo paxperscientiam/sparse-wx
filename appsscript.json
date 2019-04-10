@@ -1,0 +1,56 @@
+{
+    "oauthScopes": [
+        "https://www.googleapis.com/auth/calendar.readonly",
+        "https://www.googleapis.com/auth/gmail.addons.execute",
+        "https://www.googleapis.com/auth/script.external_request",
+        "https://www.googleapis.com/auth/script.locale"
+    ],
+    "urlFetchWhitelist":[
+        "https://api.weather.gov/",
+        "https://github.com/paxperscientiam/sparse-wx/",
+        "https://www.weather.gov/",
+        "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/f6dde7ebf2d73eff18599f732912a4f5f748d27d/LICENSE",
+        "https://alerts.weather.gov/cap/",
+        "https://forecast.weather.gov/",
+        "https://cash.app/$paxperscientiam"
+    ],
+    "gmail": {
+        "name": "SparseWx",
+        "useLocaleFromApp": true,
+        "logoUrl": "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/asset-img-logo.png/Img/Logo.png",
+        "authorizationCheckFunction": "",
+        "contextualTriggers": [{
+            "unconditional": {
+            },
+            "onTriggerFunction": "buildAddOn"
+        }],
+        "openLinkUrlPrefixes": [
+            "https://api.weather.gov/",
+            "https://github.com/paxperscientiam/sparse-wx/",
+            "https://www.weather.gov/",
+            "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/",
+            "https://alerts.weather.gov/cap/",
+            "https://forecast.weather.gov/",
+            "https://cash.app/"
+        ],
+        "primaryColor": "#cccccc",
+        "secondaryColor": "#000000",
+        "universalActions": [{
+            "text": "⚒ Project site",
+            "openLink": "https://github.com/paxperscientiam/sparse-wx/"
+        }, {
+            "text": " • Privacy policy",
+            "openLink": "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/v0.92d/privacy.txt"
+        }, {
+            "text": "$ Support me",
+            "openLink": "https://cash.app/$paxperscientiam"
+        }]
+    },
+    "timeZone": "America/New_York",
+    "dependencies": {
+    },
+    "exceptionLogging": "STACKDRIVER",
+    "executionApi": {
+        "access": "ANYONE"
+    }
+}
