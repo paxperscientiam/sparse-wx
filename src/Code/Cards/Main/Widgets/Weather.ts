@@ -60,7 +60,8 @@ export function WeatherWidget(data): KeyValue {
   const windMessage = `${windPhrase} to the ${windDirection}.`
   const name = data.name
 
-  const iconUrl = serveWeatherIcon(data.condition, data.isDaytime)
+  // const iconUrl = serveWeatherIcon(data.condition, data.isDaytime)
+  const iconUrl = data.iconUrl
 
   if (apparentTemperature != null) {
     // @ts-ignore

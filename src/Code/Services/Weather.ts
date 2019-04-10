@@ -340,6 +340,7 @@ const prepWeatherDataMethods = {
       status: [true, "wx is good"],
 
       condition: periodic.shortForecast.toLowerCase(),
+      iconUrl: periodic.icon,
       isDaytime: periodic.isDaytime,
       name: periodic.name,
       temp: periodic.temperature,
