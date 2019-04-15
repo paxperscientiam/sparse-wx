@@ -761,7 +761,7 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@google/clasp@^2.0.1":
+"@google/clasp@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@google/clasp/-/clasp-2.1.0.tgz#e398449fbb7c2c23a2ea1693b5ce30656beda311"
   integrity sha512-6cryoM5k8E95SMEriPEhEJU3HHtx0LUZahhQlfXvJjPSTeSJXjC9Ka6nxamhsgpAGozVrbvt675edfFL6nRCeg==

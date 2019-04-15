@@ -48,7 +48,7 @@
     "@babel/plugin-transform-property-literals": "^7.2.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-typescript": "^7.1.0",
-    "@google/clasp": "^2.0.1",
+    "@google/clasp": "^2.1.0",
     "@types/foundation": "^5.5.30",
     "@types/gapi": "^0.0.36",
     "@types/gapi.client.drive": "^3.0.2",
