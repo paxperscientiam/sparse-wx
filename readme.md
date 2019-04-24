@@ -1,3 +1,6 @@
+Latest deployment (can be used for private install):
+AKfycbzMTzlUPVTTtU97CFpMMGPc2xZWmg-I777XdmoPZn8kXVDz_vkP3EYz5dnPjhjOFsB7
+
 <WORK> (c) by Christopher David Ramos
 
 <WORK> is licensed under a
@@ -13,8 +16,6 @@ work. If not, see <http://creativecommons.org/licenses/by-sa/4.0/>.
 
 
 
-Latest deployment (can be used for private install):
-AKfycbzMTzlUPVTTtU97CFpMMGPc2xZWmg-I777XdmoPZn8kXVDz_vkP3EYz5dnPjhjOFsB7
 
 
 Disclaimer:
