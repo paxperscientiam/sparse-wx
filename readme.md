@@ -19,3 +19,6 @@ AKfycbzMTzlUPVTTtU97CFpMMGPc2xZWmg-I777XdmoPZn8kXVDz_vkP3EYz5dnPjhjOFsB7
 
 Disclaimer:
 You use this software at your own peril.
+
+More:
+Solidarity with [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
