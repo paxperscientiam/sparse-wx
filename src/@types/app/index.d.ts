@@ -44,6 +44,10 @@ declare interface ISparseWx extends Global {
 
   submitNameCallback
   submitAddressCallback
+
+  doGet: (e: any) => void
+
+  onInstall: (e: any) => void
 }
 
 declare const ICONS: IDictionaryIcons
@@ -54,6 +58,7 @@ declare const PALETTE: IPalette
 
 declare const objectPath
 declare const QS
+// declare const dset
 
 // tslint:disable
 declare interface String {

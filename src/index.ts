@@ -1,99 +1,128 @@
-// //     Copyright (C) 2018 Christopher David Ramos
-declare const global: ISparseWx
+//     Copyright (C) 2018 Christopher David Ramos
+import dlv from "@paxperscientiam/dlv.ts"
 
-import {
-    objectPath,
-} from "Vendor"
+// const IS_NODE = (typeof process !== 'undefined') && (process.release.name === 'node')
+// @ts-ignore
+// global.IS_NODE = IS_NODE
+// @ts-ignore
+// import dset from "dset"
 
-// import { UserCreator } from "Utilities/LinearizedObject"
+// if (IS_NODE) {
+//   buildAddOn()
+// }
+// declare const global: ISparseWx
 
-import { timeStamp } from "Utilities/Date"
-import * as Utilities from "Utilities/Utilities"
+// import {
+//   objectPath,
+// } from "~Vendor"
 
-global.clearConfig = Utilities.clearConfig
-global.timeStamp = timeStamp
+// import { timeStamp } from "~Utilities/Date"
 
-import { _Card } from "Cards/Aux"
+// import dlv from "@paxperscientiam/dlv.ts/dist/dlv.umd"
 
-import { Dictionary } from "Data/Dictionary"
+// import dset from "dset/dist/dset.min"
 
-const dictionary = new Dictionary() as IDictionary
+// import { Dictionary } from "~Data/Dictionary"
 
-global.dictionary = dictionary
-global.PROPS = dictionary.PROPS
-global.UI = dictionary.UI
-global.PALETTE = dictionary.UI.PALETTE
+// const dictionary = new Dictionary() as IDictionary
 
-import { DictionaryIcons } from "Data/Dictionary/Icons"
-global.ICONS = new DictionaryIcons()
+// global.dictionary = dictionary
 
-import { MainCard, UserCard } from "Cards"
-import { _Cache } from "Handlers/Aux"
+// const PROPS = dictionary.PROPS
+// global.PROPS = PROPS
+// const UI = dictionary.UI
+// global.UI = UI
+// const PALETTE = dictionary.UI.PALETTE
+// global.PALETTE = PALETTE
 
-global._Cache = _Cache
+// import { DictionaryIcons } from "~Data/Dictionary/Icons"
+// const ICONS = new DictionaryIcons()
 
-const userProperties: Properties = PropertiesService.getUserProperties()
+// global.ICONS = ICONS
 
-global.userProperties = userProperties
+// import { MainCard } from "~Cards"
 
-const fetch = (reference, property?) => {
-    let obj = JSON.parse(userProperties.getProperty(reference))
-    if (obj == null) {
-        obj = {}
-        userProperties.setProperty(reference, "{}")
-        return null
-    }
-    if (property == null) {
-        return obj
-    }
-    return objectPath.withInheritedProps.get(obj, property)
+// import { _Cache } from "~Handlers/Aux"
+// global._Cache = _Cache
+
+// const userProperties: Properties = PropertiesService.getUserProperties()
+// global.userProperties = userProperties
+
+// function fetch(reference: string, property?) {
+//   let obj = JSON.parse(userProperties.getProperty(reference))
+//   if (obj == null) {
+//     obj = {}
+//     userProperties.setProperty(reference, "{}")
+//     return null
+//   }
+//   if (property == null) {
+//     return obj
+//   }
+//   return objectPath.withInheritedProps.get(obj, property)
+// }
+// global.fetch = fetch
+
+// function push(referencePropComplex: string[], value) {
+//   const reference = referencePropComplex[0]
+//   const property = referencePropComplex[1]
+
+//   let obj = JSON.parse(userProperties.getProperty(reference))
+//   if (obj == null) {
+//     obj = {}
+//   }
+//   if (!!property) {
+//     dset(obj, property, value)
+//   } else {
+//     obj = value
+//   }
+//   userProperties.setProperty(reference, JSON.stringify(obj))
+// }
+
+// global.push = push
+
+// function make(reference: string, thing) {
+//   userProperties.setProperty(reference, JSON.stringify(thing))
+// }
+
+// function exists(reference: string, property?) {
+//   const obj = JSON.parse(userProperties.getProperty(reference))
+//   if (!obj) {
+//     return false
+//   }
+//   if (!property) {
+//     return true
+//   }
+//   return objectPath.withInheritedProps.has(obj, property)
+// }
+
+// function doGet(e) {
+//   push(["event", "doGet"], `called at ${timeStamp()}`)
+// }
+// global.doGet = doGet
+
+// function onInstall(e) {
+//   push(["event", "onInstall"], `Installed on ${Date()}`)
+// }
+// global.onInstall = onInstall
+
+function buildAddOn(): any {
+  // let foo = { a:1, b:2 };
+  // let bar = { foo:123, bar:[4, 5, 6], baz:{} };
+  // let baz = { a:1, b:{ x:{ y:{ z:999 } } }, c:3 };
+  // let qux = { };
+  // dset(foo, 'd.e.f', 'hello');
+  // return foo
+
+  // return CardService.newCardBuilder().build()
+
+  // return dlv(ICONS, "UI")
+  // return objectPath.get(ICONS, "UI")
+  return 6666666
+  return CardService.newCardBuilder()
+    .setName("Card name")
+    .setHeader(CardService.newCardHeader().setTitle("Card title"))
+    .build()
+  //return MainCard().build()
 }
-(global as any).fetch = fetch
-
-const push = (referencePropComplex: string[], value) => {
-    const reference = referencePropComplex[0]
-    const property = referencePropComplex[1]
-
-    let obj = JSON.parse(userProperties.getProperty(reference))
-    if (obj == null) {
-        obj = {}
-    }
-    if (!!property) {
-        objectPath.set(obj, property, value)
-    } else {
-        obj = value
-    }
-    userProperties.setProperty(reference, JSON.stringify(obj))
-}
-(global as any).push = push
-
-const make = (reference, thing) => {
-    userProperties.setProperty(reference, JSON.stringify(thing))
-}
-(global as any).make = make
-
-const exists = (reference, property?) => {
-    const obj = JSON.parse(userProperties.getProperty(reference))
-    if (!obj) {
-        return false
-    }
-    if (!property) {
-        return true
-    }
-    return objectPath.withInheritedProps.has(obj, property)
-}
-(global as any).exists = exists
-
-function doGet(e) {
-    push(["event", "doGet"], `called at ${timeStamp()}`)
-}
-
-function onInstall(e) {
-    push(["event", "onInstall"], `Installed on ${Date()}`)
-}
-
-const buildAddOn = (): Card => {
-    return MainCard().build()
-}
-
-global.buildAddOn = buildAddOn
+// @ts-ignore
+// global.buildAddOn = buildAddOn

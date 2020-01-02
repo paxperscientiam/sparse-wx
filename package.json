@@ -1,81 +1,52 @@
 {
-    "name": "sparse-wx",
-    "author": {
-        "name": "Christopher David Ramos"
-    },
-    "homepage": "",
-    "license": "MIT",
-    "main": "src/index.js",
-    "scripts": {
-        "test:ts": "tsc -p tsconfig.json --noEmit",
-        "test:ts:verbose": "tsc -p tsconfig.json --traceResolution --noEmit",
-        "build": "webpack --mode=development",
-        "build:pro": "webpack --mode=production",
-        "upload": "clasp push",
-        "deploy": "webpack --mode=production && yarn upload && clasp run buildAddOn; terminal-notifier -title \"sparsewx\" -message \"done\"",
-        "deploy:dev": "webpack --mode=development && yarn upload && clasp run buildAddOn; terminal-notifier -title \"sparsewx\" -message \"done\"",
-        "lint:ts": "tslint src/index.ts src/Code/**/*.ts",
-        "fuse:dev": "node -r ts-node/register --inspect fuse.ts dev",
-        "getty": "x=$(echo {}); echo $x | jq"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/paxperscientiam/sparse-wx.git"
-    },
-    "keywords": [
-        "weather",
-        "apps-script"
-    ],
-    "dependencies": {
-        "object-path": "^0.11.4",
-        "query-string": "^6.9.0",
-        "ramda": "^0.26.1",
-        "stately.js": "^2.0.0",
-        "uri-js": "^4.2.2",
-        "urijs": "^1.19.2"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.7.7",
-        "@babel/plugin-proposal-class-properties": "^7.7.4",
-        "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
-        "@babel/plugin-transform-member-expression-literals": "^7.7.4",
-        "@babel/plugin-transform-object-assign": "^7.7.4",
-        "@babel/plugin-transform-property-literals": "^7.7.4",
-        "@babel/preset-env": "^7.7.7",
-        "@babel/preset-typescript": "^7.7.7",
-        "@types/foundation": "^5.5.30",
-        "@types/gapi": "^0.0.36",
-        "@types/gapi.client.drive": "^3.0.3",
-        "@types/gapi.client.gmail": "^1.0.1",
-        "@types/gapi.client.groupssettings": "^1.0.2",
-        "@types/google-apps-script": "^0.0.37",
-        "@types/node": "^11.15.3",
-        "@types/object-path": "^0.11.0",
-        "babel-loader": "^8.0.6",
-        "babel-preset-gas": "^2.0.4",
-        "clean-webpack-plugin": "^1.0.1",
-        "copy-webpack-plugin": "^5.1.1",
-        "eslint": "^5.16.0",
-        "eslint-config-airbnb-base": "^13.2.0",
-        "eslint-config-prettier": "^3.6.0",
-        "eslint-loader": "^2.2.1",
-        "eslint-plugin-googleappsscript": "^1.0.3",
-        "eslint-plugin-import": "^2.19.1",
-        "eslint-plugin-prettier": "^3.1.2",
-        "fork-ts-checker-webpack-plugin": "^0.5.2",
-        "fuse-box": "^3.7.1",
-        "gas-lib": "^2.0.3",
-        "gas-webpack-plugin": "^1.0.2",
-        "prettier": "^1.19.1",
-        "terser-webpack-plugin": "^1.4.3",
-        "ts-loader": "^5.4.5",
-        "ts-node": "^8.5.4",
-        "tslib": "^1.10.0",
-        "tslint": "^5.20.1",
-        "tslint-loader": "^3.5.4",
-        "typescript": "^3.7.4",
-        "uglifyjs-webpack-plugin": "^2.2.0",
-        "webpack": "^4.41.5",
-        "webpack-cli": "^3.3.10"
-    }
+  "name": "sparse-wx",
+  "author": {
+    "name": "Christopher David Ramos"
+  },
+  "homepage": "",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "test:ts": "tsc -p tsconfig.json --noEmit",
+    "test:ts:verbose": "tsc -p tsconfig.json --traceResolution --noEmit",
+    "upload": "clasp push",
+    "clasp:test": "test:ts && upload && clasp run buildAddOn",
+    "deploy": "clasp:test && clasp run buildAddOn; terminal-notifier -title \"sparsewx\" -message \"done\"",
+    "lint:ts": "tslint src/index.ts src/Code/**/*.ts",
+    "getty": "x=$(echo {}); echo $x | jq"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paxperscientiam/sparse-wx.git"
+  },
+  "keywords": [
+    "weather",
+    "apps-script"
+  ],
+  "dependencies": {
+    "@paxperscientiam/dlv.ts": "^1.2.5",
+    "dset": "^2.0.1",
+    "fuse-box": "^4.0.0-next.160",
+    "object-path": "^0.11.4",
+    "query-string": "^6.9.0",
+    "ramda": "^0.26.1",
+    "stately.js": "^2.0.0",
+    "uri-js": "^4.2.2",
+    "urijs": "^1.19.2"
+  },
+  "devDependencies": {
+    "@types/gapi": "^0.0.36",
+    "@types/gapi.client.drive": "^3.0.3",
+    "@types/gapi.client.gmail": "^1.0.1",
+    "@types/gapi.client.groupssettings": "^1.0.2",
+    "@types/google-apps-script": "^0.0.37",
+    "@types/node": "^11.15.3",
+    "@types/object-path": "^0.11.0",
+    "fuse-box-typechecker": "^3.0.0-next.29",
+    "gas-lib": "^2.0.3",
+    "ts-node": "^8.5.4",
+    "tslib": "^1.10.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4"
+  }
 }

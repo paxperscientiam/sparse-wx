@@ -1,5 +1,4 @@
 **
-
 !appsscript.json
-!dist/**
-!src/Code/Launch.ts
+!src
+!Templates/**
