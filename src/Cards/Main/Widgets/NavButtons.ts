@@ -1,12 +1,17 @@
 // import "Cards/UserCard/Sections/_Actions"
 import { UserCard } from "~Cards/User"
 
-import { _TextButton } from "~Cards/Aux"
+import { WidgetFactory } from "~Cards/Aux"
+const widgetFactory = new WidgetFactory()
 
 import { MainCard } from "~Cards/Main"
 
+import {UI} from "~Data/Dictionary"
+
+import {fetch} from "~Data/PushPull"
+
 // @ts-ignore
-global.goToUserCardCallback = (): ActionResponse => {
+Application.goToUserCardCallback = (): ActionResponse => {
   return CardService.newActionResponseBuilder()
     .setNavigation(
       CardService.newNavigation()
@@ -20,7 +25,7 @@ global.goToUserCardCallback = (): ActionResponse => {
 }
 
 // @ts-ignore
-global.refreshHomeCardCallback = (): ActionResponse => {
+Application.refreshHomeCardCallback = (): ActionResponse => {
   return CardService.newActionResponseBuilder()
     .setNavigation(
       CardService.newNavigation()
@@ -50,12 +55,12 @@ export function NavButtonsWidget(): ButtonSet {
 
   const buttonSet: ButtonSet = CardService.newButtonSet()
 
-  buttonSet.addButton(_TextButton({
+  buttonSet.addButton(widgetFactory._TextButton({
     action: action1,
     text: `<font color="${COLORS.SECONDARY}">[ ${settingsTextButton} ]</font>`,
   }))
 
-  buttonSet.addButton(_TextButton({
+  buttonSet.addButton(widgetFactory._TextButton({
     action: action2,
     text: `<font color="${COLORS.SECONDARY}">[ REFRESH ]</font>`,
   }))

@@ -5,7 +5,11 @@ import {
   getWeatherServiceDataService,
 } from "~Services"
 
-import dlv from "@paxperscientiam/dlv.ts/dist/dlv.umd"
+import {HTTP} from "~Data/Dictionary"
+
+import {fetch, push as pushy} from "~Data/PushPull"
+
+import dlv from "@paxperscientiam/dlv.ts"
 
 import { timeStamp } from "~Utilities/Date"
 
@@ -13,17 +17,12 @@ import { commaThousDotDec } from "~Utilities/Number"
 
 import { render } from "~Handlers/Templates"
 
-import {
-  objectPath,
-} from "~Vendor"
-
 import * as Truthy from "~Utilities/Math"
 
-import { _CardSection, _Paragraph } from "~Cards/Aux"
+import { CardSectionFactory, WidgetFactory } from "~Cards/Aux"
+const widgetFactory = new WidgetFactory()
 
 import { formatDateService } from "~Utilities/Date"
-
-import { _KeyValue } from "~Cards/Aux"
 
 import {
   AuxWeatherWidget,
@@ -42,7 +41,7 @@ export function WeatherSection(): CardSection {
   let header
   let widgetTextUpdateTime
 
-  const alertUrl = dictionary.HTTP.WX_SERVICE.URL.STATE_ALERTS
+  const alertUrl = HTTP.WX_SERVICE.URL.STATE_ALERTS
 
   const objForecastStaleness = getForecastStalenessService()
 
@@ -115,10 +114,10 @@ ${formatDateService(dateUpdateDate)}`
     header: "SparseWx 🇺🇸",
   }
 
-  push(["state", "card.Main.section.Weather.header"], widgetTextUpdateTime)
+  pushy(["state", "card.Main.section.Weather.header"], widgetTextUpdateTime)
 
-  const wxSection = _CardSection(data)
-    .addWidget(_Paragraph({
+  const wxSection = new CardSectionFactory(data)
+    .addWidget(widgetFactory._Paragraph({
       text: header,
     }))
 
@@ -126,6 +125,7 @@ ${formatDateService(dateUpdateDate)}`
 
   let wxPNResult
 
+  // @ts-ignore
   const wxPnStatus = wxPN.status[wxPN.status.length - 1 ]
 
   try {
@@ -139,7 +139,7 @@ ${formatDateService(dateUpdateDate)}`
       i++
     } while (i < wxPN.wxPeriodCount)
     Logger.log(`[${timeStamp()}][isWxFetchSuccessful]: TRUE`)
-    wxSection.addWidget(_KeyValue({
+    wxSection.addWidget(widgetFactory._KeyValue({
       content: `<p><font color="#AAAAAA">${widgetTextUpdateTime}</font></p>`,
       multiline: true,
     }))

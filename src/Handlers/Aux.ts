@@ -1,62 +1,67 @@
-export function _Cache(fn,
-                       fnArgs: [],
+import {fetch, push as pushy} from "~Data/PushPull"
+
+export function _Cache(fn: (args?: any) => any,
+                       fnArgs: [""],
                        cacheName: string,
                        cacheTime = 1500): ICacheWrapper {
-  const objCacheMethodsBuilder = Object.create(objCacheMethods)
-  objCacheMethodsBuilder.data = {}
-  //
-  const cache = CacheService.getUserCache()
-  const cached = cache.get(cacheName)
+    const objCacheMethodsBuilder = Object.create({
+      data: {},
+    }) as ICacheWrapper
 
-  let result
-  let message
-  let hits = fetch("state", "cache.hits")
+    const cache = CacheService.getUserCache()
+    objCacheMethodsBuilder.data.cache = cache
+    const cached = objCacheMethodsBuilder.data.cache.get(cacheName)
+    objCacheMethodsBuilder.data.cached = cached
 
-  if (!!cached) {
-    result = cached
-    message = "Cache found"
-    ++hits
-    push(["state", "cache.hits"], hits)
-  } else {
-    if (fnArgs != null) {
-      result = fn(...fnArgs)
+    let result
+    let message
+    let hits = fetch("state", "cache.hits")
+
+    if (!!cached) {
+        result = cached
+        message = "Cache found"
+        ++hits
+        pushy(["state", "cache.hits"], hits)
     } else {
-      result = fn()
+        if (fnArgs != null) {
+            result = fn(...fnArgs)
+        } else {
+            result = fn()
+        }
+        cache.put(cacheName, result, cacheTime)
+        message = "Not found. Cached."
     }
-    cache.put(cacheName, result, cacheTime)
-    message = "Not found. Cached."
-  }
 
-  push(["state", `cache.${cacheName}`], message)
+    pushy(["state", `cache.${cacheName}`], message)
 
-  objCacheMethodsBuilder.data = {
-    "@context": [ "cacheHandler" ],
-    cache,
-    cacheName,
-    cached,
-    message,
-    result,
-  }
-
-  return objCacheMethodsBuilder
-}
-
-const objCacheMethods = {
-  invalidate() {
-    if (this.data.cached != null) {
-      this.data.cache.remove(this.cacheName)
-      return true
+    objCacheMethodsBuilder.data = {
+      // @ts-ignore
+        "@context": [ "cacheHandler" ],
+        cache,
+        cacheName,
+        cached,
+        message,
+        result,
     }
-    return false
-  },
-  getResult() {
-    return {
-      "@context": [ "cacheHandler", {
-        method: "getResult",
-      }],
-      "cacheData": this.data.result,
-      "cacheName": this.data.cacheName,
-      "cacheStatus": [true, this.data.message],
+
+    objCacheMethodsBuilder.invalidate = () => {
+        if (cached != null) {
+            objCacheMethodsBuilder.data.cachedName = null
+            return true
+        }
+        return false
     }
-  },
+
+    objCacheMethodsBuilder.getResult = () => {
+        return {
+            "@context": [ "cacheHandler", {
+                method: "getResult",
+            }],
+            "cacheData": objCacheMethodsBuilder.data.result,
+            "cacheName": objCacheMethodsBuilder.data.cachedName,
+            "cacheStatus": [true, objCacheMethodsBuilder.data.message],
+        }
+    }
+
+    return objCacheMethodsBuilder
 }

@@ -2,9 +2,11 @@ import * as Utilities from "~Utilities/Utilities"
 
 import { UserCard } from "~Cards/User"
 
-export function ResetWidget(): TextButton {
-  const UI = dictionary.UI
+import { push as pushy } from "~Data/PushPull"
 
+import {UI} from "~Data/Dictionary"
+
+export function ResetWidget(): TextButton {
   const COLORS = UI.COLORS.SCHEME
 
   const resetAddonAction = CardService.newAction()
@@ -16,9 +18,9 @@ export function ResetWidget(): TextButton {
 }
 
 // @ts-ignore
-global.resetAddonCallback = (): ActionResponse => {
+Application.resetAddonCallback = (): ActionResponse => {
   Utilities.clearUserProperties()
-  push(["state", "mint"], true)
+  pushy(["state", "mint"], true)
   return CardService.newActionResponseBuilder()
     .setNavigation(
       CardService.newNavigation().updateCard(UserCard({subtitle: "let's get started"}).build()),

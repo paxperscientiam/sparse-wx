@@ -1,6 +1,8 @@
 //     Copyright (C) 2018 Christopher David Ramos
-import { _Card, _CardSection, _Paragraph } from "~Cards/Aux"
+import { CardFactory, CardSectionFactory, WidgetFactory } from "~Cards/Aux"
 import { ResetWidget } from "~Cards/Main/Widgets/Reset"
+
+import {BRAND} from "~Data/Dictionary"
 
 export function WeatherServiceFallbackCard(): CardBuilder {
   const data = {
@@ -9,17 +11,20 @@ export function WeatherServiceFallbackCard(): CardBuilder {
     title: "Out of service.",
   }
 
-  const BRAND = dictionary.BRAND
+  const cardFactory = new CardFactory(data)
+  const cardSectionFactory = new CardSectionFactory()
+  const widgetFactory = new WidgetFactory()
 
-  return _Card(data)
-    .addSection(_CardSection()
-                .addWidgets([
-                  _Paragraph({
-                    // tslint:disable-next-line:max-line-length
-                    text: `Sorry about the inconvenience. If you have any questions or believe you've encountered a bug, don't hesitate to contact me at <b>${BRAND.EMAILS.BUGS[0]}</b>.`,
-                  }),
-                  ResetWidget(),
-                ])
-                .build(),
-               )
+  const widget = widgetFactory._Paragraph({
+    // tslint:disable-next-line:max-line-length
+    text: `Sorry about the inconvenience. If you have any questions or believe you've encountered a bug, don't hesitate to contact me at <b>${BRAND.EMAILS.BUGS[0]}</b>.`,
+  })
+  const section = cardSectionFactory.addWidgets([
+    widget,
+    ResetWidget(),
+  ]).build()
+
+  cardFactory.addSection(section)
+
+  return cardFactory
 }

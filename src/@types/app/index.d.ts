@@ -1,63 +1,46 @@
 import Global = NodeJS.Global
 
-declare const timeStamp: () => string
-
-declare const buildAddOn: () => Card
-declare const _Cache: (a: () => any, b: any[], c: string, d?: number) => any
-
-declare const checkLocationServiceStatus
-declare const clearConfig: () => void
-declare const dictionary: IDictionary
-
-declare const exists: (reference: string, property?: string) => boolean
-declare const make: (reference: string, thing: any) => void
-declare const push: (a: string[], b) => void
-declare const fetch: (a, b?) => any
-declare const has: (a, b?) => boolean
-
-declare const userProperties: Properties
-
 declare interface ISparseWx extends Global {
-  timeStamp
+  timeStamp: () => string
 
-  getAddressSuggestionsCallback
+  goToUserCardCallback: () => any
 
-  buildAddOn
-  _Cache
+  getAddressSuggestionsCallback: () => Card
 
-  checkLocationServiceStatus
-  clearConfig
+  buildAddOn: () => Card
+  _Cache: (a: () => any, b: any[], c: string, d?: number) => any
 
-  dictionary
-  ICONS
-  UI
-  PALETTE
-  PROPS
+  checkLocationServiceStatus: () => any
+  clearConfig: () => void
 
-  exists
-  make
-  push
-  fetch
-  has
+  dictionary: IDictionary
+  ICONS: any
+  UI: any
+  PALETTE: IPalette
+  PROPS: any
 
-  userProperties
+  exists: (reference: string, property?: string) => boolean
+  make: (reference: string, thing: any) => void
+  push: (a: string[], b: any) => void
+  fetch: (a: any, b?: any) => any
+  has: (a: any, b?: any) => boolean
 
-  submitNameCallback
-  submitAddressCallback
+  userProperties: Properties
+
+  submitNameCallback: (e: any) => [boolean, string]
+  submitAddressCallback: (e: any) => [boolean, string]
 
   doGet: (e: any) => void
 
   onInstall: (e: any) => void
+
 }
 
 declare const ICONS: IDictionaryIcons
-declare const PROPS
-declare const UI
 declare const COLORS: IColors
 declare const PALETTE: IPalette
 
-declare const objectPath
-declare const QS
+// declare const QS
 // declare const dset
 
 // tslint:disable
@@ -71,13 +54,19 @@ declare interface Number {
   commaThousDotDec: () => string
 }
 
+declare interface InputObject {
+  [prop: string]: any
+}
+
 // GAS types
+type Action = GoogleAppsScript.Card_Service.Action
 type ButtonSet = GoogleAppsScript.Card_Service.ButtonSet
 type Card = GoogleAppsScript.Card_Service.Card
 type CardBuilder = GoogleAppsScript.Card_Service.CardBuilder
 type CardHeader = GoogleAppsScript.Card_Service.CardHeader
 type CardSection = GoogleAppsScript.Card_Service.CardSection
 type SelectionInput = GoogleAppsScript.Card_Service.SelectionInput
+type SelectionInputType = GoogleAppsScript.Card_Service.SelectionInputType
 type TextButton = GoogleAppsScript.Card_Service.TextButton
 type TextInput = GoogleAppsScript.Card_Service.TextInput
 type TextParagraph = GoogleAppsScript.Card_Service.TextParagraph
@@ -87,7 +76,8 @@ type Icon = GoogleAppsScript.Card_Service.Icon
 type Cache = GoogleAppsScript.Cache.Cache
 type Properties = GoogleAppsScript.Properties.Properties
 type ActionResponseBuilder = GoogleAppsScript.Card_Service.ActionResponseBuilder
-
+type URLFetchRequestOptions = GoogleAppsScript.URL_Fetch.URLFetchRequestOptions
+type HTTPResponse = GoogleAppsScript.URL_Fetch.HTTPResponse
 type HtmlTemplate = GoogleAppsScript.HTML.HtmlTemplate
 
 declare interface IData {
@@ -99,11 +89,11 @@ declare function render(a: string): void
 
 declare interface ICacheWrapper {
   data: {
-    cache: Cache,
-    cachedName: string,
-    cached,
-    message: string,
-    result,
+    cache: Cache | null,
+    cachedName: string | null,
+    cached: any,
+    message: string | null,
+    result: any,
   }
   invalidate: () => boolean
   getResult: () => any
@@ -113,28 +103,28 @@ declare interface IUser {
   fetch: (a: string[] | string) => any
   setValue: (a: string, b: any) => any
 
-  address
-  city
-  coo
-  coordinate
-  lat
-  lon
-  country
-  county
-  name
-  region
-  state
-  state_long
-  tz
-  zip
-  zip_code
-  temp_unit
+  address: string
+  city: string
+  coo: string
+  coordinate: string
+  lat: string
+  lon: string
+  country: string
+  county: string
+  name: string
+  region: string
+  state: string
+  state_long: string
+  tz: string
+  zip: string
+  zip_code: string
+  temp_unit: string
 
-  suggested_address_one
-  suggested_address_two
-  suggested_address_three
+  suggested_address_one: string
+  suggested_address_two: string
+  suggested_address_three: string
 
-  fields
+  fields: string
 }
 
 declare interface IApplicationState {
@@ -143,10 +133,10 @@ declare interface IApplicationState {
 
 declare interface IColors {
   SCHEME: {
-    PRIMARY: string,
-    SECONDARY: string,
-    TERTIARY: string,
-    HIGHLIGHT: string,
+    PRIMARY: {[key: string]: IPalette},
+    SECONDARY: {[key: string]: IPalette},
+    TERTIARY: {[key: string]: IPalette},
+    HIGHLIGHT: {[key: string]: IPalette},
   },
   TEMP: string,
 }
@@ -154,21 +144,20 @@ declare interface IColors {
 declare interface IUserInterface {
   COLORS: {
     SCHEME: {
-      PRIMARY: string,
-      SECONDARY: string,
-      TERTIARY: string,
-      HIGHLIGHT: string,
+      PRIMARY: {[key: string]: IPalette},
+      SECONDARY: {[key: string]: IPalette},
+      TERTIARY: {[key: string]: IPalette},
+      HIGHLIGHT: {[key: string]: IPalette},
+      QUATERNARY: {[key: string]: IPalette},
     },
-    TEMP: string,
   }
-  ICONS: any
   WIDGETS: {
-    WEATHER_TODAY: { IMetadata },
+    WEATHER_TODAY: {
+      COLOR_ONE: {[key: string]: IPalette},
+    }
   }
   WX_SECTION__WIDGET_COUNT: number
-  PALETTE: {
-    [prop: string]: string,
-  }
+  PALETTE: IPalette
   PLACEHOLDER_TEXT: object
 }
 
@@ -193,14 +182,19 @@ declare interface IBrand {
   EMAILS: any
   NAME: string
   URLS: any
-  version
+  version: string
 }
 
 declare interface IProps {
-  STATE
-  user
-  WX
-  CACHE
+  OPTIONS: any
+  //  STATE: any
+  DEFAULTS: any
+  //  user: any
+  userBio: any
+  userLocale: any
+  WX: any
+  CACHE: any,
+  applicationState: IApplicationState
 }
 
 declare interface IDictionary {
@@ -211,7 +205,7 @@ declare interface IDictionary {
   CARDINAL_DIRECTIONS: object
   HTTP: IHttp
   PROPS: IProps
-  PALETTE
+  PALETTE: any
 }
 
 declare interface IDictionaryIconsUI {
@@ -223,25 +217,19 @@ declare interface IDictionaryIconsUI {
   IMG_COG: string
 }
 
-declare interface IDictionaryIconsWx {
-  UNKNOWN
-  ERROR
-
-  [prop: string]: IDictionaryIconsWxProps
-}
-declare interface IDictionaryIconsWxProps {
-  DAY: string
-  NIGHT: string
-}
-
 declare interface IJsonResponseHandler {
-  url: string
-  query: object
-  params: object
+  data: {
+    params: URLFetchRequestOptions,
+    query: object,
+    url: string,
+  }
   cacheName: string
   cacheTime: number
   json: object
-  data: object
+  fetch: () => { "@context": [string, object],
+                 "data": any,
+                 "status": [boolean, string]
+               }
 
   [prop: string]: any
 }
@@ -250,21 +238,38 @@ declare const JsonResponseHandlerTest: () => any
 
 declare interface IDictionaryIcons {
   UI: IDictionaryIconsUI
-  WX
 }
 //
-declare interface IPalette {
-  [color: string]: string
+declare enum IPalette {
+  AQUA   = "#7FDBFF",
+  BLUE   = "#0074D9",
+  NAVY   = "#001f3f",
+  TEAL   = "#39CCCC",
+
+  GREEN  = "#2ECC40",
+  LIME   = "#01FF70",
+  OLIVE  = "#3D9970",
+  YELLOW = "#FFDC00",
+
+  FUCHSIA = "#F012BE",
+  MAROON = "#85144b",
+  ORANGE = "#FF851B",
+  RED    = "#FF4136",
+
+  BLACK  = "#111111",
+  GRAY   = "#AAAAAA",
+  PURPLE = "#B10DC9",
+  SILVER = "#DDDDDD",
+
+  WHITE  = "#FFFFFF",
 }
 
-declare const Machine
-declare const URI
-declare const curry
-declare const _cards
+// declare const Machine
+// declare const URI
+// declare const curry
+// declare const _cards
 
-declare const submitNameCallback: (any) => [boolean, string]
-declare const submitTemperatureUnitCallback: (any) => [boolean, string]
-declare const submitAddressCallback: (any) => [boolean, string]
+declare const submitTemperatureUnitCallback: (e: any) => [boolean, string]
 
 declare const user: IUser
 declare const applicationState: IApplicationState
@@ -274,3 +279,15 @@ declare const MainCard: () => CardBuilder
 
 declare var section: CardSection
 declare var sections: CardSection[]
+
+declare interface ISelectionInput {
+  fieldName: string,
+  hint?: string,
+  items?: [{
+    text: string,
+    value: any,
+  }],
+  title: string,
+  type: SelectionInputType,
+  suggestions?: any,
+}

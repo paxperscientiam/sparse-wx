@@ -6,6 +6,8 @@
  * @returns {Object}
  */
 
+import {push as pushy} from "~Data/PushPull"
+
 // export function mergeObjs() {
 //   const obj = arguments[0]
 //   for (i = 1; i < arguments.length; i++) {
@@ -125,7 +127,7 @@ export function clearScriptProperties(): void {
 export function clearConfig(): void {
   clearUserProperties()
   clearScriptProperties()
-  push(["state", "mint"], true)
+  pushy(["state", "mint"], true)
 //  uc.removeAll(["mainCard", "wxRaw", "wxRawForecast"])
 }
 

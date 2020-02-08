@@ -1,9 +1,11 @@
 //     Copyright (C) 2018 Christopher David Ramos
 import { render } from "~Handlers/Templates"
 
-import { _CardSection, _Paragraph } from "~Cards/Aux"
+import { CardSectionFactory, WidgetFactory } from "~Cards/Aux"
 
-export function UserInfoSection(): CardSection {
+import {fetch} from "~Data/PushPull"
+
+export function UserInfoSection(): CardSection | undefined {
 
   const useraddress = fetch("user", "address")
   if (!useraddress) {
@@ -20,8 +22,10 @@ export function UserInfoSection(): CardSection {
     username,
   })
 
-  return _CardSection()
-    .addWidget(_Paragraph({
+  const widgetFactory = new WidgetFactory()
+
+  return new CardSectionFactory()
+    .addWidget(widgetFactory._Paragraph({
       text: textContent,
     }))
     .build()

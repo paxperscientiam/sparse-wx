@@ -20,7 +20,7 @@ export * from "~Services/Weather"
 // import { checkWeatherServiceStatus, WeatherIconService } from "~Services/Weather"
 
 // import { apparentTemperatureService } from "~Services/ComputeApparentTemperatureService"
-
+//
 // import { textColorTemperatureService } from "~Services/IsColdService"
 
 // import { isHoldayService } from "~Services/HighlightHolidayService"

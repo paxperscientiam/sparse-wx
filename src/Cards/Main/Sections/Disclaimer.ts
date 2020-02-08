@@ -1,18 +1,21 @@
 //     Copyright (C) 2018 Christopher David Ramos
 import { render } from "~Handlers/Templates"
 
-import { _CardSection, _Paragraph } from "~Cards/Aux"
+import { CardSectionFactory, WidgetFactory } from "~Cards/Aux"
+const widgetFactory = new WidgetFactory()
+
+import {BRAND} from "~Data/Dictionary"
 //
 export function DisclaimerSection(args = {}): CardSection {
     const data = {
         header: "Acknowledgments",
     }
-    const cardSection = _CardSection(data)
-        .addWidget(_Paragraph({
+    const cardSection = new CardSectionFactory(data)
+        .addWidget(widgetFactory._Paragraph({
             text: render("userNotices", {
-                license: dictionary.BRAND.URLS.LICENSE,
-                nws: dictionary.BRAND.URLS.NWS,
-                privacy: dictionary.BRAND.URLS.PRIVACY,
+                license: BRAND.URLS.LICENSE,
+                nws: BRAND.URLS.NWS,
+                privacy: BRAND.URLS.PRIVACY,
             }),
         }))
 

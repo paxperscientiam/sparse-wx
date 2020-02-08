@@ -1,0 +1,1 @@
+{"version":3,"sources":["/src/test.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA,IAAM,CAAC,GAAG;IACR,OAAO,EAAE,CAAA;AACX,CAAC,CAAA","file":"app","sourcesContent":["const x = () => {\n  return 33\n}\n"]}

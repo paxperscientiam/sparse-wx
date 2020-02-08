@@ -1,9 +1,7 @@
-// official guide: https://github.com/google/clasp/blob/master/docs/typescript.md
-// clasp push transpiles ES6+ into ES3 (using ts2gas) before pushing files to the Apps Script server.
-// I DONT NEED TO TRANSPILE
 {
   "compilerOptions": {
-    "types" : ["app", "node", "google-apps-script", "@paxperscientiam/dlv.ts"],
+    "types" : ["app", "nws", "node", "google-apps-script", "@paxperscientiam/dlv.ts"],
+    "strict": true,
     "typeRoots": [
       "src/@types",
       "node_modules/@types"
@@ -11,21 +9,14 @@
     "outDir": "dist",
     "baseUrl": "src",
     "paths": {
-        "~*": ["./*"]
+      "App/*": ["./*"]
     },
-    "allowJs": true,
-    "checkJs": false,
-    "module": "es6",
-    // GAP uses es3 with some es5 features sprinkled in ...
-    "target": "es3",
-    // per clasp guide
-    "lib": ["esnext"],
-    // per clasp guide
-    "experimentalDecorators": true,
-    "extendedDiagnostics": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "moduleResolution": "node",
-    "noImplicitUseStrict": true,
-    "esModuleInterop": true
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "target": "es6"
   },
   "exclude": [
     "src/Code/Tests.ts"

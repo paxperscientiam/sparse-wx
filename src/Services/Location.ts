@@ -1,11 +1,18 @@
 //     Copyright (C) 2018 Christopher David Ramos
+import { timeStamp } from "~Utilities/Date"
 
+import {
+  GoogleGeoCodeInterface,
+  PROPS,
+} from "~Data/Dictionary"
+
+import {push as pushy} from "~Data/PushPull"
 // @ts-ignore
 export function checkLocationServiceStatus() {
   // simply tests if service returns a good result
   const result: IGeocodeSR = Maps.newGeocoder().geocode("10011")
   Logger.log(`[${timeStamp()}][locationServiceStatus] ${result.status}`)
-  push(["state", "status.location"] , result.status)
+  pushy(["state", "status.location"] , result.status)
   return result.status
 }
 
@@ -22,8 +29,8 @@ export function checkLocationServiceStatus() {
 //   return result
 // }
 
-export function processGeocoderResultsService(polity, geometry) {
-  const GeoInterface = dictionary.INTERFACE.GoogleGeoCodeInterface
+export function processGeocoderResultsService(polity: IData, geometry: IData) {
+  const GeoInterface = GoogleGeoCodeInterface
 
   const lon = geometry.location.lng.toFixed(4)
   const lat = geometry.location.lat.toFixed(4)
@@ -31,33 +38,33 @@ export function processGeocoderResultsService(polity, geometry) {
 
   const localeKeys = Object.keys(PROPS.userLocale)
   localeKeys.forEach((key) => {
-    push(["user", key] , null)
+    pushy(["user", key] , null)
   })
 
-  push(["polity"], polity)
+  pushy(["polity"], polity)
 
-  polity.forEach((pol) => {
+  polity.forEach((pol: IData) => {
     if (pol.types.indexOf(GeoInterface.CITY) > -1) {
-      push(["user", "city"], pol.short_name)
+      pushy(["user", "city"], pol.short_name)
     }
     if (pol.types.indexOf(GeoInterface.STATE) > -1) {
-      push(["user", "state"], pol.short_name)
-      push(["user", "state_long"], pol.long_name)
+      pushy(["user", "state"], pol.short_name)
+      pushy(["user", "state_long"], pol.long_name)
     }
     if (pol.types.indexOf(GeoInterface.COUNTY) > -1) {
-      push(["user", "county"], pol.short_name)
+      pushy(["user", "county"], pol.short_name)
     }
     if (pol.types.indexOf(GeoInterface.COUNTRY) > -1) {
-      push(["user", "country"], pol.long_name)
+      pushy(["user", "country"], pol.long_name)
     }
     if (pol.types.indexOf(GeoInterface.ZIP_CODE) > -1) {
-      push(["user", "zip_code"], pol.long_name)
+      pushy(["user", "zip_code"], pol.long_name)
     }
   })
 
-  push(["user", "lat"], lat)
-  push(["user", "lon"], lon)
-  push(["user", "coordinate"], coordinate)
+  pushy(["user", "lat"], lat)
+  pushy(["user", "lon"], lon)
+  pushy(["user", "coordinate"], coordinate)
 
   Logger.log(`[${timeStamp()}][lon] ${lon}`)
   Logger.log(`[${timeStamp()}][lat] ${lat}`)

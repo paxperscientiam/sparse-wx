@@ -1,5 +1,15 @@
 //     Copyright (C) 2018 Christopher David Ramos
+declare const Application: ISparseWx
+
 import { processGeocoderResultsService } from "~Services"
+
+import {
+  APPROVED_POLITIES,
+  INTERFACE,
+  PROPS,
+} from "~Data/Dictionary"
+
+import {fetch, push as pushy} from "~Data/PushPull"
 
 export function validateUserName(input: string) {
   if (/^.{1,26}$/i.test(input)) {
@@ -42,7 +52,7 @@ export function validateMailingAddress(address: string) {
   if (address == null) {
     return [false, "No valid address."]
   }
-  const GeoInterface = dictionary.INTERFACE.GoogleGeoCodeInterface
+  const GeoInterface = INTERFACE.GoogleGeoCodeInterface
 
   const response: IGeocodeSR = Maps.newGeocoder()
     .setRegion("us")
@@ -54,23 +64,20 @@ export function validateMailingAddress(address: string) {
   const result = response.results[0]
   const polity = result.address_components
 
-  const APPROVED_POLITIES = dictionary.APPROVED_POLITIES
+  const approvedPolities = Object.keys(APPROVED_POLITIES)
 
-  const leaves = Object.keys(APPROVED_POLITIES).map((el) => {
-    return APPROVED_POLITIES[el]
-  })
-
-  polity.forEach((pol) => {
+  polity.forEach((pol: IData) => {
     if (pol.types.indexOf(GeoInterface.COUNTRY) > -1) {
-      push(["user", "country"], pol.long_name)
+      pushy(["user", "country"], pol.long_name)
     }
   })
 
   const strPolity = fetch("user", "country")
-  const isApprovedPolity = leaves.indexOf(strPolity) > -1
+  //const isApprovedPolity = approvedPolities.indexOf(strPolity) > -1
+  const isApprovedPolity = strPolity === "United States";
 
   if (!isApprovedPolity) {
-    userProperties.deleteProperty(PROPS.userLocale.country)
+    Application.userProperties.deleteProperty(PROPS.userLocale.country)
     return [false, "UNSUPPORTED_REGION"]
   }
 
@@ -83,9 +90,9 @@ export function validateMailingAddress(address: string) {
   //  const lastAddressResult2 = user.fetch("suggested_address_two").response
 
   if (lastAddressResult != null) {
-    push(["user", "suggested_address_two"],  lastAddressResult)
+    pushy(["user", "suggested_address_two"],  lastAddressResult)
   }
-  push(["user", "address"], result.formatted_address)
+  pushy(["user", "address"], result.formatted_address)
   //
   return [true]
 }

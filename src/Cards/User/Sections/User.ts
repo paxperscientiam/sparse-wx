@@ -1,33 +1,35 @@
 //     Copyright (C) 2018 Christopher David Ramos
+declare const Application: ISparseWx
+
 import { validateMailingAddress, validateUserName } from "~Utilities/Validate"
+
+import { fetch, push as pushy } from "~Data/PushPull"
+
+import {BRAND} from "~Data/Dictionary"
 
 import { ResetWidget } from "~Cards/Main/Widgets/Reset"
 
 import { MainCard } from "~Cards/Main"
 
-import { _CardSection,
-         _SelectionInput,
-         _TextButton,
-         _TextInput,
-         _Widget } from "~Cards/Aux"
+import { CardSectionFactory, WidgetFactory} from "~Cards/Aux"
 
 // @ts-ignore
-global.submitNameCallback = (e): boolean => {
+function submitNameCallback(e: any): boolean {
   Logger.log(e)
   const name = e.formInput.user_name_key
-  push(["input", "user_name_key"], name)
+  pushy(["input", "user_name_key"], name)
   if (!name) {
     return false
   }
   const isUserNameValid = validateUserName(name)
 
   if (isUserNameValid[0]) {
-    push(["state", "input.name"], "valid")
-    push(["state", "mint"], false)
-    push(["user", "name"], name)
+    pushy(["state", "input.name"], "valid")
+    pushy(["state", "mint"], false)
+    pushy(["user", "name"], name)
     return true
   } else {
-    push(["state", "input.name"], "invalid")
+    pushy(["state", "input.name"], "invalid")
     throw new Error("bad name")
   }
 }
@@ -53,11 +55,10 @@ global.submitNameCallback = (e): boolean => {
 // }
 
 // @ts-ignore
-global.submitAddressCallback = (e) => {
-  const BRAND = dictionary.BRAND
+Application.submitAddressCallback = (e) => {
   const address = e.formInput.user_address_key
   // @test
-  push(["input", "user_address_key"], address)
+  pushy(["input", "user_address_key"], address)
 
   const storedAddress = fetch("user", "address")
 
@@ -73,8 +74,8 @@ global.submitAddressCallback = (e) => {
   const isValid = validateMailingAddress(address)
   // if valid, retrieve address from storage
   if (isValid[0]) {
-    push(["state", "input.address"], "valid")
-    push(["state", "mint"], false)
+    pushy(["state", "input.address"], "valid")
+    pushy(["state", "mint"], false)
     //  const cache = CacheService.getUserCache()
     // cache.removeAll(["wxRaw", "wxRawForecast"])
     // successful validation means that lon,lat, and address properties defined
@@ -82,21 +83,21 @@ global.submitAddressCallback = (e) => {
   } else {
     const response = "Sorry, try a different address."
     if (isValid[1] === "ZERO_RESULTS") {
-      push(["state", "input.address"], "ZERO_RESULTS")
+      pushy(["state", "input.address"], "ZERO_RESULTS")
       throw new Error("Sorry, that address wasn't found. Try something else.")
     }
 
     if (isValid[1] === "UNSUPPORTED_REGION") {
-      push(["state", "input.address"], "UNSUPPORTED_REGION")
+      pushy(["state", "input.address"], "UNSUPPORTED_REGION")
       throw new Error(`Sorry, ${BRAND.NAME} only supports results for the USA.`)
     }
-    push(["state", "input.address"], "ERR")
+    pushy(["state", "input.address"], "ERR")
     throw new Error(response)
   }
 }
 
 // @ts-ignore
-global.submitTemperatureUnitCallback = (e) => {
+Application.submitTemperatureUnitCallback = (e) => {
   const chosenTempUnit = e.formInputs.temperature_unit_list[0]
 
   const currentTempUnit = e.temp_unit
@@ -109,22 +110,22 @@ global.submitTemperatureUnitCallback = (e) => {
     return false
   }
 
-  push(["user", "temp_unit"], chosenTempUnit)
+  pushy(["user", "temp_unit"], chosenTempUnit)
   return true
 }
 
 // // @ts-ignore
-// global.goToHomeCardCallback = () => {
+// Application.goToHomeCardCallback = () => {
 //   return CardService.newActionResponseBuilder()
 //     .setNavigation(
-//       CardService.newNavigation().pushCard(MainCard().build()),
+//       CardSevice.newNavigation().pushCard(MainCard().build()),
 //     )
 //     .setStateChanged(false)
 //     .build()
 // }
 
 // @ts-ignore
-global.getAddressSuggestionsCallback = () => {
+Application.getAddressSuggestionsCallback = () => {
   Logger.log("Address suggestions callback ... called")
   // will use recent entries
   const suggestions = CardService.newSuggestions()
@@ -151,7 +152,7 @@ global.getAddressSuggestionsCallback = () => {
 }
 
 // @ts-ignore
-global.processUserPreferencesFormCallback = (e) => {
+Application.processUserPreferencesFormCallback = (e: any) => {
   Logger.log("processUserPreferencesFormCallback ... ")
 
   let shouldProcess = false
@@ -174,7 +175,7 @@ global.processUserPreferencesFormCallback = (e) => {
   }
 
   try {
-    const isAddressChanged = submitAddressCallback(e)
+    const isAddressChanged = Application.submitAddressCallback(e)
     // @ts-ignore
     shouldProcess = shouldProcess || isAddressChanged
     if (isAddressChanged) {
@@ -243,24 +244,25 @@ export function UserSection(): CardSection {
     setAddressTitle += ` (${userzip})`
   }
 
-  const cardSection = _CardSection()
+  const cardSection = new CardSectionFactory()
+  const widgetFactory = new WidgetFactory()
 
-  push(["state", "menu.submitTemp.options.values"], "dropdown_item_f, dropdown_item_c")
+  pushy(["state", "menu.submitTemp.options.values"], "dropdown_item_f, dropdown_item_c")
 
   cardSection
-    .addWidget(_TextInput({
+    .addWidget(widgetFactory._TextInput({
       fieldName: "user_name_key",
       hint: "How should SparseWx address you? (25 character max)",
       title: "Your Name (optional)",
     }))
-    .addWidget(_TextInput({
+    .addWidget(widgetFactory._TextInput({
       fieldName: "user_address_key",
       hint: "City, state or ZIP code",
       title: setAddressTitle,
 
       suggestions: submitAddressSuggestionsAction,
     }))
-    .addWidget(_SelectionInput({
+    .addWidget(widgetFactory._SelectionInput({
       fieldName: "temperature_unit_list",
       items: [
         {
@@ -279,7 +281,7 @@ export function UserSection(): CardSection {
       title: "Temperature Scale",
       type: "DROPDOWN",
     }))
-    .addWidget(_TextButton({
+    .addWidget(widgetFactory._TextButton({
       action: processUserFormAction,
       text: "Submit",
     }))

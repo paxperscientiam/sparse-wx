@@ -2,14 +2,16 @@
 
 import { timeStamp } from "~Utilities/Date"
 
+import {fetch, push as pushy} from "~Data/PushPull"
+
 export function checkUserServiceStatus(): string {
   const lat = fetch("user", "lat")
   if (!lat) {
     Logger.log(`[${timeStamp()}][status.user] ERR as no coordinates`)
-    push(["state", "status.user"], "ERR")
+    pushy(["state", "status.user"], "ERR")
     return "ERR"
   }
   Logger.log(`[${timeStamp()}][status.user] OK`)
-  push(["state", "status.user"], "OK")
+  pushy(["state", "status.user"], "OK")
   return "OK"
 }

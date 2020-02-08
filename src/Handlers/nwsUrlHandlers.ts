@@ -1,25 +1,17 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
-export function NWSUrlService() {
-  const objNWSUrlBuilder = Object.create(objNWSUrlMethods)
+export const NWSUrlService = {
+    uri: {
+        base: "https://api.weather.gov/",
 
-  const uri = {
-    base: "https://api.weather.gov/",
-
-    alerts: {
-      active: "alerts/active",
+        alerts: {
+            active: "alerts/active",
+        },
     },
-  }
 
-  objNWSUrlBuilder.uri = uri
-
-  return objNWSUrlBuilder
-}
-
-const objNWSUrlMethods = {
-  getMetaLink(coordinates: string) {
-    return `${this.uri.base}points/${coordinates}`
-  },
+    getMetaLink(coordinates: string): string {
+        return `${this.uri.base}points/${coordinates}`
+    },
 }
 
 // interface INWSUrlService {

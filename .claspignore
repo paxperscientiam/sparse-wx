@@ -1,4 +1,4 @@
 **
 !appsscript.json
-!src
-!Templates/**
+!dist/**
+!src/Views/**

@@ -1,5 +1,7 @@
 //     Copyright (C) 2018 Christopher David Ramos
-export function apparentTemperatureService(args): string {
+import {fetch} from "~Data/PushPull"
+
+export function apparentTemperatureService(args: InputObject): null|string {
   let temperature
   let windspeed
   let tempUnit

@@ -3,7 +3,6 @@
 /* tslint:disable:object-literal-sort-keys */
 export class DictionaryIcons {
   UI: IDictionaryIconsUI
-  WX
 
   constructor() {
     this.UI = {
