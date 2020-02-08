@@ -112,3 +112,5 @@ Code/Data/Secrets.ts
 credentials.json
 
 todo.txt*
+
+/.rts2_cache*
