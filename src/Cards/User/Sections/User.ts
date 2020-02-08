@@ -1,17 +1,17 @@
 //     Copyright (C) 2018 Christopher David Ramos
 declare const Application: ISparseWx
 
-import { validateMailingAddress, validateUserName } from "~Utilities/Validate"
+import { validateMailingAddress, validateUserName } from "@/Utilities/Validate"
 
-import { fetch, push as pushy } from "~Data/PushPull"
+import { fetch, push as pushy } from "@/Data/PushPull"
 
-import {BRAND} from "~Data/Dictionary"
+import {BRAND} from "@/Data/Dictionary"
 
-import { ResetWidget } from "~Cards/Main/Widgets/Reset"
+import { ResetWidget } from "@/Cards/Main/Widgets/Reset"
 
-import { MainCard } from "~Cards/Main"
+import { MainCard } from "@/Cards/Main"
 
-import { CardSectionFactory, WidgetFactory} from "~Cards/Aux"
+import { CardSectionFactory, WidgetFactory} from "@/Cards/Aux"
 
 // @ts-ignore
 function submitNameCallback(e: any): boolean {

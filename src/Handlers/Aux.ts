@@ -1,4 +1,4 @@
-import {fetch, push as pushy} from "~Data/PushPull"
+import {fetch, push as pushy} from "@/Data/PushPull"
 
 export function _Cache(fn: (args?: any) => any,
                        fnArgs: [""],

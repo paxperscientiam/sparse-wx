@@ -3,32 +3,32 @@ import {
   getAlertsByStateService,
   getForecastStalenessService,
   getWeatherServiceDataService,
-} from "~Services"
+} from "@/Services"
 
-import {HTTP} from "~Data/Dictionary"
+import {HTTP} from "@/Data/Dictionary"
 
-import {fetch, push as pushy} from "~Data/PushPull"
+import {fetch, push as pushy} from "@/Data/PushPull"
 
 import dlv from "@paxperscientiam/dlv.ts"
 
-import { timeStamp } from "~Utilities/Date"
+import { timeStamp } from "@/Utilities/Date"
 
-import { commaThousDotDec } from "~Utilities/Number"
+import { commaThousDotDec } from "@/Utilities/Number"
 
-import { render } from "~Handlers/Templates"
+import { render } from "@/Handlers/Templates"
 
-import * as Truthy from "~Utilities/Math"
+import * as Truthy from "@/Utilities/Math"
 
-import { CardSectionFactory, WidgetFactory } from "~Cards/Aux"
+import { CardSectionFactory, WidgetFactory } from "@/Cards/Aux"
 const widgetFactory = new WidgetFactory()
 
-import { formatDateService } from "~Utilities/Date"
+import { formatDateService } from "@/Utilities/Date"
 
 import {
   AuxWeatherWidget,
   WeatherErrorWidget,
   WeatherWidget,
-} from "~Cards/Main/Widgets/Weather"
+} from "@/Cards/Main/Widgets/Weather"
 
 export function WeatherSection(): CardSection {
   const wxSectionData = {}

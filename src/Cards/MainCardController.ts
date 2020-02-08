@@ -1,10 +1,10 @@
 //     Copyright (C) 2018 Christopher David Ramos
-// import { DisclaimerSection } from "~Cards/Main/Sections/Disclaimer"
-// import { DateArray } from "~Utilities/Date"
+// import { DisclaimerSection } from "@/Cards/Main/Sections/Disclaimer"
+// import { DateArray } from "@/Utilities/Date"
 
-// import { View } from "App/Cards/Aux"
+// import { View } from "@/Cards/Aux"
 
-import { BaseCardController } from "App/Cards/CardController"
+import { BaseCardController } from "@/Cards/CardController"
 
 export class MainCardController extends BaseCardController  {
   route: string = "localityInfo"

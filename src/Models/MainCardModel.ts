@@ -1,4 +1,4 @@
-import {fetch, push as pushy} from "App/Data/PushPull"
+import {fetch, push as pushy} from "@/Data/PushPull"
 
 export class MainCardModel {
   set name(name: string) {

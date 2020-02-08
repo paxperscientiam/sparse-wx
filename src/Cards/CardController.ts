@@ -1,6 +1,6 @@
-import {render} from "App/Handlers/Templates"
-import { View } from "./Aux"
-import { CardSectionFactory, WidgetFactory, CardFactory } from "App/Cards/Aux"
+import {render} from "@/Handlers/Templates"
+// import { View } from "@/Aux"
+import { CardSectionFactory, WidgetFactory, CardFactory } from "@/Cards/Aux"
 
 interface IDamn {
   route: string

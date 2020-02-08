@@ -6,7 +6,7 @@
  * @returns {Object}
  */
 
-import {push as pushy} from "~Data/PushPull"
+import {push as pushy} from "@/Data/PushPull"
 
 // export function mergeObjs() {
 //   const obj = arguments[0]

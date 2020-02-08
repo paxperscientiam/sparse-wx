@@ -1,20 +1,20 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
-import {fetch, push as pushy} from "~Data/PushPull"
+import {fetch, push as pushy} from "@/Data/PushPull"
 
 import {
   HTTP,
-} from "~Data/Dictionary"
+} from "@/Data/Dictionary"
 
-import {_Cache} from "~Handlers/Aux"
+import {_Cache} from "@/Handlers/Aux"
 
 import dlv from "@paxperscientiam/dlv.ts"
 
-import { JsonResponseHandler } from "~Handlers/JsonResponse"
+import { JsonResponseHandler } from "@/Handlers/JsonResponse"
 
-import { NWSUrlService } from "~Handlers/nwsUrlHandlers"
+import { NWSUrlService } from "@/Handlers/nwsUrlHandlers"
 
-import { timeConversion, timeStamp } from "~Utilities/Date"
+import { timeConversion, timeStamp } from "@/Utilities/Date"
 
 function nwsMetaLocationData() {
   //  const WX = PROPS.WX

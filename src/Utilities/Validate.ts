@@ -1,15 +1,15 @@
 //     Copyright (C) 2018 Christopher David Ramos
 declare const Application: ISparseWx
 
-import { processGeocoderResultsService } from "~Services"
+import { processGeocoderResultsService } from "@/Services"
 
 import {
   APPROVED_POLITIES,
   INTERFACE,
   PROPS,
-} from "~Data/Dictionary"
+} from "@/Data/Dictionary"
 
-import {fetch, push as pushy} from "~Data/PushPull"
+import {fetch, push as pushy} from "@/Data/PushPull"
 
 export function validateUserName(input: string) {
   if (/^.{1,26}$/i.test(input)) {

@@ -1,10 +1,10 @@
 //     Copyright (C) 2018 Christopher David Ramos
-import { render } from "~Handlers/Templates"
+import { render } from "@/Handlers/Templates"
 
-import { CardSectionFactory, WidgetFactory } from "~Cards/Aux"
+import { CardSectionFactory, WidgetFactory } from "@/Cards/Aux"
 const widgetFactory = new WidgetFactory()
 
-import {BRAND} from "~Data/Dictionary"
+import {BRAND} from "@/Data/Dictionary"
 //
 export function DisclaimerSection(args = {}): CardSection {
     const data = {

@@ -1,14 +1,14 @@
 // import "Cards/UserCard/Sections/_Actions"
-import { UserCard } from "~Cards/User"
+import { UserCard } from "@/Cards/User"
 
-import { WidgetFactory } from "~Cards/Aux"
+import { WidgetFactory } from "@/Cards/Aux"
 const widgetFactory = new WidgetFactory()
 
-import { MainCard } from "~Cards/Main"
+import { MainCard } from "@/Cards/Main"
 
-import {UI} from "~Data/Dictionary"
+import {UI} from "@/Data/Dictionary"
 
-import {fetch} from "~Data/PushPull"
+import {fetch} from "@/Data/PushPull"
 
 // @ts-ignore
 Application.goToUserCardCallback = (): ActionResponse => {

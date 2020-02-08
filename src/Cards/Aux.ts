@@ -1,5 +1,5 @@
 //     Copyright (C) 2018 Christopher David Ramos
-import {fetch, push as pushy} from "App/Data/PushPull"
+import {fetch, push as pushy} from "@/Data/PushPull"
 
 interface ICardData {
   image?: any,

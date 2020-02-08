@@ -1,8 +1,8 @@
 //     Copyright (C) 2018 Christopher David Ramos
-import { CardFactory, CardSectionFactory, WidgetFactory } from "~Cards/Aux"
-import { ResetWidget } from "~Cards/Main/Widgets/Reset"
+import { CardFactory, CardSectionFactory, WidgetFactory } from "@/Cards/Aux"
+import { ResetWidget } from "@/Cards/Main/Widgets/Reset"
 
-import {BRAND} from "~Data/Dictionary"
+import {BRAND} from "@/Data/Dictionary"
 
 export function WeatherServiceFallbackCard(): CardBuilder {
   const data = {

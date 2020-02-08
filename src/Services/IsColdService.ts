@@ -1,8 +1,8 @@
-import { convertF2C } from "~Utilities/Date"
+import { convertF2C } from "@/Utilities/Date"
 
-import {fetch} from "~Data/PushPull"
+import {fetch} from "@/Data/PushPull"
 
-import {PALETTE} from "~Data/Dictionary"
+import {PALETTE} from "@/Data/Dictionary"
 
 export function textColorTemperatureService(temperature: number): string {
     let temp: string = ""

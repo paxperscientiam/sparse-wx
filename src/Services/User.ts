@@ -1,8 +1,8 @@
 //     Copyright (C) 2018 Christopher David Ramos
 
-import { timeStamp } from "~Utilities/Date"
+import { timeStamp } from "@/Utilities/Date"
 
-import {fetch, push as pushy} from "~Data/PushPull"
+import {fetch, push as pushy} from "@/Data/PushPull"
 
 export function checkUserServiceStatus(): string {
   const lat = fetch("user", "lat")

@@ -1,4 +1,4 @@
-import { CardFactory } from "~Cards/Aux"
+import { CardFactory } from "@/Cards/Aux"
 
 class MainCardModel {
   constructor() {

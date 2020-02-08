@@ -1,29 +1,29 @@
 //     Copyright (C) 2018 Christopher David Ramos
 declare const Application: ISparseWx
 
-import { render } from "~Handlers/Templates"
+import { render } from "@/Handlers/Templates"
 
-import {fetch, push as pushy} from "~Data/PushPull"
+import {fetch, push as pushy} from "@/Data/PushPull"
 
 import {
   CARDINAL_DIRECTIONS,
   PROPS,
   UI,
-} from "~Data/Dictionary"
+} from "@/Data/Dictionary"
 
-import { DictionaryIcons } from "~Data/Dictionary/Icons"
+import { DictionaryIcons } from "@/Data/Dictionary/Icons"
 const ICONS = new DictionaryIcons()
 
-import { WindSpeedHandler } from "~Handlers/WindSpeed"
+import { WindSpeedHandler } from "@/Handlers/WindSpeed"
 
 import {
   apparentTemperatureService as serveAppartentTemperature,
   textColorTemperatureService as serveTextColorTemperature,
-} from "~Services"
+} from "@/Services"
 
-import { convertF2C } from "~Utilities/Date"
+import { convertF2C } from "@/Utilities/Date"
 
-import { WidgetFactory } from "~Cards/Aux"
+import { WidgetFactory } from "@/Cards/Aux"
 const widgetFactory = new WidgetFactory()
 //
 

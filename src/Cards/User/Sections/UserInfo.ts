@@ -1,9 +1,9 @@
 //     Copyright (C) 2018 Christopher David Ramos
-import { render } from "~Handlers/Templates"
+import { render } from "@/Handlers/Templates"
 
-import { CardSectionFactory, WidgetFactory } from "~Cards/Aux"
+import { CardSectionFactory, WidgetFactory } from "@/Cards/Aux"
 
-import {fetch} from "~Data/PushPull"
+import {fetch} from "@/Data/PushPull"
 
 export function UserInfoSection(): CardSection | undefined {
 

@@ -1,25 +1,25 @@
 //     Copyright (C) 2018 Christopher David Ramos
-import { DateArray } from "~Utilities/Date"
+import { DateArray } from "@/Utilities/Date"
 
-import {fetch} from "~Data/PushPull"
+import {fetch} from "@/Data/PushPull"
 
-import { DictionaryIcons } from "~Data/Dictionary/Icons"
+import { DictionaryIcons } from "@/Data/Dictionary/Icons"
 const ICONS = new DictionaryIcons()
 
-import { WeatherServiceFallbackCard } from "~Cards/WeatherServiceStatus"
+import { WeatherServiceFallbackCard } from "@/Cards/WeatherServiceStatus"
 
-import { DisclaimerSection } from "~Cards/Main/Sections/Disclaimer"
-import { NavSection } from "~Cards/Main/Sections/Nav"
-import { WeatherSection } from "~Cards/Main/Sections/Weather"
+import { DisclaimerSection } from "@/Cards/Main/Sections/Disclaimer"
+import { NavSection } from "@/Cards/Main/Sections/Nav"
+import { WeatherSection } from "@/Cards/Main/Sections/Weather"
 
-import { CardFactory } from "~Cards/Aux"
+import { CardFactory } from "@/Cards/Aux"
 //
-import { UserCard } from "~Cards/User"
+import { UserCard } from "@/Cards/User"
 
 import {
   checkUserServiceStatus,
   checkWeatherServiceStatus,
-} from "~Services"
+} from "@/Services"
 //
 export function MainCard(): CardBuilder {
   // Check if NWS API is working

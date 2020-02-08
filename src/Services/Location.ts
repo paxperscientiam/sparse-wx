@@ -1,12 +1,12 @@
 //     Copyright (C) 2018 Christopher David Ramos
-import { timeStamp } from "~Utilities/Date"
+import { timeStamp } from "@/Utilities/Date"
 
 import {
   GoogleGeoCodeInterface,
   PROPS,
-} from "~Data/Dictionary"
+} from "@/Data/Dictionary"
 
-import {push as pushy} from "~Data/PushPull"
+import {push as pushy} from "@/Data/PushPull"
 // @ts-ignore
 export function checkLocationServiceStatus() {
   // simply tests if service returns a good result

@@ -9,6 +9,7 @@
   "main": "src/index.ts",
   "module": "dist/index.m.js",
   "scripts": {
+    "preinstall": "node -e \"!process.env.npm_config_user_agent.startsWith('pnpm/') && !console.log('Use \\`npx pnpm install\\` to install dependencies in this repository\\n') && process.exit(1)\"",
     "run:ts": "ts-node -r tsconfig-paths/register src/index.ts",
     "test:ts": "tsc -p tsconfig.json --noEmit --watch",
     "test:ts:verbose": "tsc -p tsconfig.json --traceResolution --noEmit",
@@ -44,11 +45,11 @@
     "urijs": "^1.19.2"
   },
   "devDependencies": {
-    "@types/gapi": "^0.0.36",
+    "@types/gapi": "0.0.36",
     "@types/gapi.client.drive": "^3.0.4",
     "@types/gapi.client.gmail": "^1.0.1",
     "@types/gapi.client.groupssettings": "^1.0.2",
-    "@types/google-apps-script": "^0.0.37",
+    "@types/google-apps-script": "0.0.37",
     "@types/node": "^11.15.5",
     "@types/object-path": "^0.11.0",
     "fuse-box": "^4.0.0-next.165",

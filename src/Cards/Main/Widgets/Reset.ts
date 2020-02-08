@@ -1,10 +1,10 @@
-import * as Utilities from "~Utilities/Utilities"
+import * as Utilities from "@/Utilities/Utilities"
 
-import { UserCard } from "~Cards/User"
+import { UserCard } from "@/Cards/User"
 
-import { push as pushy } from "~Data/PushPull"
+import { push as pushy } from "@/Data/PushPull"
 
-import {UI} from "~Data/Dictionary"
+import {UI} from "@/Data/Dictionary"
 
 export function ResetWidget(): TextButton {
   const COLORS = UI.COLORS.SCHEME

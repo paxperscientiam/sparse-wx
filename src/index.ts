@@ -1,5 +1,7 @@
 declare const Application: ISparseWx
 
+// import {} from "@Cards/
+
 // globalThis polyfill thanks to some genius on the net!
 (() => {
   if (typeof Application === "object") {
@@ -17,11 +19,11 @@ declare const Application: ISparseWx
   delete Object.prototype.__magic__
 })()
 
-import { MainCardController } from "App/Cards/MainCardController"
+import { MainCardController } from "@/Cards/MainCardController"
 
-import { View } from "App/ViewsController"
+import { View } from "@/ViewsController"
 
-import { MainCardModel } from "App/Models/MainCardModel"
+import { MainCardModel } from "@/Models/MainCardModel"
 
 const userProperties: Properties = PropertiesService.getUserProperties()
 Application.userProperties = userProperties
@@ -34,9 +36,6 @@ Application.buildAddOn = (): any => {
   model.name = "Main card"
   model.subtitle = "maincard subtitle"
   //
-
-  next test render on main preropty
-
   mainCard.bindingContext(model)
   //
   return mainCard.build()
