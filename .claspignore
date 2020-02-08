@@ -2,3 +2,4 @@
 !appsscript.json
 !dist/**
 !src/Views/**
+!src/debug.ts
