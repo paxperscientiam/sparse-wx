@@ -1,26 +1,26 @@
 import {fetch, push as pushy} from "@/Data/PushPull"
 
 export class BaseCardModel {
-    namespace!: string
+  namespace!: string
 
-    set name(name: string) {
-        pushy([this.namespace, "card.name"], name)
-    }
-    get name() {
-        return fetch("MainCardState", "card.name")
-    }
+  set name(name: string) {
+    pushy([this.namespace, "card.name"], name)
+  }
+  get name() {
+    return fetch(this.namespace, "card.name")
+  }
 
-    set title(title: string) {
-        pushy(["MainCardState", "header.title"], title)
-    }
-    get title() {
-        return fetch("MainCardState", "header.title")
-    }
+  set title(title: string) {
+    pushy([this.namespace, "header.title"], title)
+  }
+  get title() {
+    return fetch(this.namespace, "header.title")
+  }
 
-    set subtitle(subtitle: string) {
-        pushy(["MainCardState", "header.subtitle"], subtitle)
-    }
-    get subtitle() {
-        return fetch("MainCardState", "header.subtitle")
-    }
+  set subtitle(subtitle: string) {
+    pushy([this.namespace, "header.subtitle"], subtitle)
+  }
+  get subtitle() {
+    return fetch(this.namespace, "header.subtitle")
+  }
 }

@@ -1,6 +1,6 @@
 //     Copyright (C) 2018 Christopher David Ramos
 export function render(templateFileName: string, data: InputObject): string {
-    const templateBaseDir = "Templates/"
+    const templateBaseDir = "src/Views/"
     const template = HtmlService.createTemplateFromFile(
         `${templateBaseDir}${templateFileName}`)
     // make sure not to pass undefined, null, or empty string to template engine

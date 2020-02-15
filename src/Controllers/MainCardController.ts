@@ -1,16 +1,15 @@
 //     Copyright (C) 2018 Christopher David Ramos
-// import { DisclaimerSection } from "@/Cards/Main/Sections/Disclaimer"
-// import { DateArray } from "@/Utilities/Date"
+import { DisclaimerSection } from "@/Cards/Main/Sections/Disclaimer"
 
-// import { View } from "@/Cards/Aux"
-
-import { BaseCardController } from "@/Cards/CardController"
+import { BaseCardController } from "@/Controllers/BaseCardController"
 
 export class MainCardController extends BaseCardController  {
-  route: string = "localityInfo"
-  constructor() {
-    super()
-  }
+    route: string = "localityInfo"
+    constructor() {
+        super()
+
+        this.card.addSection(DisclaimerSection())
+    }
 }
 
 // export const MainCard = new MainCardController()

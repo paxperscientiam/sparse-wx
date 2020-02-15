@@ -1,5 +1,8 @@
-// import {fetch, push as pushy} from "@/Data/PushPull"
+import {BaseCardModel} from "@/Models/BaseCardModel"
 
-export class MainCardModel {
-  namespace: string = "MainCardState";
+export class MainCardModel extends BaseCardModel {
+    namespace: string = "MainCardState"
+
+    name: string = "maincard"
+    title: string = "Main Card Title"
 }

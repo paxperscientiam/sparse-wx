@@ -20,9 +20,7 @@ export function DisclaimerSection(args = {}): CardSection {
         }))
 
     // @ts-ignore
-    if (args.widget) {
-        cardSection.addWidget(CardService.newImage().setAltText("A nice image").setImageUrl("https://raw.githubusercontent.com/paxperscientiam/sparse-wx/test-flag/Img/out/us-flag-large.png"))
-    }
+    cardSection.addWidget(CardService.newImage().setAltText("A nice image").setImageUrl("https://raw.githubusercontent.com/paxperscientiam/sparse-wx/test-flag/Img/out/us-flag-large.png"))
 
     return cardSection
         .setCollapsible(true)

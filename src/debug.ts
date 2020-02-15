@@ -6,9 +6,10 @@ function dumpUserConfig(): any {
   return PropertiesService.getUserProperties().getProperties()
 }
 
-function dumpConfig(): void {
-  dumpScriptConfig()
-  dumpUserConfig()
+function dumpConfig(): any[] {
+  const sc = dumpScriptConfig()
+  const uc = dumpUserConfig()
+  return [{scriptConfig: sc}, {userConfig: uc}]
 }
 
 function clearUserProperties(): void {
