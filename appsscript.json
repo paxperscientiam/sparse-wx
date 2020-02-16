@@ -11,41 +11,45 @@
         "https://www.weather.gov/",
         "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/f6dde7ebf2d73eff18599f732912a4f5f748d27d/LICENSE",
         "https://alerts.weather.gov/cap/",
-        "https://forecast.weather.gov/",
-        "https://cash.app/$paxperscientiam"
+        "https://forecast.weather.gov/"
     ],
-    "gmail": {
-        "name": "SparseWx",
-        "useLocaleFromApp": true,
-        "logoUrl": "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/asset-img-logo.png/Img/Logo.png",
-        "authorizationCheckFunction": "",
-        "contextualTriggers": [{
-            "unconditional": {
-            },
-            "onTriggerFunction": "buildAddOn"
-        }],
-        "openLinkUrlPrefixes": [
-            "https://api.weather.gov/",
-            "https://github.com/paxperscientiam/sparse-wx/",
-            "https://www.weather.gov/",
-            "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/",
-            "https://alerts.weather.gov/cap/",
-            "https://forecast.weather.gov/",
-            "https://cash.app/"
-        ],
-        "primaryColor": "#cccccc",
-        "secondaryColor": "#000000",
-        "universalActions": [{
-            "text": "⚒ Project site",
-            "openLink": "https://github.com/paxperscientiam/sparse-wx/"
-        }, {
-            "text": " • Privacy policy",
-            "openLink": "https://github.com/paxperscientiam/sparse-wx/blob/privacy-policy.md/privacy.md"
-        }, {
-            "text": "$ Support me",
-            "openLink": "https://cash.app/$paxperscientiam"
-        }]
+    "addOns": {
+        "common": {
+            "homepageTrigger": { "runFunction": "buildHomePage" },
+            "name": "SparseWx",
+            "logoUrl": "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/asset-img-logo.png/Img/Logo.png"        },
+        "gmail": {
+            "useLocaleFromApp": true,
+            "authorizationCheckFunction": "",
+            "contextualTriggers": [{
+                "unconditional": {
+                },
+                "onTriggerFunction": "buildAddOn"
+            }],
+            "openLinkUrlPrefixes": [
+                "https://api.weather.gov/",
+                "https://github.com/paxperscientiam/sparse-wx/",
+                "https://www.weather.gov/",
+                "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/",
+                "https://alerts.weather.gov/cap/",
+                "https://forecast.weather.gov/",
+                "https://www.charitynavigator.org/"
+            ],
+            "primaryColor": "#cccccc",
+            "secondaryColor": "#000000",
+            "universalActions": [{
+                "text": "⚒ Project site",
+                "openLink": "https://github.com/paxperscientiam/sparse-wx/"
+            }, {
+                "text": " • Privacy policy",
+                "openLink": "https://github.com/paxperscientiam/sparse-wx/blob/privacy-policy.md/privacy.md"
+            }, {
+                "text": "$ Support 🇵🇷",
+                "openLink": "https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=5356"
+            }]
+        }
     },
+
     "timeZone": "America/New_York",
     "dependencies": {
     },

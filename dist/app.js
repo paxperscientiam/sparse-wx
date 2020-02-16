@@ -48,7 +48,7 @@ var $fsx = (function() {
   return $fsx;
 })();
 // default/src/index.js
-$fsx.f[13] = function(module, exports){
+$fsx.f[14] = function(module, exports){
 "use strict";
 exports.__esModule = true;
 // globalThis polyfill thanks to some genius on the net!
@@ -68,15 +68,29 @@ exports.__esModule = true;
     delete Object.prototype.__magic__;
 })();
 var MainCardController_1 = $fsx.r(10);
-var MainCardModel_1 = $fsx.r(12);
+var MainCardModel_1 = $fsx.r(13);
 var userProperties = PropertiesService.getUserProperties();
 Application.userProperties = userProperties;
 Application.buildAddOn = function () {
     var model = new MainCardModel_1.MainCardModel();
     var mainCard = new MainCardController_1.MainCardController();
+    //
     mainCard.bindingContext(model);
-    // //
+    //
     return mainCard.build();
+};
+Application.buildHomePage = function () {
+    var cardSection = CardService.newCardSection()
+        .addWidget(CardService.newKeyValue()
+        .setIconUrl("https://icon.png")
+        .setContent("KeyValue widget with an image on the left and text on the right"));
+    // Finish building the card section ...
+    var card = CardService.newCardBuilder()
+        .setName("Card name")
+        .setHeader(CardService.newCardHeader().setTitle("Homepage"))
+        .addSection(cardSection)
+        .build();
+    return card;
 };
 //# sourceMappingURL=index.js.map
 }
@@ -86,8 +100,6 @@ $fsx.f[10] = function(module, exports){
 exports.__esModule = true;
 var tslib_1 = $fsx.r(1);
 var Disclaimer_1 = $fsx.r(8);
-// import { DateArray } from "@/Utilities/Date"
-// import { View } from "@/Cards/Aux"
 var BaseCardController_1 = $fsx.r(9);
 var MainCardController = /** @class */ (function (_super) {
     tslib_1.__extends(MainCardController, _super);
@@ -95,6 +107,12 @@ var MainCardController = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.route = "localityInfo";
         _this.card.addSection(Disclaimer_1.DisclaimerSection());
+        _this.card.setFixedFooter(CardService
+            .newFixedFooter()
+            .setPrimaryButton(CardService
+            .newTextButton()
+            .setText("help")
+            .setOpenLink(CardService.newOpenLink().setUrl("http://www.google.com"))));
         return _this;
     }
     return MainCardController;
@@ -426,9 +444,7 @@ function DisclaimerSection(args) {
         })
     }));
     // @ts-ignore
-    if (args.widget) {
-        cardSection.addWidget(CardService.newImage().setAltText("A nice image").setImageUrl("https://raw.githubusercontent.com/paxperscientiam/sparse-wx/test-flag/Img/out/us-flag-large.png"));
-    }
+    cardSection.addWidget(CardService.newImage().setAltText("A nice image").setImageUrl("https://raw.githubusercontent.com/paxperscientiam/sparse-wx/us-flag/Img/Flag_of_the_United_States-50dpi.png"));
     return cardSection
         .setCollapsible(true)
         .build();
@@ -1257,18 +1273,21 @@ exports.BaseCardController = BaseCardController;
 //# sourceMappingURL=BaseCardController.js.map
 }
 // default/src/Models/MainCardModel.js
-$fsx.f[12] = function(module, exports){
+$fsx.f[13] = function(module, exports){
 "use strict";
 exports.__esModule = true;
 var tslib_1 = $fsx.r(1);
 var BaseCardModel_1 = $fsx.r(11);
+var Date_1 = $fsx.r(12);
+var da = new Date_1.DateArray();
 var MainCardModel = /** @class */ (function (_super) {
     tslib_1.__extends(MainCardModel, _super);
     function MainCardModel() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this) || this;
         _this.namespace = "MainCardState";
         _this.name = "maincard";
-        _this.title = "Main Card Title";
+        _this.title = da.GREETING + "!";
+        _this.subtitle = "Today is " + da.WEEKDAY;
         return _this;
     }
     return MainCardModel;
@@ -1319,7 +1338,94 @@ var BaseCardModel = /** @class */ (function () {
 exports.BaseCardModel = BaseCardModel;
 //# sourceMappingURL=BaseCardModel.js.map
 }
+// default/src/Utilities/Date.js
+$fsx.f[12] = function(module, exports){
+"use strict";
+exports.__esModule = true;
+function formatDateService(date, format) {
+    if (format === void 0) { format = "E, d MMM y"; }
+    return Utilities.formatDate(new Date(date), getUserTimeZone(), format);
+}
+exports.formatDateService = formatDateService;
+function formatTimeService(date) {
+    return Utilities.formatDate(new Date(date), getUserTimeZone(), "h:mm a");
+}
+exports.formatTimeService = formatTimeService;
+var DateArray = /** @class */ (function () {
+    function DateArray() {
+        var timeZone = getUserTimeZone();
+        var date = new Date();
+        this.HOUR = Number(Utilities.formatDate(date, timeZone, "H"));
+        this.WEEKDAY = Utilities.formatDate(date, timeZone, "EEEE");
+        this.WEEK_DAY = this.WEEKDAY;
+        this.MONTH = Utilities.formatDate(date, timeZone, "MMMM");
+        this.TIME = Utilities.formatDate(date, timeZone, "h:mm a");
+        if (this.HOUR >= 0 && this.HOUR < 12) {
+            // this.GREETING = Translate("Good morning")
+            this.GREETING = "Good morning";
+        }
+        else if (this.HOUR >= 12 && this.HOUR < 18) {
+            // this.GREETING = Translate("Good afternoon")
+            this.GREETING = "Good afternoon";
+        }
+        else {
+            // this.GREETING = Translate("Good evening")
+            this.GREETING = "Good evening";
+        }
+    }
+    return DateArray;
+}());
+exports.DateArray = DateArray;
+function timeConversion(millisec) {
+    // https://stackoverflow.com/a/32180863
+    var seconds = Math.round((millisec / 1000));
+    var minutes = Math.round((millisec / (1000 * 60)));
+    var hours = Math.round((millisec / (1000 * 60 * 60)));
+    var days = Math.round((millisec / (1000 * 60 * 60 * 24)));
+    if (seconds < 60) {
+        return seconds + " Seconds";
+    }
+    else if (minutes < 60) {
+        return minutes + " Minutes";
+    }
+    else if (hours < 24) {
+        return hours + " Hours";
+    }
+    else {
+        return days + " Days";
+    }
+}
+exports.timeConversion = timeConversion;
+function formatAge(date) {
+    var msgDate = new Date(date).getTime();
+    var todayDate = Date.now(); // milliseconds
+    var age = timeConversion(todayDate - msgDate);
+    return age;
+}
+exports.formatAge = formatAge;
+//
+function getUserTimeZone() {
+    return CalendarApp.getDefaultCalendar().getTimeZone();
+}
+exports.getUserTimeZone = getUserTimeZone;
+function convertC2F(temperature) {
+    return (temperature * (9 / 5) + 32).toFixed(0);
+}
+exports.convertC2F = convertC2F;
+function convertF2C(temperature) {
+    return ((temperature - 32) * 5 / 9).toFixed(0);
+}
+exports.convertF2C = convertF2C;
+// export function diffDate(newDate, oldDate) {
+//   // expects date objects
+// }
+function timeStamp() {
+    return (new Date()).toTimeString().slice(0, 8);
+}
+exports.timeStamp = timeStamp;
+//# sourceMappingURL=Date.js.map
+}
 // Importing a single entry
-$fsx.r(13);
+$fsx.r(14);
 })()
 //# sourceMappingURL=app.js.map

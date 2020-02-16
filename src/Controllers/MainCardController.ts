@@ -8,7 +8,15 @@ export class MainCardController extends BaseCardController  {
     constructor() {
         super()
 
+
         this.card.addSection(DisclaimerSection())
+        this.card.setFixedFooter(CardService
+                                 .newFixedFooter()
+                                 .setPrimaryButton(
+                                     CardService
+                                         .newTextButton()
+                                         .setText("help")
+                                         .setOpenLink(CardService.newOpenLink().setUrl("http://www.google.com"))))
     }
 }
 
