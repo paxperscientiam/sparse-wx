@@ -1,5 +1,5 @@
 //     Copyright (C) 2018 Christopher David Ramos
-function UserReturnHomeSection(): CardSection {
+export function UserReturnHomeSection(): CardSection {
     const COLORS = UI.PALETTE
 
     const goToMainCardAction = CardService.newAction()

@@ -1,7 +1,3 @@
-import {render} from "@/Handlers/Templates"
-// import { View } from "@/Aux"
-import { CardSectionFactory, WidgetFactory, CardFactory } from "@/Cards/Aux"
-
 interface IDamn {
     route: string
     source: any
@@ -12,8 +8,8 @@ export class BaseCardController implements IDamn {
     view!: any
     source!: any
 
-    card: any
-    cardHeader: any
+    card: CardBuilder
+    cardHeader: CardHeader
 
     constructor() {
         this.card = CardService.newCardBuilder()

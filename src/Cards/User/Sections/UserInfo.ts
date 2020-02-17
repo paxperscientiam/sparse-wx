@@ -1,23 +1,20 @@
 //     Copyright (C) 2018 Christopher David Ramos
-import { render } from "@/Handlers/Templates"
+import { View } from "@/Controllers/ViewsController"
 
 import { CardSectionFactory, WidgetFactory } from "@/Cards/Aux"
 
-import {fetch} from "@/Data/PushPull"
+import {UserModel} from "@/Models/UserModel"
 
-export function UserInfoSection(): CardSection | undefined {
+export function UserInfoSection(): CardSection {
+  const model = new UserModel()
+  const useraddress = model.address
+  const username = model.name
+  Logger.log(`username: ${username == ""}`)
+  Logger.log(`username: ${username == null}`)
+  Logger.log(`address: ${useraddress == ""}`)
+  Logger.log(`address: ${useraddress == null}`)
 
-  const useraddress = fetch("user", "address")
-  if (!useraddress) {
-    return void 0
-  }
-
-  const username = fetch("user", "name")
-  if (!username) {
-    return void 0
-  }
-
-  const textContent = render("userInfo", {
+  const textContent = View.render("userInfo", {
     useraddress,
     username,
   })

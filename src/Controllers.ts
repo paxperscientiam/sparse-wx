@@ -1,9 +1,9 @@
-import {BaseCardController} from "@/Controllers/CardController"
+import {BaseCardController} from "@/Controllers/BaseCardController"
 import {MainCardController} from "@/Controllers/MainCardController"
-import {View} from "@/Controllers/ViewsController"
+import {UserCardController} from "@/Controllers/UserCardController"
 
 export {
-  BaseCardController,
-  MainCardController,
-  View,
+    BaseCardController,
+    MainCardController,
+    UserCardController,
 }

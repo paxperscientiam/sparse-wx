@@ -1,6 +1,6 @@
+// Copyright (C) 2018 Christopher David Ramos
 export class View {
-
-  static render(route: string, data: any): string {
+  static render(route: string, data: InputObject): string {
     const templateBaseDir = "src/Views/"
     const template = HtmlService.createTemplateFromFile(
       `${templateBaseDir}${route}`)

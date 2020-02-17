@@ -9,9 +9,13 @@ import {
   PROPS,
 } from "@/Data/Dictionary"
 
-import {fetch, push as pushy} from "@/Data/PushPull"
+import { UserModel } from "@/Models/UserModel"
 
-export function validateUserName(input: string) {
+export function validateUserName(input: string = "") {
+  if (input == "") {
+    return [true]
+  }
+
   if (/^.{1,26}$/i.test(input)) {
     // test for length
     return [true, {message: "Nice name."}]
@@ -48,6 +52,7 @@ export function validateZIP(input: string) {
 }
 
 export function validateMailingAddress(address: string) {
+  const userModel = new UserModel()
   // https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingAddressTypes
   if (address == null) {
     return [false, "No valid address."]
@@ -68,13 +73,13 @@ export function validateMailingAddress(address: string) {
 
   polity.forEach((pol: IData) => {
     if (pol.types.indexOf(GeoInterface.COUNTRY) > -1) {
-      pushy(["user", "country"], pol.long_name)
+      userModel.country = pol.long_name
     }
   })
 
-  const strPolity = fetch("user", "country")
+  const strPolity = userModel.country
   //const isApprovedPolity = approvedPolities.indexOf(strPolity) > -1
-  const isApprovedPolity = strPolity === "United States";
+  const isApprovedPolity = (strPolity === "United States");
 
   if (!isApprovedPolity) {
     Application.userProperties.deleteProperty(PROPS.userLocale.country)
@@ -86,13 +91,13 @@ export function validateMailingAddress(address: string) {
   // stores approved data
   processGeocoderResultsService(polity, result.geometry)
 
-  const lastAddressResult = fetch("user", "address")
+//  const lastAddressResult = userModel.address
   //  const lastAddressResult2 = user.fetch("suggested_address_two").response
 
-  if (lastAddressResult != null) {
-    pushy(["user", "suggested_address_two"],  lastAddressResult)
-  }
-  pushy(["user", "address"], result.formatted_address)
+  // if (lastAddressResult != null) {
+  //   pushy(["user", "suggested_address_two"],  lastAddressResult)
+  // }
+  // pushy(["user", "address"], result.formatted_address)
   //
   return [true]
 }

@@ -1,3 +1,4 @@
-Hello<? if (data.username != null) { ?><b> <?= data.username ?>,</b>
-<? } ?>
-<p>You are currently getting forecasts near <?= data.useraddress ?>.</p>
+<? if (data.username == null) { ?>Hello!
+<? } else {?>Hello <b><?=data.username?></b>!<? } ?>
+<? if (data.useraddress == null) { ?><p>Enter any US address to get the local forecast.</p>
+<? } else {?><p>You are currently getting forecasts near <?=data.useraddress?>.</p><? } ?>

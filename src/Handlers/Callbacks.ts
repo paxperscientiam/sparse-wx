@@ -1,66 +1,46 @@
 //     Copyright (C) 2018 Christopher David Ramos
-declare const Application: ISparseWx
-
 import { validateMailingAddress, validateUserName } from "@/Utilities/Validate"
-
-import { fetch, push as pushy } from "@/Data/PushPull"
 
 import {BRAND} from "@/Data/Dictionary"
 
-import { ResetWidget } from "@/Cards/Main/Widgets/Reset"
+// import { ResetWidget } from "@/Cards/Main/Widgets/Reset"
 
-import { MainCard } from "@/Cards/Main"
+// import { MainCard } from "@/Cards/Main"
 
 import { CardSectionFactory, WidgetFactory} from "@/Cards/Aux"
 
+import {UserModel} from "@/Models"
+import {ApplicationModel} from "@/Models/ApplicationModel"
+
 // @ts-ignore
 function submitNameCallback(e: any): boolean {
-  Logger.log(e)
+  const userModel = new UserModel()
+  const applicationModel = new ApplicationModel()
+
   const name = e.formInput.user_name_key
-  pushy(["input", "user_name_key"], name)
-  if (!name) {
-    return false
-  }
+
   const isUserNameValid = validateUserName(name)
 
   if (isUserNameValid[0]) {
-    pushy(["state", "input.name"], "valid")
-    pushy(["state", "mint"], false)
-    pushy(["user", "name"], name)
+    applicationModel.isUserNameValid = true
+    applicationModel.isMint = false
+    userModel.name = name
     return true
   } else {
-    pushy(["state", "input.name"], "invalid")
+    applicationModel.isUserNameValid = false
     throw new Error("bad name")
   }
 }
 
-//
-//   if (true & name) {
-//     return false
-//   }
-//   Logger.log(`Submitted name is ${name}`)
-//
+Application.submitAddressCallback = (e: any): boolean => {
+  const applicationModel = new ApplicationModel()
+  const userModel = new UserModel()
 
-//   if (isUserNameValid[0] && name.length > 0) {
-
-//     Logger.log(`User's chosen name is ${name}.`)
-//     user.name = name
-//     return true
-//   } else {
-//     // @ts-ignore
-//     throw new Error(isUserNameValid[1].message)
-//   }
-
-//   return false
-// }
-
-// @ts-ignore
-Application.submitAddressCallback = (e) => {
   const address = e.formInput.user_address_key
   // @test
-  pushy(["input", "user_address_key"], address)
+  applicationModel.address = address
 
-  const storedAddress = fetch("user", "address")
+  const storedAddress = userModel.address
 
   if (!address && !storedAddress) {
     throw new Error("First time? You'll need to set an address")
@@ -74,8 +54,9 @@ Application.submitAddressCallback = (e) => {
   const isValid = validateMailingAddress(address)
   // if valid, retrieve address from storage
   if (isValid[0]) {
-    pushy(["state", "input.address"], "valid")
-    pushy(["state", "mint"], false)
+    applicationModel.isAddressValid = true
+    applicationModel.isMint = false
+
     //  const cache = CacheService.getUserCache()
     // cache.removeAll(["wxRaw", "wxRawForecast"])
     // successful validation means that lon,lat, and address properties defined
@@ -83,21 +64,22 @@ Application.submitAddressCallback = (e) => {
   } else {
     const response = "Sorry, try a different address."
     if (isValid[1] === "ZERO_RESULTS") {
-      pushy(["state", "input.address"], "ZERO_RESULTS")
+      applicationModel.address = "ZERO_RESULTS"
       throw new Error("Sorry, that address wasn't found. Try something else.")
     }
 
     if (isValid[1] === "UNSUPPORTED_REGION") {
-      pushy(["state", "input.address"], "UNSUPPORTED_REGION")
+      applicationModel.address =  "UNSUPPORTED_REGION"
       throw new Error(`Sorry, ${BRAND.NAME} only supports results for the USA.`)
     }
-    pushy(["state", "input.address"], "ERR")
+    applicationModel.address = "ERR"
     throw new Error(response)
   }
 }
 
-// @ts-ignore
-Application.submitTemperatureUnitCallback = (e) => {
+Application.submitTemperatureUnitCallback = (e: any) => {
+  const userModel = new UserModel()
+
   const chosenTempUnit = e.formInputs.temperature_unit_list[0]
 
   const currentTempUnit = e.temp_unit
@@ -110,21 +92,10 @@ Application.submitTemperatureUnitCallback = (e) => {
     return false
   }
 
-  pushy(["user", "temp_unit"], chosenTempUnit)
+  userModel.temperatureUnit = chosenTempUnit
   return true
 }
 
-// // @ts-ignore
-// Application.goToHomeCardCallback = () => {
-//   return CardService.newActionResponseBuilder()
-//     .setNavigation(
-//       CardSevice.newNavigation().pushCard(MainCard().build()),
-//     )
-//     .setStateChanged(false)
-//     .build()
-// }
-
-// @ts-ignore
 Application.getAddressSuggestionsCallback = () => {
   Logger.log("Address suggestions callback ... called")
   // will use recent entries
@@ -151,8 +122,7 @@ Application.getAddressSuggestionsCallback = () => {
     .build()
 }
 
-// @ts-ignore
-Application.processUserPreferencesFormCallback = (e: any) => {
+Application.processUserPreferencesFormCallback = (e: any): ActionResponse => {
   Logger.log("processUserPreferencesFormCallback ... ")
 
   let shouldProcess = false
@@ -191,7 +161,7 @@ Application.processUserPreferencesFormCallback = (e: any) => {
   }
 
   try {
-    const isTempUnitChanged = submitTemperatureUnitCallback(e)
+    const isTempUnitChanged = Application.submitTemperatureUnitCallback(e)
     // @ts-ignore
     shouldProcess = shouldProcess || isTempUnitChanged
     if (isTempUnitChanged) {
@@ -227,9 +197,12 @@ Application.processUserPreferencesFormCallback = (e: any) => {
 }
 
 export function UserSection(): CardSection {
-  const isMint = !!fetch("state", "mint")
+  const applicatioModel = new ApplicationModel()
+  const userModel = new UserModel()
 
-  const userzip = fetch("user", "zip_code")
+  const isMint = applicatioModel.isMint
+
+  const userzip = userModel.zipcode
 
   const submitAddressSuggestionsAction = CardService.newAction()
     .setFunctionName("getAddressSuggestionsCallback")
@@ -246,8 +219,6 @@ export function UserSection(): CardSection {
 
   const cardSection = new CardSectionFactory()
   const widgetFactory = new WidgetFactory()
-
-  pushy(["state", "menu.submitTemp.options.values"], "dropdown_item_f, dropdown_item_c")
 
   cardSection
     .addWidget(widgetFactory._TextInput({
@@ -286,10 +257,10 @@ export function UserSection(): CardSection {
       text: "Submit",
     }))
 
-  if (!isMint) {
-    cardSection
-      .addWidget(ResetWidget())
-  }
+  // if (!isMint) {
+  //   cardSection
+  //     .addWidget(ResetWidget())
+  // }
 
   return cardSection.setCollapsible(false).build()
 }

@@ -1,5 +1,3 @@
-declare const Application: ISparseWx
-
 // globalThis polyfill thanks to some genius on the net!
 (() => {
   if (typeof Application === "object") {
@@ -17,20 +15,28 @@ declare const Application: ISparseWx
   delete Object.prototype.__magic__
 })()
 
-import { MainCardController } from "@/Controllers/MainCardController"
+import {
+    MainCardController,
+    UserCardController,
+} from "@/Controllers"
 
-import { MainCardModel } from "@/Models/MainCardModel"
+import { MainCardModel, UserCardModel } from "@/Models"
 
 const userProperties: Properties = PropertiesService.getUserProperties()
 Application.userProperties = userProperties
 
 Application.buildAddOn = (): Card => {
-    const model = new MainCardModel()
-    const mainCard = new MainCardController()
-    //
-    mainCard.bindingContext(model)
-    //
-    return mainCard.build()
+    // const model = new MainCardModel()
+    // const mainCard = new MainCardController()
+    // //
+    // mainCard.bindingContext(model)
+    // //
+    // return mainCard.build()
+
+    const userCardModel = new UserCardModel()
+    const userCard = new UserCardController()
+    userCard.bindingContext(userCardModel)
+    return userCard.build()
 }
 
 Application.buildHomePage = (): Card => {
