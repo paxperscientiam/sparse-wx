@@ -71,16 +71,16 @@ var Models_1 = $fsx.r(34);
 var userProperties = PropertiesService.getUserProperties();
 Application.userProperties = userProperties;
 Application.buildAddOn = function () {
-    // const model = new MainCardModel()
-    // const mainCard = new MainCardController()
-    // //
-    // mainCard.bindingContext(model)
-    // //
-    // return mainCard.build()
-    var userCardModel = new Models_1.UserCardModel();
-    var userCard = new Controllers_1.UserCardController();
-    userCard.bindingContext(userCardModel);
-    return userCard.build();
+    var model = new Models_1.MainCardModel();
+    var mainCard = new Controllers_1.MainCardController();
+    //
+    mainCard.bindingContext(model);
+    //
+    return mainCard.build();
+    // const userCardModel = new UserCardModel()
+    // const userCard = new UserCardController()
+    // userCard.bindingContext(userCardModel)
+    // return userCard.build()
 };
 Application.buildHomePage = function () {
     var cardSection = CardService.newCardSection()
@@ -271,6 +271,7 @@ function __metadata(metadataKey, metadataValue) {
 }
 exports.__metadata = __metadata;
 function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try {
             step(generator.next(value));
@@ -284,7 +285,7 @@ function __awaiter(thisArg, _arguments, P, generator) {
         catch (e) {
             reject(e);
         } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 }
@@ -366,16 +367,18 @@ function __exportStar(m, exports) {
 }
 exports.__exportStar = __exportStar;
 function __values(o) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m)
         return m.call(o);
-    return {
-        next: function () {
-            if (o && i >= o.length)
-                o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
+    if (o && typeof o.length === "number")
+        return {
+            next: function () {
+                if (o && i >= o.length)
+                    o = void 0;
+                return { value: o && o[i++], done: !o };
+            }
+        };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 }
 exports.__values = __values;
 function __read(o, n) {
@@ -485,6 +488,21 @@ function __importDefault(mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 }
 exports.__importDefault = __importDefault;
+function __classPrivateFieldGet(receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+}
+exports.__classPrivateFieldGet = __classPrivateFieldGet;
+function __classPrivateFieldSet(receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+}
+exports.__classPrivateFieldSet = __classPrivateFieldSet;
 
 }
 // default/src/Cards/Main/Sections/Disclaimer.js

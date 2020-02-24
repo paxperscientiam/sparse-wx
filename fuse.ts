@@ -2,9 +2,8 @@ import { fusebox } from "fuse-box"
 
 fusebox({
   entry: "src/index.ts",
-  output: "dist",
-
   cache: false,
+  output: "dist",
 
   target: "web-worker",
   useSingleBundle: true,
@@ -20,9 +19,13 @@ fusebox({
     ignored: [/flycheck/i],
   },
 })
-//.runDev()
+// .runDev({
+//   bundles: {
+//     distRoot: "dist",
+//   }
+// })
   .runProd({
     screwIE: false,
-    target: "ES3",
+    target: "ES6",
     uglify: false,
   })

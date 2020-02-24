@@ -1,60 +1,42 @@
 {
-    "oauthScopes": [
-        "https://www.googleapis.com/auth/calendar.readonly",
-        "https://www.googleapis.com/auth/gmail.addons.execute",
-        "https://www.googleapis.com/auth/script.external_request",
-        "https://www.googleapis.com/auth/script.locale"
-    ],
-    "urlFetchWhitelist":[
-        "https://api.weather.gov/",
-        "https://github.com/paxperscientiam/sparse-wx/",
-        "https://www.weather.gov/",
-        "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/f6dde7ebf2d73eff18599f732912a4f5f748d27d/LICENSE",
-        "https://alerts.weather.gov/cap/",
-        "https://forecast.weather.gov/"
-    ],
-    "addOns": {
-        "common": {
-            "homepageTrigger": { "runFunction": "buildHomePage" },
-            "name": "SparseWx",
-            "logoUrl": "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/asset-img-logo.png/Img/Logo.png"        },
-        "gmail": {
-            "useLocaleFromApp": true,
-            "authorizationCheckFunction": "",
-            "contextualTriggers": [{
-                "unconditional": {
-                },
-                "onTriggerFunction": "buildAddOn"
-            }],
-            "openLinkUrlPrefixes": [
-                "https://api.weather.gov/",
-                "https://github.com/paxperscientiam/sparse-wx/",
-                "https://www.weather.gov/",
-                "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/",
-                "https://alerts.weather.gov/cap/",
-                "https://forecast.weather.gov/",
-                "https://www.charitynavigator.org/"
-            ],
-            "primaryColor": "#cccccc",
-            "secondaryColor": "#000000",
-            "universalActions": [{
-                "text": "⚒ Project site",
-                "openLink": "https://github.com/paxperscientiam/sparse-wx/"
-            }, {
-                "text": " • Privacy policy",
-                "openLink": "https://github.com/paxperscientiam/sparse-wx/blob/privacy-policy.md/privacy.md"
-            }, {
-                "text": "$ Support 🇵🇷",
-                "openLink": "https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=5356"
-            }]
-        }
+  "timeZone": "America/New_York",
+  "dependencies": {
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "oauthScopes": ["https://www.googleapis.com/auth/calendar.readonly", "https://www.googleapis.com/auth/gmail.addons.execute", "https://www.googleapis.com/auth/script.external_request", "https://www.googleapis.com/auth/script.locale"],
+  "urlFetchWhitelist": ["https://api.weather.gov/", "https://github.com/paxperscientiam/sparse-wx/", "https://www.weather.gov/", "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/f6dde7ebf2d73eff18599f732912a4f5f748d27d/LICENSE", "https://alerts.weather.gov/cap/", "https://forecast.weather.gov/"],
+  "executionApi": {
+    "access": "ANYONE"
+  },
+  "runtimeVersion": "V8",
+  "addOns": {
+    "common": {
+      "name": "SparseWx",
+      "logoUrl": "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/asset-img-logo.png/Img/Logo.png",
+      "homepageTrigger": {
+        "runFunction": "buildHomePage"
+      }
     },
-
-    "timeZone": "America/New_York",
-    "dependencies": {
-    },
-    "exceptionLogging": "STACKDRIVER",
-    "executionApi": {
-        "access": "ANYONE"
+    "gmail": {
+      "contextualTriggers": [{
+        "unconditional": {
+        },
+        "onTriggerFunction": "buildAddOn"
+      }],
+      "universalActions": [{
+        "text": "⚒ Project site",
+        "openLink": "https://github.com/paxperscientiam/sparse-wx/"
+      }, {
+        "text": " • Privacy policy",
+        "openLink": "https://github.com/paxperscientiam/sparse-wx/blob/privacy-policy.md/privacy.md"
+      }, {
+        "text": "$ Support 🇵🇷",
+        "openLink": "https://www.charitynavigator.org/index.cfm?bay\u003dcontent.view\u0026cpid\u003d5356"
+      }],
+      "primaryColor": "#cccccc",
+      "secondaryColor": "#000000",
+      "openLinkUrlPrefixes": ["https://api.weather.gov/", "https://github.com/paxperscientiam/sparse-wx/", "https://www.weather.gov/", "https://raw.githubusercontent.com/paxperscientiam/sparse-wx/", "https://alerts.weather.gov/cap/", "https://forecast.weather.gov/", "https://www.charitynavigator.org/"],
+      "useLocaleFromApp": true
     }
+  }
 }
