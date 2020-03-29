@@ -1,31 +1,16 @@
-import { fusebox } from "fuse-box"
+import { fusebox, pluginReplace } from 'fuse-box';
 
 fusebox({
-  entry: "src/index.ts",
-  cache: false,
-  output: "dist",
-
-  target: "web-worker",
-  useSingleBundle: true,
-
-  codeSplitting: {
-    useHash: false,
-  },
-  webIndex: false,
-
-  devServer: false ,
-  hmr: false, // not working ... possibly confused by devServer
-  watch: {
-    ignored: [/flycheck/i],
-  },
+  target: 'web-worker',
+  entry: 'src/index.ts',
+  sourceMap: true,
+  devServer: false,
+  plugins: [
+    pluginReplace(/src\/.*/, { "Application.": "globalThis." })
+  ]
 })
-// .runDev({
-//   bundles: {
-//     distRoot: "dist",
-//   }
-// })
+//  .runDev()
   .runProd({
-    screwIE: false,
-    target: "ES6",
-    uglify: false,
-  })
+    uglify: true,
+    manifest: false,
+  });

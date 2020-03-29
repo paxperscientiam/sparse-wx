@@ -9,15 +9,15 @@
   "main": "src/index.ts",
   "module": "dist/index.m.js",
   "scripts": {
-    "preinstall": "node -e \"!process.env.npm_config_user_agent.startsWith('pnpm/') && !console.log('Use \\`npx pnpm install\\` to install dependencies in this repository\\n') && process.exit(1)\"",
     "run:ts": "ts-node -r tsconfig-paths/register src/index.ts",
     "test:ts": "tsc -p tsconfig.json --noEmit --watch",
     "test:ts:verbose": "tsc -p tsconfig.json --traceResolution --noEmit",
-    "upload": "clasp push",
-    "clasp:test": "npm run test:ts && npm run upload && clasp run buildAddOn",
-    "deploy": "clasp:test && clasp run buildAddOn; terminal-notifier -title \"sparsewx\" -message \"done\"",
+    "upload": "pnpx clasp push",
+    "clasp:test": "npm run test:ts && npm run upload && pnpx clasp run buildAddOn",
+    "deploy": "clasp:test && pnpx clasp run buildAddOn; terminal-notifier -title \"sparsewx\" -message \"done\"",
     "lint:ts": "tslint src/index.ts src/Code/**/*.ts",
-    "getty": "x=$(echo {}); echo $x | jq"
+    "getty": "x=$(echo {}); echo $x | jq",
+    "deploy:dev": "ts-node fuse.ts && pnpx clasp push && pnpx clasp run buildAddOn"
   },
   "repository": {
     "type": "git",
@@ -28,20 +28,16 @@
     "apps-script"
   ],
   "dependencies": {
+    "@google/clasp": "^2.3.0",
     "@paxperscientiam/dlv.ts": "^1.2.5",
-    "auto-bind": "^4.0.0",
-    "autobind-decorator": "^2.4.0",
+    "awesome-lodash": "npm:lodash@^4.17.15",
     "bind-decorator": "^1.0.11",
-    "core-js": "^3.6.4",
     "dset": "^2.0.1",
-    "es6-set": "^0.1.5",
     "idx": "^2.5.6",
     "object-path": "^0.11.4",
-    "query-string": "^6.11.0",
-    "ramda": "^0.26.1",
-    "stately.js": "^2.0.0",
+    "query-string": "^6.11.1",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.7.5",
+    "typescript": "^3.8.3",
     "uri-js": "^4.2.2",
     "urijs": "^1.19.2"
   },
@@ -51,11 +47,11 @@
     "@types/gapi.client.gmail": "^1.0.1",
     "@types/gapi.client.groupssettings": "^1.0.2",
     "@types/google-apps-script": "0.0.37",
-    "@types/node": "^11.15.6",
+    "@types/node": "^11.15.7",
     "@types/object-path": "^0.11.0",
-    "fuse-box": "^4.0.0-next.165",
-    "ts-node": "^8.6.2",
-    "tslib": "^1.10.0",
+    "fuse-box": "4.0.0-next.422",
+    "ts-node": "^8.8.1",
+    "tslib": "^1.11.1",
     "tslint": "^5.20.1"
   }
 }

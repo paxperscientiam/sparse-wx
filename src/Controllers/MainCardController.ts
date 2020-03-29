@@ -10,7 +10,8 @@ export class MainCardController extends BaseCardController  {
 
 
         this.card.addSection(DisclaimerSection())
-        this.card.setFixedFooter(CardService
+      this.card.setFixedFooter(CardService
+                               // @ts-ignore
                                  .newFixedFooter()
                                  .setPrimaryButton(
                                      CardService

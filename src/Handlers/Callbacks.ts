@@ -5,7 +5,9 @@ import {BRAND} from "@/Data/Dictionary"
 
 // import { ResetWidget } from "@/Cards/Main/Widgets/Reset"
 
-// import { MainCard } from "@/Cards/Main"
+import { MainCardModel } from "@/Models"
+
+import {MainCardController} from "@/Controllers"
 
 import { CardSectionFactory, WidgetFactory} from "@/Cards/Aux"
 
@@ -124,6 +126,10 @@ Application.getAddressSuggestionsCallback = () => {
 
 Application.processUserPreferencesFormCallback = (e: any): ActionResponse => {
   Logger.log("processUserPreferencesFormCallback ... ")
+  const model = new MainCardModel()
+  const mainCard = new MainCardController()
+  //
+  mainCard.bindingContext(model)
 
   let shouldProcess = false
   let notification = ""
@@ -180,7 +186,7 @@ Application.processUserPreferencesFormCallback = (e: any): ActionResponse => {
     return CardService.newActionResponseBuilder()
       .setNavigation(CardService
                      .newNavigation()
-                     .pushCard(MainCard().build()))
+                     .pushCard(mainCard.build()))
       .setNotification(CardService.newNotification()
                        .setType(CardService.NotificationType.INFO)
                        .setText(notification))
