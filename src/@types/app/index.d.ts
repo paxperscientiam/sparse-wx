@@ -1,6 +1,7 @@
 import Global = NodeJS.Global
 
 declare interface ISparseWx extends Global {
+
   timeStamp: () => string
 
   goToUserCardCallback: () => any

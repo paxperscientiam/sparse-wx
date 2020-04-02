@@ -1,8 +1,11 @@
 import { fusebox, pluginReplace, sparky } from 'fuse-box';
-
-import * as path from  'path'
+import "./src/env"
 
 class Context {
+  public distRoot: string = "./dist"
+  public appFileName: string = "app.js"
+  public isProduction: boolean = process.env.NODE_ENV === "production" ? true : false
+
   public getConfig() {
     return fusebox({
       target: 'web-worker',
@@ -19,40 +22,24 @@ class Context {
   }
 }
 
-const {rm, task} = sparky<Context>(Context)
-
-task("clean", async () => {
-  rm("./dist_test")
-})
+const {
+  rm,
+  task,
+} = sparky<Context>(Context)
 
 task("default", async (ctx: Context) => {
+  rm(ctx.distRoot)
   const fuse = ctx.getConfig()
-  await fuse.runDev()
+
+  if (ctx.isProduction) {
+    console.log("production")
+  } else {
+    await fuse.runDev({
+      bundles: {
+        app: ctx.appFileName,
+        distRoot: ctx.distRoot,
+      },
+      uglify: true,
+    })
+  }
 });
-
-// //  .runDev()
-//   .runProd({
-//     uglify: true,
-//     manifest: false,
-//   });
-
-// task("test:dist", async ctx => {
-
-// //  rm("./dist_test");
-//   // const { MyAwesomePlugin } = require("./dist");
-//   // const transformer = fusebox({
-//   //   cache: false,
-//   //   dependencies: { serverIgnoreExternals: true },
-//   //   entry: "src/project/test.ts",
-//   //   plugins: [MyAwesomePlugin()],
-//   //   target: "server"
-//   });
-
-//   const { onComplete } = await transformer.runDev({
-//     bundles: {
-//       distRoot: path.join(__dirname, "dist_test"),
-//       app: { path: "test_app.js" }
-//     }
-//   });
-//   onComplete(({ server }) => server.start());
-// });
