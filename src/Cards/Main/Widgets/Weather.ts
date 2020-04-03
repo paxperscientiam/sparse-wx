@@ -24,9 +24,7 @@ import {
 import { convertF2C } from "@/Utilities/Date"
 
 import { WidgetFactory } from "@/Cards/Aux"
-const widgetFactory = new WidgetFactory()
 //
-
 export function WeatherWidget(data: IData): KeyValue {
   const widgetData = {}
 
@@ -81,7 +79,7 @@ export function WeatherWidget(data: IData): KeyValue {
     widgetData.apparentTemperature = apparentTemperature
   }
 
-  return widgetFactory._KeyValue({
+  return (new WidgetFactory())._KeyValue({
     content: render("weatherToday", {
       COLORS,
       day: name,
@@ -96,7 +94,7 @@ export function WeatherWidget(data: IData): KeyValue {
   })
 }
 
-export function AuxWeatherWidget() {
+export function AuxWeatherWidget(): KeyValue {
   const WX = PROPS.WX
 
   const cwaUrl = Application.userProperties.getProperty(WX.CWA)
@@ -106,18 +104,18 @@ export function AuxWeatherWidget() {
 
   const forecastUrl = `https://forecast.weather.gov/MapClick.php?lat=${lat}&lon=${lon}`
 
-  return widgetFactory._KeyValue({
+  return (new WidgetFactory())._KeyValue({
     content: `Go to <a title="loool" href="${forecastUrl}">weather.gov</a> for more detail.`,
     iconUrl: ICONS.UI.IMG_INFO,
     multiline: true,
   })
 }
 
-export function WeatherErrorWidget(noWXcomment: string) {
+export function WeatherErrorWidget(noWXcomment: string): KeyValue {
   const data = {
     content: noWXcomment,
     iconUrl: ICONS.UI.IMG_ERROR,
     multiline: true,
   }
-  return widgetFactory._KeyValue(data)
+  return (new WidgetFactory())._KeyValue(data)
 }

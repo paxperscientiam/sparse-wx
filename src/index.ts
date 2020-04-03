@@ -10,23 +10,17 @@ Application.userProperties = userProperties
 
 
 Application.buildAddOn = (): Card => {
-  var card = CardService.newCardBuilder()
-    .setName("Card name")
-    .setHeader(CardService.newCardHeader().setTitle("Card title"))
-    .build();
-//
-  return card;
-  // //const model = new MainCardModel()
-  // const mainCard = new MainCardController()
-  // //
-  // //mainCard.bindingContext(model)
-  // //
-  // return mainCard.build()
+
+  const model = new MainCardModel()
+  const mainCard = new MainCardController()
+  mainCard.bindingContext(model)
+  return mainCard.build()
   //
-  // const userCardModel = new UserCardModel()
-  // const userCard = new UserCardController()
-  // userCard.bindingContext(userCardModel)
-  // return userCard.build()
+//  const userCardModel = new UserCardModel()
+ // const userCard = new UserCardController()
+  //userCard.bindingContext(userCardModel)
+  //  return userCard.build()
+//  return userCard
 }
 //
 Application.buildHomePage = (): Card => {

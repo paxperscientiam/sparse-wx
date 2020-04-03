@@ -2,7 +2,6 @@
 import { UserCard } from "@/Cards/User"
 
 import { WidgetFactory } from "@/Cards/Aux"
-const widgetFactory = new WidgetFactory()
 
 import { MainCard } from "@/Cards/Main"
 
@@ -55,12 +54,12 @@ export function NavButtonsWidget(): ButtonSet {
 
   const buttonSet: ButtonSet = CardService.newButtonSet()
 
-  buttonSet.addButton(widgetFactory._TextButton({
+  buttonSet.addButton((new WidgetFactory())._TextButton({
     action: action1,
     text: `<font color="${COLORS.SECONDARY}">[ ${settingsTextButton} ]</font>`,
   }))
 
-  buttonSet.addButton(widgetFactory._TextButton({
+  buttonSet.addButton((new WidgetFactory())._TextButton({
     action: action2,
     text: `<font color="${COLORS.SECONDARY}">[ REFRESH ]</font>`,
   }))

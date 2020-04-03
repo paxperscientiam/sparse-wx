@@ -11,8 +11,6 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "module": "commonjs",

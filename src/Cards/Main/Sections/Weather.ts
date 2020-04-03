@@ -20,7 +20,6 @@ import { render } from "@/Handlers/Templates"
 import * as Truthy from "@/Utilities/Math"
 
 import { CardSectionFactory, WidgetFactory } from "@/Cards/Aux"
-const widgetFactory = new WidgetFactory()
 
 import { formatDateService } from "@/Utilities/Date"
 
@@ -117,7 +116,7 @@ ${formatDateService(dateUpdateDate)}`
   pushy(["state", "card.Main.section.Weather.header"], widgetTextUpdateTime)
 
   const wxSection = new CardSectionFactory(data)
-    .addWidget(widgetFactory._Paragraph({
+    .addWidget((new WidgetFactory())._Paragraph({
       text: header,
     }))
 
@@ -139,7 +138,7 @@ ${formatDateService(dateUpdateDate)}`
       i++
     } while (i < wxPN.wxPeriodCount)
     Logger.log(`[${timeStamp()}][isWxFetchSuccessful]: TRUE`)
-    wxSection.addWidget(widgetFactory._KeyValue({
+    wxSection.addWidget((new WidgetFactory())._KeyValue({
       content: `<p><font color="#AAAAAA">${widgetTextUpdateTime}</font></p>`,
       multiline: true,
     }))

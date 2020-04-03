@@ -39,7 +39,8 @@ task("default", async (ctx: Context) => {
         app: ctx.appFileName,
         distRoot: ctx.distRoot,
       },
-      uglify: true,
+      buildTarget: "ES6",
+      target: "web-worker"
     })
   }
 });
