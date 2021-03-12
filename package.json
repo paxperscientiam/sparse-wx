@@ -34,7 +34,7 @@
     "bind-decorator": "^1.0.11",
     "dset": "^2.0.1",
     "idx": "^2.5.6",
-    "madge": "^3.8.0",
+    "madge": "^4.0.1",
     "object-path": "^0.11.4",
     "query-string": "^6.11.1",
     "tsconfig-paths": "^3.9.0",
